@@ -30,13 +30,7 @@ jobs:
         cache: maven
         
     - name: Build with Maven
-      run: mvn compile -P prod
-
-    - name: Test with Maven
-      run: mvn test -P prod
-
-    - name: Package with Maven
-      run: mvn package -P prod
+      run: mvn install -P prod
 
   push_to_registry:
     name: Push Docker image to Docker Hub
