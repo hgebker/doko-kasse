@@ -66,6 +66,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: package
+          path: prod
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v5.0.0
@@ -76,4 +77,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            "JAR_FILE=./prod/*.jar"
+            "JAR_FILE=prod/*.jar"
