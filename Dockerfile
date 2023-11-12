@@ -1,4 +1,4 @@
-FROM arm32v7/openjdk:11-ea-17-jre-slim
+FROM arm32v7/eclipse-temurin:17-jre
 VOLUME /doko
 ARG JAR_FILE
 COPY ${JAR_FILE} app.jar
