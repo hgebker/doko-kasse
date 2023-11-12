@@ -6,13 +6,15 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: doko-kasse workflow
+name: Build and deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
