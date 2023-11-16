@@ -83,7 +83,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            "JAR_FILE=prod/*.jar"
-          secrets: |
-            AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }}
+            JAR_FILE=prod/*.jar
+            AWS_ACCESS_KEY_ID_INPUT=${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_KEY_INPUT=${{ secrets.AWS_SECRET_KEY }}
