@@ -1,4 +1,4 @@
-FROM arm32v7/eclipse-temurin:17-jre
+FROM amazoncorretto:17-alpine
 VOLUME /doko
 ARG JAR_FILE
 COPY ${JAR_FILE} app.jar
