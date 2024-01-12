@@ -38,6 +38,10 @@ const LIST_OPTIONS = [
   {
     id: 'ss23',
     label: 'Sommersemester 23'
+  },
+  {
+    id: 'season2324',
+    label: 'Saison 23/24'
   }
 ];
 
