@@ -1,4 +1,4 @@
-package com.hgebk.doko.expense;
+package com.hgebk.doko.kasse.expense;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;

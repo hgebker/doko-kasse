@@ -1,4 +1,4 @@
-package com.hgebk.doko;
+package com.hgebk.doko.kasse;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

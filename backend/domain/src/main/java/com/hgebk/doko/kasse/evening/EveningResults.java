@@ -1,7 +1,7 @@
-package com.hgebk.doko.evening;
+package com.hgebk.doko.kasse.evening;
 
-import com.hgebk.doko.Player;
-import com.hgebk.doko.report.SemesterResultDTO;
+import com.hgebk.doko.kasse.Player;
+import com.hgebk.doko.kasse.report.SemesterResultDTO;
 import lombok.Data;
 
 import java.util.Comparator;

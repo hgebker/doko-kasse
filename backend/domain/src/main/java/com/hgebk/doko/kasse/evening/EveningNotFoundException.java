@@ -1,4 +1,4 @@
-package com.hgebk.doko.evening;
+package com.hgebk.doko.kasse.evening;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

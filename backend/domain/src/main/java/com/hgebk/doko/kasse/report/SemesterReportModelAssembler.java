@@ -1,6 +1,6 @@
-package com.hgebk.doko.report;
+package com.hgebk.doko.kasse.report;
 
-import com.hgebk.doko.semester.SemesterController;
+import com.hgebk.doko.kasse.semester.SemesterController;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;

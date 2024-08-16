@@ -1,4 +1,4 @@
-package com.hgebk.doko.report;
+package com.hgebk.doko.kasse.report;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

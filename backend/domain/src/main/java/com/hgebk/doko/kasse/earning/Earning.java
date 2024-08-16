@@ -1,4 +1,4 @@
-package com.hgebk.doko.earning;
+package com.hgebk.doko.kasse.earning;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;

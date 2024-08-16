@@ -1,4 +1,4 @@
-package com.hgebk.doko.semester;
+package com.hgebk.doko.kasse.semester;
 
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;

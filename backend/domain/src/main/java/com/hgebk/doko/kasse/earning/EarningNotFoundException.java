@@ -1,4 +1,4 @@
-package com.hgebk.doko.earning;
+package com.hgebk.doko.kasse.earning;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

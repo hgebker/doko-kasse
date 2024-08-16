@@ -1,4 +1,4 @@
-package com.hgebk.doko.expense;
+package com.hgebk.doko.kasse.expense;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

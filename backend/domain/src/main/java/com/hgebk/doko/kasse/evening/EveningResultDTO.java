@@ -1,6 +1,6 @@
-package com.hgebk.doko.evening;
+package com.hgebk.doko.kasse.evening;
 
-import com.hgebk.doko.Player;
+import com.hgebk.doko.kasse.Player;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

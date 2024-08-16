@@ -1,4 +1,4 @@
-package com.hgebk.doko.expense;
+package com.hgebk.doko.kasse.expense;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;

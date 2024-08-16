@@ -1,6 +1,6 @@
-package com.hgebk.doko.evening;
+package com.hgebk.doko.kasse.evening;
 
-import com.hgebk.doko.Player;
+import com.hgebk.doko.kasse.Player;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

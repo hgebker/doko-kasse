@@ -26,14 +26,14 @@ that run in Salesforce or on a Salesforce platform (e.g., Lightning, Heroku,
 Visualforce) (“Applications”).
 
 2. Restrictions
-To the extent your Application contains copyright notices,
-together with all other copyright notices included with each Application, You
+To the extent your com.hgebk.doko.Application contains copyright notices,
+together with all other copyright notices included with each com.hgebk.doko.Application, You
 will include the following copyright notice: “The Salesforce Sans Font is used
 under license from salesforce.com, inc.  Copyright 2015 Salesforce.com, Inc.”
 You may not modify, adapt, translate, reverse engineer, decompile,
 disassemble, or create derivative works based on the Font.  You must include
-the Font in an Application in a manner that does not allow a user to access
-the Font outside of the Application.  You will not use the Font on a
+the Font in an com.hgebk.doko.Application in a manner that does not allow a user to access
+the Font outside of the com.hgebk.doko.Application.  You will not use the Font on a
 standalone basis and will only use the Font as part of the Salesforce
 Lightning Design System.  You must not take any action which will have the
 direct or indirect effect of causing the Font to become subject to the terms

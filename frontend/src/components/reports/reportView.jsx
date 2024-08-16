@@ -29,7 +29,7 @@ function HeaderControls(onRefresh) {
 const ReportView = () => {
   const isMobile = useContext(MobileContext);
   const [selectedSemester, setSelectedSemester] = useState({ id: 'gesamt', label: 'Gesamt' });
-  const [report, loadReport, spinner] = useReport(selectedSemester);
+  const [com.hgebk.doko.report, loadReport, spinner] = useReport(selectedSemester);
 
   const handleSemesterSelect = selectedItem => {
     setSelectedSemester(selectedItem);
@@ -40,7 +40,7 @@ const ReportView = () => {
       {spinner}
 
       <PageHeader
-        icon={<Icon category="standard" name="report" />}
+        icon={<Icon category="standard" name="com.hgebk.doko.report" />}
         label="Auswertungen"
         title={selectedSemester.label}
         truncate
@@ -57,9 +57,9 @@ const ReportView = () => {
           </div>
         )}
 
-        {Boolean(report?.evenings?.length) && (
+        {Boolean(com.hgebk.doko.report?.evenings?.length) && (
           <div className="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
-            <ReportDetails report={report} />
+            <ReportDetails com.hgebk.doko.report={com.hgebk.doko.report} />
           </div>
         )}
       </div>

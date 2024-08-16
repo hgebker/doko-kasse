@@ -1,4 +1,4 @@
-import { LIST_OPTIONS } from 'constants/semester';
+import { LIST_OPTIONS } from 'constants/com.hgebk.doko.semester';
 
 import Dropdown from '@salesforce/design-system-react/components/menu-dropdown';
 

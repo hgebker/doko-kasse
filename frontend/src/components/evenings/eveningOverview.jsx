@@ -112,7 +112,7 @@ const EveningOverview = () => {
           presetEvening: eveningToUpdate
             ? {
                 date: eveningToUpdate.date,
-                semester: eveningToUpdate.semester,
+                com.hgebk.doko.semester: eveningToUpdate.com.hgebk.doko.semester,
                 jan: eveningToUpdate.jan,
                 ole: eveningToUpdate.ole,
                 tim: eveningToUpdate.tim,

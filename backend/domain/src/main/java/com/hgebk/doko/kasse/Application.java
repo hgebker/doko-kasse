@@ -1,4 +1,4 @@
-package com.hgebk.doko;
+package com.hgebk.doko.kasse;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
-@ComponentScan(basePackages = { "com.hgebk.doko" })
+@ComponentScan(basePackages = { "com.hgebk.doko.kasse" })
 public class Application {
 
     public static void main(String[] args) {

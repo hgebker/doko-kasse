@@ -1,4 +1,4 @@
-package com.hgebk.doko.evening;
+package com.hgebk.doko.kasse.evening;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

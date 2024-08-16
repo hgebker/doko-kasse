@@ -1,4 +1,4 @@
-package com.hgebk.doko.expense;
+package com.hgebk.doko.kasse.expense;
 
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;

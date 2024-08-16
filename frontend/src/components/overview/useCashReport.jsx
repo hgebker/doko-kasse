@@ -3,7 +3,7 @@ import { reportsAPI } from 'api';
 import { useSpinner } from 'components/HOC/withSpinner';
 
 const useCashReport = () => {
-  const [report, setReport] = useState(null);
+  const [com.hgebk.doko.report, setReport] = useState(null);
   const [spinner, setLoading] = useSpinner();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const useCashReport = () => {
     loadCashReport();
   }, [setLoading]);
 
-  return [report, spinner];
+  return [com.hgebk.doko.report, spinner];
 };
 
 export default useCashReport;

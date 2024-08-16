@@ -39,7 +39,7 @@ export default function EveningDetailCard({ selectedEvening, onEdit, onDelete })
 
   const editPreset = {
     date: selectedEvening.date,
-    semester: selectedEvening.semester,
+    com.hgebk.doko.semester: selectedEvening.com.hgebk.doko.semester,
     tim: selectedEvening.tim,
     jan: selectedEvening.jan,
     ole: selectedEvening.ole,

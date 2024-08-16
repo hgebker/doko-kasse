@@ -1,4 +1,4 @@
-package com.hgebk.doko.plugins.config;
+package com.hgebk.doko.kasse.plugins.config;
 
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.regions.Regions;
@@ -14,7 +14,7 @@ import org.springframework.core.env.Environment;
 import java.util.Arrays;
 
 @Configuration
-@EnableDynamoDBRepositories(basePackages = "com.hgebk.doko")
+@EnableDynamoDBRepositories(basePackages = "com.hgebk.doko.kasse")
 public class DynamoDBConfig {
     @Value("${amazon.dynamodb.endpoint}")
     private String amazonDynamoDBEndpoint;

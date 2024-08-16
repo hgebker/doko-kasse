@@ -1,4 +1,4 @@
-package com.hgebk.doko.evening;
+package com.hgebk.doko.kasse.evening;
 
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;

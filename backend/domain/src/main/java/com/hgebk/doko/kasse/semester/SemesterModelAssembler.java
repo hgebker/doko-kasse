@@ -1,7 +1,7 @@
-package com.hgebk.doko.semester;
+package com.hgebk.doko.kasse.semester;
 
-import com.hgebk.doko.evening.EveningController;
-import com.hgebk.doko.report.ReportController;
+import com.hgebk.doko.kasse.evening.EveningController;
+import com.hgebk.doko.kasse.report.ReportController;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;

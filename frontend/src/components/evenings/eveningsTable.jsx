@@ -6,7 +6,7 @@ import BaseTableSemesterCell from 'components/base/baseTableSemesterCell';
 
 const COLUMNS = [
   <DataTableColumn key="date" label="Datum" property="date" />,
-  <DataTableColumn key="semester" label="Semester" property="semester">
+  <DataTableColumn key="com.hgebk.doko.semester" label="Semester" property="com.hgebk.doko.semester">
     <BaseTableSemesterCell />
   </DataTableColumn>,
   <DataTableColumn key="tim" label="Tim" property="tim">

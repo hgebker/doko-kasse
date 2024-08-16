@@ -3,7 +3,7 @@ import { reportsAPI } from 'api';
 import { useSpinner } from 'components/HOC/withSpinner';
 
 const useReport = selectedSemester => {
-  const [report, setReport] = useState(null);
+  const [com.hgebk.doko.report, setReport] = useState(null);
   const [spinner, setLoading] = useSpinner();
 
   const loadReport = useCallback(async () => {
@@ -22,7 +22,7 @@ const useReport = selectedSemester => {
     loadReport();
   }, [selectedSemester, loadReport]);
 
-  return [report, loadReport, spinner, setLoading];
+  return [com.hgebk.doko.report, loadReport, spinner, setLoading];
 };
 
 export default useReport;

@@ -1,4 +1,4 @@
-package com.hgebk.doko.report;
+package com.hgebk.doko.kasse.report;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;

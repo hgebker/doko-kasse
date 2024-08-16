@@ -1,16 +1,15 @@
-package com.hgebk.doko;
+package com.hgebk.doko.kasse;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-
-import static org.mockito.MockitoAnnotations.openMocks;
+import org.mockito.MockitoAnnotations;
 
 public class BaseTest {
     private AutoCloseable closeable;
 
     @BeforeEach
-    public void initMocks() {
-        closeable = openMocks(this);
+    public void openMocks() {
+        closeable = MockitoAnnotations.openMocks(this);
     }
 
     @AfterEach

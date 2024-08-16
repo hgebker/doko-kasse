@@ -2,19 +2,19 @@ import { Component } from 'react';
 import Combobox from '@salesforce/design-system-react/components/combobox';
 import Input from '@salesforce/design-system-react/components/input';
 
-import { LIST_OPTIONS } from 'constants/semester';
+import { LIST_OPTIONS } from 'constants/com.hgebk.doko.semester';
 
 export default class ExpensesForm extends Component {
   state = {
     item: {
       art: '',
       betrag: 0,
-      semester: LIST_OPTIONS[LIST_OPTIONS.length - 1].id
+      com.hgebk.doko.semester: LIST_OPTIONS[LIST_OPTIONS.length - 1].id
     }
   };
 
   get semesterLabel() {
-    return LIST_OPTIONS.find(option => option.id === this.state.item.semester)?.label;
+    return LIST_OPTIONS.find(option => option.id === this.state.item.com.hgebk.doko.semester)?.label;
   }
 
   componentDidMount() {
@@ -37,7 +37,7 @@ export default class ExpensesForm extends Component {
 
   handleComboboxSelect = (_, { selection }) => {
     const [selectedItem] = selection;
-    this.addValueToItem('semester', selectedItem.id);
+    this.addValueToItem('com.hgebk.doko.semester', selectedItem.id);
   };
 
   render = () => (
@@ -74,7 +74,7 @@ export default class ExpensesForm extends Component {
           required
           value={this.semesterLabel}
           events={{ onSelect: this.handleComboboxSelect }}
-          id="semester"
+          id="com.hgebk.doko.semester"
         />
       </div>
     </section>

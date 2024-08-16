@@ -1,4 +1,4 @@
-package com.hgebk.doko.expense;
+package com.hgebk.doko.kasse.expense;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;

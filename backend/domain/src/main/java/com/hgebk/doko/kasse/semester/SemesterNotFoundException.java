@@ -1,4 +1,4 @@
-package com.hgebk.doko.semester;
+package com.hgebk.doko.kasse.semester;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

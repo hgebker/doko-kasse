@@ -1,4 +1,4 @@
-package com.hgebk.doko.plugins.config;
+package com.hgebk.doko.kasse.plugins.config;
 
 import org.springframework.web.filter.AbstractRequestLoggingFilter;
 

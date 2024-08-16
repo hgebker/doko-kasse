@@ -1,6 +1,6 @@
-package com.hgebk.doko.evening;
+package com.hgebk.doko.kasse.evening;
 
-import lombok.*;
+import lombok.Data;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.util.List;

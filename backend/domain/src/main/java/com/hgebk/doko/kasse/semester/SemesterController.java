@@ -1,4 +1,4 @@
-package com.hgebk.doko.semester;
+package com.hgebk.doko.kasse.semester;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;

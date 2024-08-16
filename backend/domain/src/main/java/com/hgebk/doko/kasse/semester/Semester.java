@@ -1,4 +1,4 @@
-package com.hgebk.doko.semester;
+package com.hgebk.doko.kasse.semester;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;

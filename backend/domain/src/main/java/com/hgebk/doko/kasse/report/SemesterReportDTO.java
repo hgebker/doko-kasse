@@ -1,6 +1,6 @@
-package com.hgebk.doko.report;
+package com.hgebk.doko.kasse.report;
 
-import com.hgebk.doko.evening.EveningDTO;
+import com.hgebk.doko.kasse.evening.EveningDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

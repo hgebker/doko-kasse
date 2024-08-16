@@ -1,4 +1,4 @@
-package com.hgebk.doko.earning;
+package com.hgebk.doko.kasse.earning;
 
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;

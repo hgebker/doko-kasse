@@ -1,6 +1,6 @@
-package com.hgebk.doko.report;
+package com.hgebk.doko.kasse.report;
 
-import com.hgebk.doko.Player;
+import com.hgebk.doko.kasse.Player;
 import lombok.Builder;
 import lombok.Data;
 
