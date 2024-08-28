@@ -3,7 +3,7 @@ import Icon from '@salesforce/design-system-react/components/icon';
 import Button from '@salesforce/design-system-react/components/button';
 import ButtonGroup from '@salesforce/design-system-react/components/button-group';
 import Avatar from '@salesforce/design-system-react/components/avatar';
-import { PLAYERS, PLAYER_DETAILS } from 'constants/player';
+import { PLAYER_DETAILS, PLAYERS } from 'constants/player';
 import FormattedNumberField from 'components/base/formattedNumberField';
 import EveningSummary from './eveningSummary';
 
@@ -39,7 +39,7 @@ export default function EveningDetailCard({ selectedEvening, onEdit, onDelete })
 
   const editPreset = {
     date: selectedEvening.date,
-    com.hgebk.doko.semester: selectedEvening.com.hgebk.doko.semester,
+    semester: selectedEvening.semester,
     tim: selectedEvening.tim,
     jan: selectedEvening.jan,
     ole: selectedEvening.ole,

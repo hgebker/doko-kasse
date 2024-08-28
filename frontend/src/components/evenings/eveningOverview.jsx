@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { eveningsAPI } from 'api';
 import { useToasts } from 'components/HOC/withToasts';
@@ -112,7 +112,7 @@ const EveningOverview = () => {
           presetEvening: eveningToUpdate
             ? {
                 date: eveningToUpdate.date,
-                com.hgebk.doko.semester: eveningToUpdate.com.hgebk.doko.semester,
+                semester: eveningToUpdate.semester,
                 jan: eveningToUpdate.jan,
                 ole: eveningToUpdate.ole,
                 tim: eveningToUpdate.tim,

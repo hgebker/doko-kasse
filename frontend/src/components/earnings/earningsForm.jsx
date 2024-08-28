@@ -2,19 +2,19 @@ import { Component } from 'react';
 import Combobox from '@salesforce/design-system-react/components/combobox';
 import Input from '@salesforce/design-system-react/components/input';
 
-import { LIST_OPTIONS } from 'constants/com.hgebk.doko.semester';
+import { LIST_OPTIONS } from 'constants/semester';
 
 export default class EarningsForm extends Component {
   state = {
     item: {
       art: '',
       betrag: 0,
-      com.hgebk.doko.semester: LIST_OPTIONS[LIST_OPTIONS.length - 1].id
+      semester: LIST_OPTIONS[LIST_OPTIONS.length - 1].id
     }
   };
 
   get semesterLabel() {
-    return LIST_OPTIONS.find(option => option.id === this.state.item.com.hgebk.doko.semester)?.label;
+    return LIST_OPTIONS.find(option => option.id === this.state.item.semester)?.label;
   }
 
   componentDidMount() {
@@ -37,7 +37,7 @@ export default class EarningsForm extends Component {
 
   handleComboboxSelect = (_, { selection }) => {
     const [selectedItem] = selection;
-    this.addValueToItem('com.hgebk.doko.semester', selectedItem.id);
+    this.addValueToItem('semester', selectedItem.id);
   };
 
   render = () => (
@@ -74,7 +74,7 @@ export default class EarningsForm extends Component {
           required
           value={this.semesterLabel}
           events={{ onSelect: this.handleComboboxSelect }}
-          id="com.hgebk.doko.semester"
+          id="semester"
         />
       </div>
     </section>

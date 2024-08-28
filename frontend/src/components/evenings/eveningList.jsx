@@ -7,7 +7,7 @@ import Icon from '@salesforce/design-system-react/components/icon';
 
 import { sortUtils } from 'services/utils';
 
-import { SEMESTER_LABEL } from 'constants/com.hgebk.doko.semester';
+import { SEMESTER_LABEL } from 'constants/semester';
 import { formatNumber } from 'services/utils/baseUtils';
 import ChangeViewDropdown from 'components/base/changeViewDropdown';
 import NameSwitcherDropdown from 'components/base/nameSwitcherDropdown';
@@ -53,12 +53,12 @@ const EveningList = ({
   const [sortDirection, setSortDirection] = useState(sortUtils.SORT_OPTIONS.UP);
 
   const sortedList = sortUtils.sortObjectArray(evenings, 'date', sortDirection);
-  const options = sortedList.map(com.hgebk.doko.evening => ({
-    id: com.hgebk.doko.evening.date,
-    label: com.hgebk.doko.evening.date,
-    bottomLeftText: SEMESTER_LABEL[com.hgebk.doko.evening.com.hgebk.doko.semester],
+  const options = sortedList.map(evening => ({
+    id: evening.date,
+    label: evening.date,
+    bottomLeftText: SEMESTER_LABEL[evening.semester],
     topRightText: 'Gesamt:',
-    bottomRightText: formatNumber(com.hgebk.doko.evening.sum)
+    bottomRightText: formatNumber(evening.sum)
   }));
   const selectedOption = options.find(option => option.id === selectedEvening?.date);
 

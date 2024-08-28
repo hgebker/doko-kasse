@@ -9,7 +9,7 @@ const COLUMNS = [
   <DataTableColumn key="betrag" label="Betrag" property="betrag">
     <BaseTableNumberCell />
   </DataTableColumn>,
-  <DataTableColumn key="com.hgebk.doko.semester" label="Semester" property="com.hgebk.doko.semester">
+  <DataTableColumn key="semester" label="Semester" property="semester">
     <BaseTableSemesterCell />
   </DataTableColumn>
 ];

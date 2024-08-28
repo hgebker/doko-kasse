@@ -32,14 +32,14 @@ const ReportFooter = ({ totalIncome, numberOfEvenings, worst, best }) => {
   );
 };
 
-const ReportDetails = ({ com.hgebk.doko.report }) => {
+const ReportDetails = ({ report }) => {
   const [expandedSections, setExpandedSections] = useState({ calculations: true });
 
-  if (!com.hgebk.doko.report) {
+  if (!report) {
     return null;
   }
 
-  const evenings = com.hgebk.doko.report.evenings.map(parseEveningDto);
+  const evenings = report.evenings.map(parseEveningDto);
   const accordionItems = [
     {
       id: 'evenings',
@@ -49,7 +49,7 @@ const ReportDetails = ({ com.hgebk.doko.report }) => {
     {
       id: 'calculations',
       summary: 'Berechnungen und Auswertungen',
-      content: <CalculationTable items={com.hgebk.doko.report.semesterResults} />
+      content: <CalculationTable items={report.semesterResults} />
     }
   ];
 
@@ -59,7 +59,7 @@ const ReportDetails = ({ com.hgebk.doko.report }) => {
 
   return (
     <Box position="relative">
-      <Card hasNoHeader footer={ReportFooter(com.hgebk.doko.report)}>
+      <Card hasNoHeader footer={ReportFooter(report)}>
         <Accordion>
           {accordionItems.map(item => (
             <AccordionPanel

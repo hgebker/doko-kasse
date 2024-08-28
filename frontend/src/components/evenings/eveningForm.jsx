@@ -2,7 +2,7 @@ import { Component } from 'react';
 import Combobox from '@salesforce/design-system-react/components/combobox';
 import Input from '@salesforce/design-system-react/components/input';
 import DatePicker from '@salesforce/design-system-react/components/date-picker';
-import { LIST_OPTIONS } from 'constants/com.hgebk.doko.semester';
+import { LIST_OPTIONS } from 'constants/semester';
 import { PLAYERS } from 'constants/player';
 import moment from 'moment';
 
@@ -14,7 +14,7 @@ export default class AddEveningForm extends Component {
   state = {
     item: {
       date: moment(Date.now()).format('YYYY-MM-DD'),
-      com.hgebk.doko.semester: LIST_OPTIONS[LIST_OPTIONS.length - 1].id,
+      semester: LIST_OPTIONS[LIST_OPTIONS.length - 1].id,
       tim: 0,
       jan: 0,
       ole: 0,
@@ -24,7 +24,7 @@ export default class AddEveningForm extends Component {
   };
 
   get semesterLabel() {
-    return LIST_OPTIONS.find(option => option.id === this.state.item.com.hgebk.doko.semester)?.label;
+    return LIST_OPTIONS.find(option => option.id === this.state.item.semester)?.label;
   }
 
   componentDidMount() {
@@ -47,7 +47,7 @@ export default class AddEveningForm extends Component {
 
   handleComboboxSelect = (_, { selection }) => {
     const [selectedItem] = selection;
-    this.addValueToItem('com.hgebk.doko.semester', selectedItem.id);
+    this.addValueToItem('semester', selectedItem.id);
     this.setState({ semesterLabel: selectedItem.label });
   };
 
@@ -60,7 +60,7 @@ export default class AddEveningForm extends Component {
           required
           value={this.semesterLabel}
           events={{ onSelect: this.handleComboboxSelect }}
-          id="com.hgebk.doko.semester"
+          id="semester"
         />
       </div>
 

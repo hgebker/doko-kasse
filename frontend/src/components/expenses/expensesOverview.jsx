@@ -120,7 +120,7 @@ export default function ExpensesOverview() {
       {spinner}
 
       <PageHeader
-        icon={<Icon category="standard" name="com.hgebk.doko.expense" />}
+        icon={<Icon category="standard" name="expense" />}
         label="Ausgaben"
         title="Gesamt"
         truncate
