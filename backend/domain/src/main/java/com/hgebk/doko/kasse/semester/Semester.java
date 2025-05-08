@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@DynamoDBTable(tableName = "doko-com.hgebk.doko.semester")
+@DynamoDBTable(tableName = "doko-semester")
 public class Semester {
     @DynamoDBHashKey
     @DynamoDBAttribute(attributeName = "key")
