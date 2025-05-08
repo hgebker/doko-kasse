@@ -36,7 +36,7 @@ jobs:
           mkdir prod && cp backend/domain/target/*.jar prod
 
       - name: Upload .jar artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: package
           path: prod
@@ -62,7 +62,7 @@ jobs:
           images: hgebker/doko-kasse
 
       - name: Download .jar artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: package
           path: prod
