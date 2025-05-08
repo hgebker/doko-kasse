@@ -40,7 +40,7 @@ public class ReportService {
         Double incomeFromEarnings = earningService.getTotalEarnings();
         Double incomeFromEvenings = eveningService.getTotalIncomeFromEvenings(Optional.empty());
 
-        log.info("DBACK: Building com.hgebk.doko.report");
+        log.info("DBACK: Building report");
         return new CashReportDTO(totalExpenses, incomeFromEarnings, incomeFromEvenings);
     }
 
@@ -52,12 +52,10 @@ public class ReportService {
                 .map(eveningModelAssembler::toModel)
                 .collect(Collectors.toList());
 
-        log.info("DBACK: Building com.hgebk.doko.report");
+        log.info("DBACK: Building report");
         SemesterReportDTO semesterReportDTO = new SemesterReportDTO();
 
-        if (semesterKey.isPresent()) {
-            semesterReportDTO.setSemesterKey(semesterKey.get());
-        }
+        semesterKey.ifPresent(semesterReportDTO::setSemesterKey);
 
         semesterReportDTO.setTotalIncome(eveningService.getTotalIncomeFromEvenings(semesterKey));
         semesterReportDTO.setNumberOfEvenings(evenings.size());
@@ -67,7 +65,7 @@ public class ReportService {
     }
 
     public List<SemesterResultDTO> getSemesterResults(Optional<String> semester) {
-        log.info("DBACK: Getting com.hgebk.doko.semester results");
+        log.info("DBACK: Getting semester results");
         Map<Player, List<EveningResultDTO>> resultsByPlayer = eveningService.getEveningResultsByPlayer(semester);
         return resultsByPlayer.entrySet().stream().map(entry -> {
             Player player = entry.getKey();

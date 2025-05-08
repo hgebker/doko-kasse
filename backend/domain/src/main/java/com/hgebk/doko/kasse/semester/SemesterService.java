@@ -22,7 +22,7 @@ public class SemesterService {
     }
 
     public Semester getSemester(String key) {
-        log.info("DBACK: Find com.hgebk.doko.semester for key {}", key);
+        log.info("DBACK: Find semester for key {}", key);
         return semesterRepository.findById(key).orElseThrow(() -> new SemesterNotFoundException(key));
     }
 }

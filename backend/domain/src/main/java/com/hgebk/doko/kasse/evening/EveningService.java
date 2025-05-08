@@ -24,7 +24,7 @@ public class EveningService {
         List<Evening> evenings;
 
         if (semester.isPresent()) {
-            log.info("DBACK: Find evenings for com.hgebk.doko.semester {}", semester.get());
+            log.info("DBACK: Find evenings for semester {}", semester.get());
             evenings = eveningRepository.findBySemester(semester.get());
         } else {
             log.info("DBACK: Find all evenings");
@@ -35,12 +35,12 @@ public class EveningService {
     }
 
     public Evening getEvening(String date) {
-        log.info("DBACK: Find com.hgebk.doko.evening for date {}", date);
+        log.info("DBACK: Find evening for date {}", date);
         return eveningRepository.findById(date).orElseThrow(() -> new EveningNotFoundException(date));
     }
 
     public void saveEvening(Evening newEvening) {
-        log.info("DBACK: Find com.hgebk.doko.evening with same date");
+        log.info("DBACK: Find evening with same date");
         Optional<Evening> eveningWithSameDate = eveningRepository.findById(newEvening.getDate());
 
         if (eveningWithSameDate.isPresent()) {
@@ -51,10 +51,10 @@ public class EveningService {
     }
 
     public void updateEvening(Evening updatedEvening) {
-        log.info("DBACK: Find com.hgebk.doko.evening to update");
+        log.info("DBACK: Find evening to update");
         Optional<Evening> eveningWithDate = eveningRepository.findById(updatedEvening.getDate());
 
-        if (eveningWithDate.isPresent() == false) {
+        if (eveningWithDate.isEmpty()) {
             throw new EveningNotFoundException(updatedEvening.getDate());
         }
 
@@ -62,7 +62,7 @@ public class EveningService {
     }
 
     public void deleteEveningByDate(String date) {
-        log.info("DBACK: Find com.hgebk.doko.evening to delete");
+        log.info("DBACK: Find evening to delete");
         Evening toDelete = eveningRepository.findById(date).orElseThrow(() -> new EveningNotFoundException(date));
 
         eveningRepository.delete(toDelete);
@@ -72,10 +72,11 @@ public class EveningService {
         log.info("DBACK: Get total income from evenings");
         List<Evening> allEvenings = searchEvenings(semesterKey);
 
-        return allEvenings.stream().mapToDouble(evening -> {
-            return evening.getResultJan() + evening.getResultTim() + evening.getResultOle() +
-                    evening.getResultLouisa() + evening.getResultHannes();
-        }).sum();
+        return allEvenings
+                .stream()
+                .mapToDouble(evening -> evening.getResultJan() + evening.getResultTim() + evening.getResultOle() +
+                        evening.getResultLouisa() + evening.getResultHannes())
+                .sum();
     }
 
     public Map<Player, List<EveningResultDTO>> getEveningResultsByPlayer(

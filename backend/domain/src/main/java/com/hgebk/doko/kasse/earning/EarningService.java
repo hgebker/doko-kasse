@@ -24,12 +24,12 @@ public class EarningService {
     }
 
     public Earning getEarning(String description) {
-        log.info("DBACK: Find com.hgebk.doko.earning with description {}", description);
+        log.info("DBACK: Find earning with description {}", description);
         return earningRepository.findById(description).orElseThrow(() -> new EarningNotFoundException(description));
     }
 
     public void saveEarning(Earning newEarning) {
-        log.info("DBACK: Find com.hgebk.doko.earning with same art");
+        log.info("DBACK: Find earning with same art");
         Optional<Earning> earningWithSameArt = earningRepository.findById(newEarning.getDescription());
 
         if (earningWithSameArt.isPresent()) {
@@ -40,10 +40,10 @@ public class EarningService {
     }
 
     public void updateEarning(Earning updatedEarning) {
-        log.info("DBACK: Find com.hgebk.doko.earning to update");
+        log.info("DBACK: Find earning to update");
         Optional<Earning> earningWithId = earningRepository.findById(updatedEarning.getDescription());
 
-        if (earningWithId.isPresent() == false) {
+        if (earningWithId.isEmpty()) {
             throw new EarningNotFoundException(updatedEarning.getDescription());
         }
 
@@ -51,7 +51,7 @@ public class EarningService {
     }
 
     public void deleteEarningByDescription(String description) {
-        log.info("DBACK: Find com.hgebk.doko.earning to delete");
+        log.info("DBACK: Find earning to delete");
         Earning earningToDelete = earningRepository
                 .findById(description)
                 .orElseThrow(() -> new EarningNotFoundException(description));

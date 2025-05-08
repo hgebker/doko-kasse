@@ -24,12 +24,12 @@ public class ExpenseService {
     }
 
     public Expense getExpense(String description) {
-        log.info("DBACK: Find com.hgebk.doko.expense with description {}", description);
+        log.info("DBACK: Find expense with description {}", description);
         return expenseRepository.findById(description).orElseThrow(() -> new ExpenseNotFoundException(description));
     }
 
     public void saveExpense(Expense newExpense) {
-        log.info("DBACK: Find com.hgebk.doko.expense with same art");
+        log.info("DBACK: Find expense with same art");
         Optional<Expense> expenseWithSameArt = expenseRepository.findById(newExpense.getDescription());
 
         if (expenseWithSameArt.isPresent()) {
@@ -40,10 +40,10 @@ public class ExpenseService {
     }
 
     public void updateExpense(Expense updatedExpense) {
-        log.info("DBACK: Find com.hgebk.doko.expense to update");
+        log.info("DBACK: Find expense to update");
         Optional<Expense> expenseWithId = expenseRepository.findById(updatedExpense.getDescription());
 
-        if (expenseWithId.isPresent() == false) {
+        if (expenseWithId.isEmpty()) {
             throw new ExpenseNotFoundException(updatedExpense.getDescription());
         }
 
@@ -51,7 +51,7 @@ public class ExpenseService {
     }
 
     public void deleteExpenseByDescription(String description) {
-        log.info("DBACK: Find com.hgebk.doko.expense to delete");
+        log.info("DBACK: Find expense to delete");
         Expense toDelete = expenseRepository
                 .findById(description)
                 .orElseThrow(() -> new ExpenseNotFoundException(description));
