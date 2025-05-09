@@ -1,7 +1,7 @@
 const NAV_ITEMS = [
   { id: 'overview', label: 'Übersicht' },
-  { id: 'evenings', label: 'Reguläre Einnahmen' },
-  { id: 'earnings', label: 'Außerordentliche Einnahmen' },
+  { id: 'evenings', label: 'Spieleinnahmen' },
+  { id: 'earnings', label: 'Sonstige Einnahmen' },
   { id: 'expenses', label: 'Ausgaben' },
   { id: 'reports', label: 'Auswertungen' }
 ];
