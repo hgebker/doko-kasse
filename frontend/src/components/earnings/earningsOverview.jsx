@@ -121,7 +121,7 @@ export default function EarningsOverview() {
 
       <PageHeader
         icon={<Icon category="standard" name="investment_account" />}
-        label="Außerordentliche Einnahmen"
+        label="Sonstige Einnahmen"
         title="Gesamt"
         truncate
         variant="object-home"
