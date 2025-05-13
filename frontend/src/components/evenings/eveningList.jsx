@@ -76,7 +76,7 @@ const EveningList = ({
       <SplitViewHeader
         key="1"
         title={selectedSemester.label}
-        label="Reg. Einnahmen"
+        label="Spieleinnahmen"
         truncate
         variant="object-home"
         icon={<Icon assistiveText={{ label: 'Abende' }} category="standard" name="education" />}

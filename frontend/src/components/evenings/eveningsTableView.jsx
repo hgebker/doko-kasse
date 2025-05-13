@@ -58,7 +58,7 @@ export default function EveningsTableView({
     <>
       <PageHeader
         icon={<Icon category="standard" name="education" />}
-        label="Reg. Einnahmen"
+        label="Spieleinnahmen"
         title={selectedSemester.label}
         truncate
         variant="object-home"
