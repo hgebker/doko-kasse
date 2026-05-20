@@ -43,13 +43,9 @@ public class EveningService {
         log.info("DBACK: Find evening with same date");
         Optional<Evening> eveningWithSameDate = eveningRepository.findById(newEvening.getDate());
 
-        System.out.println("eveningWithSameDate = " + eveningWithSameDate);
-
         if (eveningWithSameDate.isPresent()) {
             throw new DuplicateEveningException(newEvening.getDate());
         }
-
-        System.out.println("hier");
 
         eveningRepository.save(newEvening);
     }
