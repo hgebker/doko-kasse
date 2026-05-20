@@ -1,5 +1,5 @@
 package com.hgebk.doko.kasse.expense;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ExpenseRepository extends CrudRepository<Expense, String> {}
+public interface ExpenseRepository extends MongoRepository<Expense, String> {}

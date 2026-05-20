@@ -43,7 +43,7 @@
   },
   "scripts": {
     "start": "NODE_OPTIONS=--openssl-legacy-provider react-app-rewired start",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider react-app-rewired build",
+    "build": "react-app-rewired build",
     "test": "NODE_OPTIONS=--openssl-legacy-provider react-app-rewired test --env=jsdom",
     "lint": "eslint ./{src,public}/**/*.{js,ts,tsx}",
     "format": "prettier --write \"**/*.{css,html,js,ts,tsx,json,md,yaml,yml}\""
