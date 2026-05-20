@@ -53,8 +53,8 @@ const updateEarning = async earningToUpdate => {
   }
 };
 
-const deleteEarning = async kind => {
-  const endpoint = `/earnings/${kind}`;
+const deleteEarning = async id => {
+  const endpoint = `/earnings/${id}`;
 
   try {
     await axios.delete(endpoint);

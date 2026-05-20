@@ -1,21 +1,18 @@
 package com.hgebk.doko.kasse.semester;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@DynamoDBTable(tableName = "doko-semester")
+@Document(collection = "doko-semesters")
 public class Semester {
-    @DynamoDBHashKey
-    @DynamoDBAttribute(attributeName = "key")
+    @Id
     private String key;
 
-    @DynamoDBAttribute(attributeName = "label")
     private String label;
 }

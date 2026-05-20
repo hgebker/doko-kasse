@@ -1,0 +1,17 @@
+{
+  "name": "doko-kasse-migrations",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "migrate:create": "migrate-mongo create",
+    "migrate:status": "migrate-mongo status",
+    "migrate:up": "migrate-mongo up",
+    "migrate:down": "migrate-mongo down"
+  },
+  "devDependencies": {
+    "migrate-mongo": "^14.0.7"
+  }
+}

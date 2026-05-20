@@ -1,11 +1,12 @@
 name: doko-kasse
 
 services:
-  dynamodb-local:
-    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
-    image: "amazon/dynamodb-local:latest"
+  mongodb:
+    image: "mongo:4"
     ports:
-      - "8000:8000"
+      - "27017:27017"
     volumes:
-      - "./docker/dynamodb:/home/dynamodblocal/data"
-    working_dir: /home/dynamodblocal
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

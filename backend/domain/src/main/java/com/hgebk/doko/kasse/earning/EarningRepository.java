@@ -1,7 +1,5 @@
 package com.hgebk.doko.kasse.earning;
 
-import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-@EnableScan
-public interface EarningRepository extends CrudRepository<Earning, String> {}
+public interface EarningRepository extends MongoRepository<Earning, String> {}

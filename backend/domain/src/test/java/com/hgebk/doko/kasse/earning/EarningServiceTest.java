@@ -20,7 +20,7 @@ class EarningServiceTest extends BaseTest {
 
     @Test
     void getAllEarnings_withResults() {
-        List<Earning> earnings = List.of(new Earning("foo1", 3.5, "foo1"), new Earning("bar1", 7, "bar1"));
+        List<Earning> earnings = List.of(new Earning("id-1", "foo1", 3.5, "ws2425"), new Earning("id-2", "bar1", 7, "ws2425"));
         given(earningRepository.findAll()).willReturn(earnings);
 
         List<Earning> actualEarnings = underTest.getAllEarnings();
@@ -40,87 +40,74 @@ class EarningServiceTest extends BaseTest {
 
     @Test
     void getEarning_found() {
-        Earning earning = new Earning("foo1", 3.5, "foo1");
-        given(earningRepository.findById("foo1")).willReturn(Optional.of(earning));
+        Earning earning = new Earning("id-1", "foo1", 3.5, "ws2425");
+        given(earningRepository.findById("id-1")).willReturn(Optional.of(earning));
 
-        Earning actualEarning = underTest.getEarning("foo1");
+        Earning actualEarning = underTest.getEarning("id-1");
 
         assertThat(actualEarning).isNotNull().isEqualTo(earning);
     }
 
     @Test
     void getEarning_notFound() {
-        given(earningRepository.findById("foo1")).willReturn(Optional.empty());
+        given(earningRepository.findById("id-1")).willReturn(Optional.empty());
 
-        Throwable thrown = catchThrowable(() -> underTest.getEarning("foo1"));
+        Throwable thrown = catchThrowable(() -> underTest.getEarning("id-1"));
 
         assertThat(thrown)
                 .isInstanceOf(EarningNotFoundException.class)
-                .hasMessage("Earning with description 'foo1' does not exist");
+                .hasMessage("Earning with id 'id-1' does not exist");
     }
 
     @Test
-    void saveEarning_new() {
-        Earning earning = new Earning("foo1", 3.5, "foo1");
-        given(earningRepository.findById("foo1")).willReturn(Optional.empty());
+    void saveEarning_savesWithoutDuplicateCheck() {
+        Earning earning = new Earning(null, "foo1", 3.5, "ws2425");
 
         assertThatCode(() -> underTest.saveEarning(earning)).doesNotThrowAnyException();
     }
 
     @Test
-    void saveEarning_duplicate() {
-        Earning earning = new Earning("foo1", 3.5, "foo1");
-        given(earningRepository.findById("foo1")).willReturn(Optional.of(earning));
-
-        Throwable thrown = catchThrowable(() -> underTest.saveEarning(earning));
-
-        assertThat(thrown)
-                .isInstanceOf(DuplicateEarningException.class)
-                .hasMessage("Earning with description foo1 already exists");
-    }
-
-    @Test
     void updateEarning_found() {
-        Earning earning = new Earning("foo1", 3.5, "foo1");
-        given(earningRepository.findById("foo1")).willReturn(Optional.of(earning));
+        Earning earning = new Earning("id-1", "foo1", 3.5, "ws2425");
+        given(earningRepository.findById("id-1")).willReturn(Optional.of(earning));
 
         assertThatCode(() -> underTest.updateEarning(earning)).doesNotThrowAnyException();
     }
 
     @Test
     void updateEarning_notFound() {
-        Earning earning = new Earning("foo1", 3.5, "foo1");
-        given(earningRepository.findById("foo1")).willReturn(Optional.empty());
+        Earning earning = new Earning("id-1", "foo1", 3.5, "ws2425");
+        given(earningRepository.findById("id-1")).willReturn(Optional.empty());
 
         Throwable thrown = catchThrowable(() -> underTest.updateEarning(earning));
 
         assertThat(thrown)
                 .isInstanceOf(EarningNotFoundException.class)
-                .hasMessage("Earning with description 'foo1' does not exist");
+                .hasMessage("Earning with id 'id-1' does not exist");
     }
 
     @Test
-    void deleteEarningByDescription_found() {
-        Earning earning = new Earning("foo1", 3.5, "foo1");
-        given(earningRepository.findById("foo1")).willReturn(Optional.of(earning));
+    void deleteEarningById_found() {
+        Earning earning = new Earning("id-1", "foo1", 3.5, "ws2425");
+        given(earningRepository.findById("id-1")).willReturn(Optional.of(earning));
 
-        assertThatCode(() -> underTest.deleteEarningByDescription("foo1")).doesNotThrowAnyException();
+        assertThatCode(() -> underTest.deleteEarningById("id-1")).doesNotThrowAnyException();
     }
 
     @Test
-    void deleteEarningByDescription_notFound() {
-        given(earningRepository.findById("foo1")).willReturn(Optional.empty());
+    void deleteEarningById_notFound() {
+        given(earningRepository.findById("id-1")).willReturn(Optional.empty());
 
-        Throwable thrown = catchThrowable(() -> underTest.deleteEarningByDescription("foo1"));
+        Throwable thrown = catchThrowable(() -> underTest.deleteEarningById("id-1"));
 
         assertThat(thrown)
                 .isInstanceOf(EarningNotFoundException.class)
-                .hasMessage("Earning with description 'foo1' does not exist");
+                .hasMessage("Earning with id 'id-1' does not exist");
     }
 
     @Test
     void getTotalEarnings_twoResults() {
-        List<Earning> earnings = List.of(new Earning("foo1", 3.5, "foo1"), new Earning("bar1", 7, "bar1"));
+        List<Earning> earnings = List.of(new Earning("id-1", "foo1", 3.5, "ws2425"), new Earning("id-2", "bar1", 7, "ws2425"));
         given(earningRepository.findAll()).willReturn(earnings);
 
         double actualTotalEarnings = underTest.getTotalEarnings();

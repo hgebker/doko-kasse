@@ -5,8 +5,8 @@ import BaseTableNumberCell from 'components/base/baseTableNumberCell';
 import BaseTableSemesterCell from 'components/base/baseTableSemesterCell';
 
 const COLUMNS = [
-  <DataTableColumn key="art" label="Beschreibung" property="art" />,
-  <DataTableColumn key="betrag" label="Betrag" property="betrag">
+  <DataTableColumn key="description" label="Beschreibung" property="description" />,
+  <DataTableColumn key="value" label="Betrag" property="value">
     <BaseTableNumberCell />
   </DataTableColumn>,
   <DataTableColumn key="semester" label="Semester" property="semester">
@@ -34,7 +34,7 @@ export default function ExpensesTable({ expenses, onUpdate, onDelete }) {
         onUpdate(item);
         break;
       case 'delete':
-        onDelete(item.art);
+        onDelete(item.id);
         break;
       default:
         console.error('Not defined');

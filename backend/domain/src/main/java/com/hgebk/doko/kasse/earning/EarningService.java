@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -23,38 +22,30 @@ public class EarningService {
         return earnings.stream().sorted().toList();
     }
 
-    public Earning getEarning(String description) {
-        log.info("DBACK: Find earning with description {}", description);
-        return earningRepository.findById(description).orElseThrow(() -> new EarningNotFoundException(description));
+    public Earning getEarning(String id) {
+        log.info("DBACK: Find earning with id {}", id);
+        return earningRepository.findById(id).orElseThrow(() -> new EarningNotFoundException(id));
     }
 
     public void saveEarning(Earning newEarning) {
-        log.info("DBACK: Find earning with same art");
-        Optional<Earning> earningWithSameArt = earningRepository.findById(newEarning.getDescription());
-
-        if (earningWithSameArt.isPresent()) {
-            throw new DuplicateEarningException(newEarning.getDescription());
-        }
-
+        log.info("DBACK: Save new earning");
         earningRepository.save(newEarning);
     }
 
     public void updateEarning(Earning updatedEarning) {
         log.info("DBACK: Find earning to update");
-        Optional<Earning> earningWithId = earningRepository.findById(updatedEarning.getDescription());
-
-        if (earningWithId.isEmpty()) {
-            throw new EarningNotFoundException(updatedEarning.getDescription());
+        if (earningRepository.findById(updatedEarning.getId()).isEmpty()) {
+            throw new EarningNotFoundException(updatedEarning.getId());
         }
 
         earningRepository.save(updatedEarning);
     }
 
-    public void deleteEarningByDescription(String description) {
+    public void deleteEarningById(String id) {
         log.info("DBACK: Find earning to delete");
         Earning earningToDelete = earningRepository
-                .findById(description)
-                .orElseThrow(() -> new EarningNotFoundException(description));
+                .findById(id)
+                .orElseThrow(() -> new EarningNotFoundException(id));
 
         earningRepository.delete(earningToDelete);
     }

@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class ExpenseNotFoundException extends NoSuchElementException {
-    public ExpenseNotFoundException(String description) {
-        super(String.format("Expense with description '%s' does not exist", description));
+    public ExpenseNotFoundException(String id) {
+        super(String.format("Expense with id '%s' does not exist", id));
     }
 }

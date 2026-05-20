@@ -37,9 +37,9 @@ public class EarningController {
         return CollectionModel.of(earnings, linkTo(methodOn(EarningController.class).getAllEarnings()).withSelfRel());
     }
 
-    @GetMapping("/{description}")
-    public EntityModel<Earning> getEarning(@PathVariable String description) {
-        Earning earning = earningService.getEarning(description);
+    @GetMapping("/{id}")
+    public EntityModel<Earning> getEarning(@PathVariable String id) {
+        Earning earning = earningService.getEarning(id);
         return earningModelAssembler.toModel(earning);
     }
 
@@ -58,6 +58,6 @@ public class EarningController {
     @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteEarningById(@PathVariable String id) {
-        earningService.deleteEarningByDescription(id);
+        earningService.deleteEarningById(id);
     }
 }

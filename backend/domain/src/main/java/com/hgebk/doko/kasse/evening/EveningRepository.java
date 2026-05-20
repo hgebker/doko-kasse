@@ -1,11 +1,9 @@
 package com.hgebk.doko.kasse.evening;
 
-import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-@EnableScan
-public interface EveningRepository extends CrudRepository<Evening, String> {
+public interface EveningRepository extends MongoRepository<Evening, String> {
     List<Evening> findBySemester(String semester);
 }

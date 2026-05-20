@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.5</version>
+        <version>3.5.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -27,7 +27,7 @@
         <maven.compiler.target>${version.java}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.java>17</version.java>
+        <version.java>21</version.java>
         <version.node>v16.13.0</version.node>
         <version.npm>8.1.0</version.npm>
         <version.frontend-plugin>1.12.1</version.frontend-plugin>

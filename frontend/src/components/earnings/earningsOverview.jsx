@@ -67,10 +67,10 @@ export default function EarningsOverview() {
     }
   };
 
-  const deleteEarning = async art => {
+  const deleteEarning = async id => {
     setLoading(true);
     try {
-      await earningsAPI.deleteEarning(art);
+      await earningsAPI.deleteEarning(id);
       loadEarnings();
 
       showToast('Erfolg!', 'Die Einnahme wurde erfolgreich gelöscht.', 'success');

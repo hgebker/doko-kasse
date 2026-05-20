@@ -87,6 +87,6 @@ public class EveningService {
                 .stream()
                 .map(Evening::getResults)
                 .flatMap(List::stream)
-                .collect(Collectors.groupingBy(EveningResultDTO::getPlayer));
+                .collect(Collectors.groupingBy(EveningResultDTO::player));
     }
 }
