@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {"com.hgebk.doko.kasse"})
 public class Application {
+    public static final String BASE_PATH = "/api/v1";
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

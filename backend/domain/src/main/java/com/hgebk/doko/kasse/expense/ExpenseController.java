@@ -1,5 +1,6 @@
 package com.hgebk.doko.kasse.expense;
 
+import com.hgebk.doko.kasse.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -13,8 +14,10 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping(path = "/expenses")
+@RequestMapping(path = ExpenseController.PATH)
 public class ExpenseController {
+    public static  final String PATH = Application.BASE_PATH + "/expenses";
+
     private final ExpenseService expenseService;
     private final ExpenseModelAssembler expenseModelAssembler;
 

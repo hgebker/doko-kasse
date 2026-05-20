@@ -1,0 +1,9 @@
+name: doko-kasse-int
+
+services:
+  doko-kasse-int:
+    image: hgebker/doko-kasse:main
+    ports:
+      - "5001:5000"
+    environment:
+      MONGODB_URI: "mongodb://192.168.120.23:27017/dokokasse"
