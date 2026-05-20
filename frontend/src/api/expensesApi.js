@@ -53,8 +53,8 @@ const updateExpense = async expenseToUpdate => {
   }
 };
 
-const deleteExpense = async kind => {
-  const endpoint = `/expenses/${kind}`;
+const deleteExpense = async id => {
+  const endpoint = `/expenses/${id}`;
 
   try {
     await axios.delete(endpoint);

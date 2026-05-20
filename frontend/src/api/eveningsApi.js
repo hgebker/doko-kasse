@@ -30,7 +30,7 @@ const getEvening = async date => {
   try {
     const response = await axios.get(endpoint, requestConfig);
 
-    return response.data.listEvenings.items;
+    return response.data;
   } catch (error) {
     apiUtils.logError(error);
     throw error;

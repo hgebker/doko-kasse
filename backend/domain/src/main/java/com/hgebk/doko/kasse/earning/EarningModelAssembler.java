@@ -13,6 +13,6 @@ public class EarningModelAssembler implements RepresentationModelAssembler<Earni
     public EntityModel<Earning> toModel(Earning earning) {
         return EntityModel
                 .of(earning)
-                .add(linkTo(methodOn(EarningController.class).getEarning(earning.getDescription())).withSelfRel());
+                .add(linkTo(methodOn(EarningController.class).getEarning(earning.getId())).withSelfRel());
     }
 }

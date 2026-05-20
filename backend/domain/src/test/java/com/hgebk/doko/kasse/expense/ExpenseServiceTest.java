@@ -20,7 +20,7 @@ class ExpenseServiceTest extends BaseTest {
 
     @Test
     void getAllExpenses_withResults() {
-        List<Expense> expenses = List.of(new Expense("foo1", 3.5, "foo1"), new Expense("bar1", 7, "bar1"));
+        List<Expense> expenses = List.of(new Expense("id-1", "foo1", 3.5, "ws2425"), new Expense("id-2", "bar1", 7, "ws2425"));
         given(expenseRepository.findAll()).willReturn(expenses);
 
         List<Expense> actualExpenses = underTest.getAllExpenses();
@@ -40,87 +40,74 @@ class ExpenseServiceTest extends BaseTest {
 
     @Test
     void getExpense_found() {
-        Expense expense = new Expense("foo1", 3.5, "foo1");
-        given(expenseRepository.findById("foo1")).willReturn(Optional.of(expense));
+        Expense expense = new Expense("id-1", "foo1", 3.5, "ws2425");
+        given(expenseRepository.findById("id-1")).willReturn(Optional.of(expense));
 
-        Expense actualExpense = underTest.getExpense("foo1");
+        Expense actualExpense = underTest.getExpense("id-1");
 
         assertThat(actualExpense).isNotNull().isEqualTo(expense);
     }
 
     @Test
     void getExpense_notFound() {
-        given(expenseRepository.findById("foo1")).willReturn(Optional.empty());
+        given(expenseRepository.findById("id-1")).willReturn(Optional.empty());
 
-        Throwable thrown = catchThrowable(() -> underTest.getExpense("foo1"));
+        Throwable thrown = catchThrowable(() -> underTest.getExpense("id-1"));
 
         assertThat(thrown)
                 .isInstanceOf(ExpenseNotFoundException.class)
-                .hasMessage("Expense with description 'foo1' does not exist");
+                .hasMessage("Expense with id 'id-1' does not exist");
     }
 
     @Test
-    void saveExpense_new() {
-        Expense expense = new Expense("foo1", 3.5, "foo1");
-        given(expenseRepository.findById("foo1")).willReturn(Optional.empty());
+    void saveExpense_savesWithoutDuplicateCheck() {
+        Expense expense = new Expense(null, "foo1", 3.5, "ws2425");
 
         assertThatCode(() -> underTest.saveExpense(expense)).doesNotThrowAnyException();
     }
 
     @Test
-    void saveExpense_duplicate() {
-        Expense expense = new Expense("foo1", 3.5, "foo1");
-        given(expenseRepository.findById("foo1")).willReturn(Optional.of(expense));
-
-        Throwable thrown = catchThrowable(() -> underTest.saveExpense(expense));
-
-        assertThat(thrown)
-                .isInstanceOf(DuplicateExpenseException.class)
-                .hasMessage("Expense with description foo1 already exists");
-    }
-
-    @Test
     void updateExpense_found() {
-        Expense expense = new Expense("foo1", 3.5, "foo1");
-        given(expenseRepository.findById("foo1")).willReturn(Optional.of(expense));
+        Expense expense = new Expense("id-1", "foo1", 3.5, "ws2425");
+        given(expenseRepository.findById("id-1")).willReturn(Optional.of(expense));
 
         assertThatCode(() -> underTest.updateExpense(expense)).doesNotThrowAnyException();
     }
 
     @Test
     void updateExpense_notFound() {
-        Expense expense = new Expense("foo1", 3.5, "foo1");
-        given(expenseRepository.findById("foo1")).willReturn(Optional.empty());
+        Expense expense = new Expense("id-1", "foo1", 3.5, "ws2425");
+        given(expenseRepository.findById("id-1")).willReturn(Optional.empty());
 
         Throwable thrown = catchThrowable(() -> underTest.updateExpense(expense));
 
         assertThat(thrown)
                 .isInstanceOf(ExpenseNotFoundException.class)
-                .hasMessage("Expense with description 'foo1' does not exist");
+                .hasMessage("Expense with id 'id-1' does not exist");
     }
 
     @Test
-    void deleteExpenseByDescription_found() {
-        Expense expense = new Expense("foo1", 3.5, "foo1");
-        given(expenseRepository.findById("foo1")).willReturn(Optional.of(expense));
+    void deleteExpenseById_found() {
+        Expense expense = new Expense("id-1", "foo1", 3.5, "ws2425");
+        given(expenseRepository.findById("id-1")).willReturn(Optional.of(expense));
 
-        assertThatCode(() -> underTest.deleteExpenseByDescription("foo1")).doesNotThrowAnyException();
+        assertThatCode(() -> underTest.deleteExpenseById("id-1")).doesNotThrowAnyException();
     }
 
     @Test
-    void deleteExpenseByDescription_notFound() {
-        given(expenseRepository.findById("foo1")).willReturn(Optional.empty());
+    void deleteExpenseById_notFound() {
+        given(expenseRepository.findById("id-1")).willReturn(Optional.empty());
 
-        Throwable thrown = catchThrowable(() -> underTest.deleteExpenseByDescription("foo1"));
+        Throwable thrown = catchThrowable(() -> underTest.deleteExpenseById("id-1"));
 
         assertThat(thrown)
                 .isInstanceOf(ExpenseNotFoundException.class)
-                .hasMessage("Expense with description 'foo1' does not exist");
+                .hasMessage("Expense with id 'id-1' does not exist");
     }
 
     @Test
     void getTotalExpenses_twoResults() {
-        List<Expense> expenses = List.of(new Expense("foo1", 3.5, "foo1"), new Expense("bar1", 7, "bar1"));
+        List<Expense> expenses = List.of(new Expense("id-1", "foo1", 3.5, "ws2425"), new Expense("id-2", "bar1", 7, "ws2425"));
         given(expenseRepository.findAll()).willReturn(expenses);
 
         double actualTotalExpenses = underTest.getTotalExpenses();

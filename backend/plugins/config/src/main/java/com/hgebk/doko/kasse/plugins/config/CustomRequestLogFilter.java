@@ -2,7 +2,7 @@ package com.hgebk.doko.kasse.plugins.config;
 
 import org.springframework.web.filter.AbstractRequestLoggingFilter;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class CustomRequestLogFilter extends AbstractRequestLoggingFilter {
     public CustomRequestLogFilter() {

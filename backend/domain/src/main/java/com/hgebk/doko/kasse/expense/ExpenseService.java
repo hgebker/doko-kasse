@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -23,38 +22,30 @@ public class ExpenseService {
         return expenses.stream().sorted().toList();
     }
 
-    public Expense getExpense(String description) {
-        log.info("DBACK: Find expense with description {}", description);
-        return expenseRepository.findById(description).orElseThrow(() -> new ExpenseNotFoundException(description));
+    public Expense getExpense(String id) {
+        log.info("DBACK: Find expense with id {}", id);
+        return expenseRepository.findById(id).orElseThrow(() -> new ExpenseNotFoundException(id));
     }
 
     public void saveExpense(Expense newExpense) {
-        log.info("DBACK: Find expense with same art");
-        Optional<Expense> expenseWithSameArt = expenseRepository.findById(newExpense.getDescription());
-
-        if (expenseWithSameArt.isPresent()) {
-            throw new DuplicateExpenseException(newExpense.getDescription());
-        }
-
+        log.info("DBACK: Save new expense");
         expenseRepository.save(newExpense);
     }
 
     public void updateExpense(Expense updatedExpense) {
         log.info("DBACK: Find expense to update");
-        Optional<Expense> expenseWithId = expenseRepository.findById(updatedExpense.getDescription());
-
-        if (expenseWithId.isEmpty()) {
-            throw new ExpenseNotFoundException(updatedExpense.getDescription());
+        if (expenseRepository.findById(updatedExpense.getId()).isEmpty()) {
+            throw new ExpenseNotFoundException(updatedExpense.getId());
         }
 
         expenseRepository.save(updatedExpense);
     }
 
-    public void deleteExpenseByDescription(String description) {
+    public void deleteExpenseById(String id) {
         log.info("DBACK: Find expense to delete");
         Expense toDelete = expenseRepository
-                .findById(description)
-                .orElseThrow(() -> new ExpenseNotFoundException(description));
+                .findById(id)
+                .orElseThrow(() -> new ExpenseNotFoundException(id));
 
         expenseRepository.delete(toDelete);
     }

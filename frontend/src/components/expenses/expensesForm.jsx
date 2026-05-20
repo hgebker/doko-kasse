@@ -7,8 +7,8 @@ import { LIST_OPTIONS } from 'constants/semester';
 export default class ExpensesForm extends Component {
   state = {
     item: {
-      art: '',
-      betrag: 0,
+      description: '',
+      value: 0,
       semester: LIST_OPTIONS[LIST_OPTIONS.length - 1].id
     }
   };
@@ -28,11 +28,11 @@ export default class ExpensesForm extends Component {
   };
 
   handleKindChange = (event, { value }) => {
-    this.addValueToItem('art', value);
+    this.addValueToItem('description', value);
   };
 
   handleValueChange = (event, { value }) => {
-    this.addValueToItem('betrag', value ? +value : '');
+    this.addValueToItem('value', value ? +value : '');
   };
 
   handleComboboxSelect = (_, { selection }) => {
@@ -44,25 +44,25 @@ export default class ExpensesForm extends Component {
     <section className="slds-var-p-around_small slds-grid slds-grid_pull-padded slds-wrap">
       <div className="slds-col slds-col_padded slds-size_full slds-form-element slds-var-m-bottom_small">
         <Input
-          id="art"
+          id="description"
           label="Beschreibung"
           placeholder="Abschluss (WS1819)"
           type="text"
           required
-          value={this.state.item.art}
+          value={this.state.item.description}
           onChange={this.handleKindChange}
         />
       </div>
 
       <div className="slds-col slds-col_padded  slds-size_full slds-large-size_1-of-2 slds-form-element slds-var-m-bottom_small">
         <Input
-          id="betrag"
+          id="value"
           label="Betrag"
           type="number"
           fixedTextLeft="€"
           step={0.1}
           required
-          value={this.state.item.betrag}
+          value={this.state.item.value}
           onChange={this.handleValueChange}
         />
       </div>

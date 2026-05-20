@@ -1,52 +1,48 @@
 package com.hgebk.doko.kasse.evening;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hgebk.doko.kasse.Player;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@DynamoDBTable(tableName = "doko-abende")
+@Document(collection = "doko-evenings")
 public class Evening implements Comparable<Evening> {
-    @DynamoDBHashKey
-    @DynamoDBAttribute(attributeName = "Datum")
-    @JsonProperty("date")
+    @Id
     private String date;
 
-    @DynamoDBAttribute(attributeName = "semester")
-    @JsonProperty("semester")
     private String semester;
 
-    @DynamoDBAttribute(attributeName = "jan")
+    @Field("jan")
     @JsonProperty("jan")
     private double resultJan;
 
-    @DynamoDBAttribute(attributeName = "tim")
+    @Field("tim")
     @JsonProperty("tim")
     private double resultTim;
 
-    @DynamoDBAttribute(attributeName = "ole")
+    @Field("ole")
     @JsonProperty("ole")
     private double resultOle;
 
-    @DynamoDBAttribute(attributeName = "louisa")
+    @Field("louisa")
     @JsonProperty("louisa")
     private double resultLouisa;
 
-    @DynamoDBAttribute(attributeName = "hannes")
+    @Field("hannes")
     @JsonProperty("hannes")
     private double resultHannes;
 
-    @DynamoDBIgnore
+    @Transient
     public List<EveningResultDTO> getResults() {
         return List.of(
                 new EveningResultDTO(Player.JAN, this.getResultJan()),

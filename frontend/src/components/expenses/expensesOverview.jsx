@@ -67,10 +67,10 @@ export default function ExpensesOverview() {
     }
   };
 
-  const deleteExpense = async art => {
+  const deleteExpense = async id => {
     setLoading(true);
     try {
-      await expensesAPI.deleteExpense(art);
+      await expensesAPI.deleteExpense(id);
       loadExpenses();
 
       showToast('Erfolg!', 'Die Ausgabe wurde erfolgreich gelöscht.', 'success');

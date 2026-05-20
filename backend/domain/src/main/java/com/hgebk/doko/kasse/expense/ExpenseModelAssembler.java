@@ -13,6 +13,6 @@ public class ExpenseModelAssembler implements RepresentationModelAssembler<Expen
     public EntityModel<Expense> toModel(Expense expense) {
         return EntityModel
                 .of(expense)
-                .add(linkTo(methodOn(ExpenseController.class).getExpense(expense.getDescription())).withSelfRel());
+                .add(linkTo(methodOn(ExpenseController.class).getExpense(expense.getId())).withSelfRel());
     }
 }

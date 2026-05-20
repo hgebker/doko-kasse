@@ -1,6 +1,12 @@
 spring:
   profiles:
     active: "@spring.profiles.active@"
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/dokokasse
+  threads:
+    virtual:
+      enabled: true
 
 springdoc:
   api-docs:
@@ -12,7 +18,5 @@ server:
   port: 8080
   error:
     include-message: always
-
-amazon:
-  dynamodb:
-    endpoint: http://localhost:8000
+  servlet:
+    context-path: /api/v1

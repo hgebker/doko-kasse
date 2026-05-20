@@ -8,6 +8,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@babel/runtime": "^7.15.4",
+    "@lwc/synthetic-shadow": "^9.2.2",
     "@material-ui/core": "^4.12.3",
     "@material-ui/styles": "^4.11.4",
     "@salesforce/design-system-react": "^0.10.38",
@@ -17,6 +18,7 @@
     "axios": "^0.20.0",
     "babel-plugin-root-import": "^6.6.0",
     "classnames": "^2.3.1",
+    "lightning-base-components": "^1.28.17-alpha",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "react": "^17.0.2",
@@ -42,9 +44,9 @@
     "webpack": "^4.44.2"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test --env=jsdom",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-app-rewired start",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-app-rewired build",
+    "test": "NODE_OPTIONS=--openssl-legacy-provider react-app-rewired test --env=jsdom",
     "lint": "eslint ./{src,public}/**/*.{js,ts,tsx}",
     "format": "prettier --write \"**/*.{css,html,js,ts,tsx,json,md,yaml,yml}\""
   },

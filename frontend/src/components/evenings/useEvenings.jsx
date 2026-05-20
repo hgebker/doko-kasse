@@ -3,10 +3,12 @@ import { eveningsAPI } from 'api';
 import { useSpinner } from 'components/HOC/withSpinner';
 
 export const parseEveningDto = eveningDto => {
-  return eveningDto.results.reduce((dict, result) => {
+  const parsed = eveningDto.results.reduce((dict, result) => {
     dict[result.player] = result.value;
     return dict;
   }, eveningDto);
+  parsed.id = parsed.date;
+  return parsed;
 };
 
 const useEvenings = selectedSemester => {

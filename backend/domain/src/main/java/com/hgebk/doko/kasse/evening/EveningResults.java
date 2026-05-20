@@ -17,11 +17,11 @@ public class EveningResults {
     }
 
     public long getParticipations() {
-        return this.results.stream().filter(result -> result.getValue() > 0).count();
+        return this.results.stream().filter(result -> result.value() > 0).count();
     }
 
     public double getSum() {
-        return this.results.stream().mapToDouble(EveningResultDTO::getValue).sum();
+        return this.results.stream().mapToDouble(EveningResultDTO::value).sum();
     }
 
     public double getAvg() {
@@ -37,15 +37,15 @@ public class EveningResults {
     public Optional<EveningResultDTO> getMinResult() {
         return this.results
                 .stream()
-                .filter(playerResult -> playerResult.getValue() > 0)
-                .min(Comparator.comparing(EveningResultDTO::getValue));
+                .filter(playerResult -> playerResult.value() > 0)
+                .min(Comparator.comparing(EveningResultDTO::value));
     }
 
     public Optional<EveningResultDTO> getMaxResult() {
         return this.results
                 .stream()
-                .filter(playerResult -> playerResult.getValue() > 0)
-                .max(Comparator.comparing(EveningResultDTO::getValue));
+                .filter(playerResult -> playerResult.value() > 0)
+                .max(Comparator.comparing(EveningResultDTO::value));
     }
 
     public SemesterResultDTO toSemesterResult(Player player) {
@@ -54,8 +54,8 @@ public class EveningResults {
                 .player(player)
                 .sum(getSum())
                 .avg(getAvg())
-                .min(getMinResult().map(EveningResultDTO::getValue).orElse(0.0))
-                .max(getMaxResult().map(EveningResultDTO::getValue).orElse(0.0))
+                .min(getMinResult().map(EveningResultDTO::value).orElse(0.0))
+                .max(getMaxResult().map(EveningResultDTO::value).orElse(0.0))
                 .participations(getParticipations())
                 .build();
     }

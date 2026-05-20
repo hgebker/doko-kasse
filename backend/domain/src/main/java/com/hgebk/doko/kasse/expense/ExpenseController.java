@@ -37,9 +37,9 @@ public class ExpenseController {
         return CollectionModel.of(expenses, linkTo(methodOn(ExpenseController.class).getAllExpenses()).withSelfRel());
     }
 
-    @GetMapping("/{description}")
-    public EntityModel<Expense> getExpense(@PathVariable String description) {
-        Expense expense = expenseService.getExpense(description);
+    @GetMapping("/{id}")
+    public EntityModel<Expense> getExpense(@PathVariable String id) {
+        Expense expense = expenseService.getExpense(id);
         return expenseModelAssembler.toModel(expense);
     }
 
@@ -58,6 +58,6 @@ public class ExpenseController {
     @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteExpenseById(@PathVariable String id) {
-        expenseService.deleteExpenseByDescription(id);
+        expenseService.deleteExpenseById(id);
     }
 }
