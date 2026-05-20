@@ -13,7 +13,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping(path = "/expenses")
+@RequestMapping(path = "/api/v1/expenses")
 public class ExpenseController {
     private final ExpenseService expenseService;
     private final ExpenseModelAssembler expenseModelAssembler;

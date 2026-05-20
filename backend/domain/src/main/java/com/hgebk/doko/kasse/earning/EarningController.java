@@ -13,7 +13,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping(path = "/earnings")
+@RequestMapping(path = "/api/v1/earnings")
 public class EarningController {
     private final EarningService earningService;
     private final EarningModelAssembler earningModelAssembler;

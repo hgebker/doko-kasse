@@ -13,7 +13,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping(path = "/evenings")
+@RequestMapping(path = "/api/v1/evenings")
 public class EveningController {
     private final EveningService eveningService;
     private final EveningModelAssembler eveningModelAssembler;

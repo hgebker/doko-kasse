@@ -15,7 +15,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping(path = "/semester")
+@RequestMapping(path = "/api/v1/semester")
 public class SemesterController {
     private final SemesterService semesterService;
     private final SemesterModelAssembler semesterModelAssembler;
