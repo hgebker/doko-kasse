@@ -1,5 +1,6 @@
 package com.hgebk.doko.kasse.evening;
 
+import com.hgebk.doko.kasse.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
@@ -13,8 +14,10 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping(path = "/api/v1/evenings")
+@RequestMapping(path = EveningController.PATH)
 public class EveningController {
+    public static final String PATH = Application.BASE_PATH + "/evenings";
+
     private final EveningService eveningService;
     private final EveningModelAssembler eveningModelAssembler;
 

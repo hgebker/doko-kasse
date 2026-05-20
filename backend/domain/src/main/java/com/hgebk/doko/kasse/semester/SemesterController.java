@@ -1,5 +1,6 @@
 package com.hgebk.doko.kasse.semester;
 
+import com.hgebk.doko.kasse.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -15,8 +16,10 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping(path = "/api/v1/semester")
+@RequestMapping(path = SemesterController.PATH)
 public class SemesterController {
+    public static final String PATH = Application.BASE_PATH + "/semester";
+
     private final SemesterService semesterService;
     private final SemesterModelAssembler semesterModelAssembler;
 
