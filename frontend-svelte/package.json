@@ -22,6 +22,7 @@
     "eslint": "^10.4.0",
     "eslint-plugin-svelte": "^3.17.1",
     "globals": "^17.6.0",
+    "phosphor-svelte": "^3.1.0",
     "prettier": "^3.8.3",
     "prettier-plugin-svelte": "^4.0.0",
     "svelte": "^5.55.9",
@@ -31,6 +32,7 @@
     "vitest": "^4.1.7"
   },
   "dependencies": {
+    "@internationalized/date": "^3.12.1",
     "bits-ui": "^2.18.1"
   },
   "type": "module"

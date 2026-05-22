@@ -11,6 +11,8 @@
   import { parseEveningDto } from '$lib/utils/parse';
   import { SORT, sortBy } from '$lib/utils/sort';
   import { Accordion } from 'bits-ui';
+  import { CaretDownIcon } from 'phosphor-svelte';
+  import FunnelSimpleIcon from 'phosphor-svelte/lib/FunnelSimpleIcon';
   import { MediaQuery } from 'svelte/reactivity';
   import type { PageProps } from './$types';
 
@@ -94,6 +96,10 @@
   ];
 </script>
 
+<svelte:head>
+  <title>Auswertungen - Doko Kasse</title>
+</svelte:head>
+
 {#if loading}<Spinner />{/if}
 
 <ContextPane contextPaneTitle="Semester" bind:contextPaneCollapsed bind:contextPaneModalOpen>
@@ -110,7 +116,7 @@
           class="flex items-center gap-1 rounded-lg border border-border-strong px-2 py-1.5 text-sm text-text-secondary hover:bg-surface-hover"
           aria-label="Semester filtern"
         >
-          <span class="material-symbols-rounded text-[16px]">filter_list</span>
+          <FunnelSimpleIcon size="16" />
           Filter
         </button>
       {/if}
@@ -129,20 +135,7 @@
               class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-text-secondary hover:bg-surface-hover data-[state=open]:bg-surface-raised"
             >
               Abende
-              <svg
-                class="h-4 w-4 text-text-disabled transition-transform data-[state=open]:rotate-180"
-                data-state-ref
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
+              <CaretDownIcon size="16" class="text-text-disabled" />
             </Accordion.Trigger>
           </Accordion.Header>
           <Accordion.Content class="border-t border-border-subtle p-0">
@@ -159,19 +152,7 @@
               class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-text-secondary hover:bg-surface-hover data-[state=open]:bg-surface-raised"
             >
               Berechnungen und Auswertungen
-              <svg
-                class="h-4 w-4 text-text-disabled transition-transform data-[state=open]:rotate-180"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
+              <CaretDownIcon size="16" class="text-text-disabled" />
             </Accordion.Trigger>
           </Accordion.Header>
           <Accordion.Content class="border-t border-border-subtle p-0">
@@ -201,7 +182,7 @@
           class="rounded-lg border border-border-default bg-surface-base p-3 text-center shadow-sm"
         >
           <p class="text-xs text-text-disabled">Saisonbeste:r (∅)</p>
-          <p class="mt-0.5 font-semibold text-accent-income">
+          <p class="mt-0.5 font-semibold text-accent-best">
             {capitalize(report?.best.player)}
             — {formatNumber(report?.best.avg)}
           </p>
@@ -211,7 +192,7 @@
           class="rounded-lg border border-border-default bg-surface-base p-3 text-center shadow-sm"
         >
           <p class="text-xs text-text-disabled">Saisonschlechteste:r (∅)</p>
-          <p class="mt-0.5 font-semibold text-accent-expense">
+          <p class="mt-0.5 font-semibold text-accent-worst">
             {capitalize(report?.worst.player)}
             — {formatNumber(report?.worst.avg)}
           </p>

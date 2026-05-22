@@ -1,4 +1,5 @@
 <script lang="ts">
+  import dokoLogo from '$lib/images/doko-icons/playing_512.png';
   import type { Snippet } from 'svelte';
   import { MediaQuery } from 'svelte/reactivity';
 
@@ -17,10 +18,8 @@
       class="flex w-25 shrink-0 flex-col items-center border-r border-border-subtle bg-surface-base py-4 gap-1"
       aria-label="Hauptnavigation"
     >
-      <div
-        class="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-action-primary shrink-0"
-      >
-        <span class="text-sm font-bold text-action-primary-fg">DK</span>
+      <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-xl shrink-0">
+        <img src="/favicon.svg" alt="Logo" />
       </div>
       {@render navigationRail()}
     </nav>

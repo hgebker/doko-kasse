@@ -1,4 +1,7 @@
 <script lang="ts">
+  import CaretLeftIcon from 'phosphor-svelte/lib/CaretLeftIcon';
+  import CaretRightIcon from 'phosphor-svelte/lib/CaretRightIcon';
+  import XIcon from 'phosphor-svelte/lib/XIcon';
   import type { Snippet } from 'svelte';
   import { MediaQuery } from 'svelte/reactivity';
 
@@ -30,11 +33,11 @@
       ].join(' ')}
     >
       {#if contextPaneTitle}
-        <div class="flex h-12 shrink-0 items-center border-b border-border-subtle px-4">
-          <span class="text-sm font-semibold text-text-secondary">{contextPaneTitle}</span>
+        <div class="flex h-12 shrink-0 items-center px-4">
+          <span class="text-l font-semibold text-text-secondary">{contextPaneTitle}</span>
         </div>
       {/if}
-      <div class="flex-1 overflow-y-auto p-2">
+      <div class="flex-1 overflow-y-auto">
         {@render contextPane()}
       </div>
     </div>
@@ -46,9 +49,11 @@
       style={contextPaneCollapsed ? 'left: 0' : 'left: 256px'}
       aria-label={contextPaneCollapsed ? 'Seitenleiste öffnen' : 'Seitenleiste schließen'}
     >
-      <span class="material-symbols-rounded text-[16px]">
-        {contextPaneCollapsed ? 'chevron_right' : 'chevron_left'}
-      </span>
+      {#if contextPaneCollapsed}
+        <CaretRightIcon size="16" />
+      {:else}
+        <CaretLeftIcon size="16" />
+      {/if}
     </button>
 
     <!-- Main content -->
@@ -56,7 +61,6 @@
       {@render children()}
     </div>
   </div>
-
 {:else}
   <!-- Mobile: content only, pane as modal overlay -->
   <div class="h-full overflow-y-auto">
@@ -75,14 +79,16 @@
       aria-modal="true"
       aria-label={contextPaneTitle || 'Filter'}
     >
-      <div class="flex h-12 shrink-0 items-center justify-between border-b border-border-subtle px-4">
+      <div
+        class="flex h-12 shrink-0 items-center justify-between border-b border-border-subtle px-4"
+      >
         <span class="text-sm font-semibold text-text-secondary">{contextPaneTitle}</span>
         <button
           onclick={() => (contextPaneModalOpen = false)}
           class="rounded p-1 text-text-muted hover:bg-surface-hover"
           aria-label="Schließen"
         >
-          <span class="material-symbols-rounded text-[20px]">close</span>
+          <XIcon size="20" />
         </button>
       </div>
       <div class="flex-1 overflow-y-auto p-2">

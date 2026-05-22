@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { XIcon } from 'phosphor-svelte';
+
   export type ToastContent = {
     message: string;
     type: 'success' | 'error';
@@ -35,14 +37,7 @@
       class="ml-auto shrink-0 rounded p-0.5 opacity-60 hover:opacity-100"
       aria-label="Schließen"
     >
-      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M6 18L18 6M6 6l12 12"
-        />
-      </svg>
+      <XIcon size="16" />
     </button>
   </div>
 {/if}

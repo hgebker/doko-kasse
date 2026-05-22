@@ -1,5 +1,6 @@
 <script lang="ts">
   import { DropdownMenu } from 'bits-ui';
+  import { DotsThreeVerticalIcon } from 'phosphor-svelte';
 
   type Column = {
     key: string;
@@ -41,9 +42,6 @@
   <table class="w-full text-sm">
     <thead class="sticky top-0 bg-surface-raised">
       <tr>
-        {#if selectable}
-          <th class="w-8 px-3 py-2"></th>
-        {/if}
         {#each columns as col}
           <th class="px-3 py-2 text-left font-semibold text-text-secondary">{col.label}</th>
         {/each}
@@ -63,18 +61,6 @@
             if (selectable && onselect) onselect(row);
           }}
         >
-          {#if selectable}
-            <td class="px-3 py-2">
-              <input
-                type="radio"
-                checked={selected?.id === row.id}
-                onchange={() => {
-                  if (onselect) onselect(row);
-                }}
-                class="accent-text-secondary"
-              />
-            </td>
-          {/if}
           {#each columns as col}
             <td class="px-3 py-2 text-text-secondary">
               {#if col.format}
@@ -91,11 +77,7 @@
                   class="rounded p-1 text-text-disabled hover:bg-surface-hover hover:text-text-primary"
                   aria-label="Aktionen"
                 >
-                  <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
-                    />
-                  </svg>
+                  <DotsThreeVerticalIcon size="16" />
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content
                   class="z-30 min-w-[8rem] rounded-lg border border-border-default bg-surface-raised py-1 shadow-lg"

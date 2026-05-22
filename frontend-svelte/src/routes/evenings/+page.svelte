@@ -14,6 +14,10 @@
   import { capitalize, formatDate, formatNumber } from '$lib/utils/format';
   import { parseEveningDto } from '$lib/utils/parse';
   import { SORT, sortBy, type SortDirection } from '$lib/utils/sort';
+  import { Separator } from 'bits-ui';
+  import { SortAscendingIcon, SortDescendingIcon } from 'phosphor-svelte';
+  import ArrowCounterClockwiseIcon from 'phosphor-svelte/lib/ArrowCounterClockwiseIcon';
+  import FunnelSimpleIcon from 'phosphor-svelte/lib/FunnelSimpleIcon';
   import { MediaQuery } from 'svelte/reactivity';
   import type { PageProps } from './$types';
 
@@ -66,7 +70,6 @@
   ];
 
   const tableActions = [
-    { label: 'Details', onclick: (row: Evening) => (selectedEvening = row) },
     {
       label: 'Bearbeiten',
       onclick: (row: Evening) => {
@@ -76,6 +79,10 @@
     },
     { label: 'Löschen', onclick: (row: Evening) => handleDelete(row.date) }
   ];
+
+  function handleSelect(row: Evening) {
+    selectedEvening = row;
+  }
 
   async function handleSave(item: EveningInput) {
     loading = true;
@@ -114,6 +121,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Spieleinnahmen - Doko Kasse</title>
+</svelte:head>
+
 {#if loading}<Spinner />{/if}
 <Toast bind:toast />
 
@@ -132,7 +143,7 @@
   {/snippet}
 
   <SplitPane
-    supportingPaneClosable={true}
+    supportingPaneClosable
     supportingPaneTitle={selectedEvening ? formatDate(selectedEvening.date) : ''}
     bind:supportingPaneOpen={() => !!selectedEvening, () => (selectedEvening = null)}
   >
@@ -145,11 +156,12 @@
             class="flex items-center gap-1 rounded-lg border border-border-strong px-2 py-1.5 text-sm text-text-secondary hover:bg-surface-hover"
             aria-label="Semester filtern"
           >
-            <span class="material-symbols-rounded text-[16px]">filter_list</span>
+            <FunnelSimpleIcon size="16" />
             Filter
           </button>
         {/if}
       {/snippet}
+
       {#snippet actions()}
         <button
           onclick={() => reload(selectedSemester)}
@@ -157,15 +169,9 @@
           aria-label="Aktualisieren"
           title="Aktualisieren"
         >
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-            />
-          </svg>
+          <ArrowCounterClockwiseIcon size="16" />
         </button>
+
         <button
           onclick={openNew}
           class="rounded-lg bg-action-primary px-3 py-2 text-sm font-medium text-action-primary-fg hover:bg-action-primary-hover"
@@ -176,7 +182,13 @@
     </PageHeader>
 
     {#if isDesktop.current}
-      <Table columns={tableColumns} rows={sortedEvenings} actions={tableActions} />
+      <Table
+        columns={tableColumns}
+        rows={sortedEvenings}
+        actions={tableActions}
+        selectable
+        onselect={handleSelect}
+      />
     {:else}
       <!-- Mobile evening list -->
       <div
@@ -191,23 +203,11 @@
             class="rounded p-1 text-text-disabled hover:bg-surface-hover hover:text-text-secondary"
             title={listSortDir === SORT.DESC ? 'Älteste zuerst' : 'Neueste zuerst'}
           >
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {#if listSortDir === SORT.DESC}
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"
-                />
-              {:else}
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"
-                />
-              {/if}
-            </svg>
+            {#if listSortDir === SORT.DESC}
+              <SortDescendingIcon size="16" />
+            {:else}
+              <SortAscendingIcon size="16" />
+            {/if}
           </button>
         </div>
         <ul>
@@ -258,52 +258,44 @@
           </div>
         </div>
 
-        <!-- Player tiles -->
         <div class="mb-4 grid grid-cols-2 gap-3">
+          <!-- Player tiles -->
           {#each PLAYERS as player}
             <div class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center">
               <p class="text-xs font-medium uppercase tracking-wide text-text-muted">
                 {capitalize(player)}
               </p>
-              <p class="mt-1 text-base font-semibold text-text-primary">
+              <p
+                class="mt-1 text-base font-semibold"
+                class:text-accent-best={selectedEvening[player] === selectedEvening.max?.value}
+                class:text-accent-worst={selectedEvening[player] === selectedEvening.min?.value}
+              >
                 {formatNumber(selectedEvening[player] ?? 0)}
               </p>
             </div>
           {/each}
-        </div>
 
-        <!-- Summary -->
-        <div class="rounded-lg border border-border-default bg-surface-base p-4">
-          <h3 class="mb-3 text-sm font-semibold text-text-secondary">Zusammenfassung</h3>
-          <div class="grid grid-cols-2 gap-2 text-sm">
-            <div>
-              <span class="text-text-muted">Tagesbeste/r:</span>
-              <span class="ml-1 font-medium">
-                {selectedEvening.min?.player
-                  ? capitalize(selectedEvening.min.player) +
-                    ' — ' +
-                    formatNumber(selectedEvening.min.value ?? 0)
-                  : '—'}
-              </span>
-            </div>
-            <div>
-              <span class="text-text-muted">Tagesschlechteste/r:</span>
-              <span class="ml-1 font-medium">
-                {selectedEvening.max?.player
-                  ? capitalize(selectedEvening.max.player) +
-                    ' — ' +
-                    formatNumber(selectedEvening.max.value ?? 0)
-                  : '—'}
-              </span>
-            </div>
-            <div>
-              <span class="text-text-muted">Gesamt:</span>
-              <span class="ml-1 font-medium">{formatNumber(selectedEvening.sum ?? 0)}</span>
-            </div>
-            <div>
-              <span class="text-text-muted">Durchschnitt:</span>
-              <span class="ml-1 font-medium">{formatNumber(selectedEvening.avg ?? 0)}</span>
-            </div>
+          <Separator.Root class="col-span-2 border border-border-subtle" />
+
+          <!-- Summary -->
+          <div
+            class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center col-span-2"
+          >
+            <p class="text-xs font-medium uppercase tracking-wide text-text-muted">Gesamt (Σ)</p>
+            <p class="mt-1 text-base font-semibold text-text-primary">
+              {formatNumber(selectedEvening.sum ?? 0)}
+            </p>
+          </div>
+
+          <div
+            class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center col-span-2"
+          >
+            <p class="text-xs font-medium uppercase tracking-wide text-text-muted">
+              Durchschnitt (∅)
+            </p>
+            <p class="mt-1 text-base font-semibold text-text-primary">
+              {formatNumber(selectedEvening.avg ?? 0)}
+            </p>
           </div>
         </div>
       {/if}

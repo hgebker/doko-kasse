@@ -1,12 +1,14 @@
 <script lang="ts">
+  import type { Component } from 'svelte';
+
   type Props = {
-    icon: string;
+    icon: Component;
     href: string;
     label?: string;
     ariaLabel?: string;
     selected?: boolean;
   };
-  let { icon, href, label = '', ariaLabel = '', selected = false }: Props = $props();
+  let { icon: Icon, href, label = '', ariaLabel = '', selected = false }: Props = $props();
 </script>
 
 <a
@@ -21,18 +23,22 @@
       selected ? 'bg-surface-raised' : 'group-hover:bg-surface-hover'
     ].join(' ')}
   >
-    <span
-      class={['material-symbols-rounded text-[24px] transition-colors', selected ? 'text-action-primary' : 'text-text-muted group-hover:text-text-secondary'].join(' ')}
-      style={selected ? "font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24" : ''}
-    >
-      {icon}
-    </span>
+    <Icon
+      size="24"
+      class={[
+        selected ? 'text-action-primary' : 'text-text-muted group-hover:text-text-secondary'
+      ].join(' ')}
+      color={selected ? 'currentColor' : undefined}
+      weight={selected ? 'fill' : 'regular'}
+    />
   </div>
   {#if label}
     <span
       class={[
         'text-[10px] leading-tight transition-colors',
-        selected ? 'font-medium text-action-primary' : 'text-text-muted group-hover:text-text-secondary'
+        selected
+          ? 'font-medium text-action-primary'
+          : 'text-text-muted group-hover:text-text-secondary'
       ].join(' ')}
     >
       {label}

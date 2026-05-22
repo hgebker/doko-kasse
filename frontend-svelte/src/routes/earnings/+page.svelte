@@ -1,6 +1,7 @@
 <script lang="ts">
   import { createEarning, deleteEarning, listEarnings, updateEarning } from '$lib/api/earnings';
   import EarningDialog from '$lib/components/dialogs/EarningDialog.svelte';
+  import SplitPane from '$lib/components/layout/SplitPane.svelte';
   import PageHeader from '$lib/components/ui/PageHeader.svelte';
   import Spinner from '$lib/components/ui/Spinner.svelte';
   import Table from '$lib/components/ui/Table.svelte';
@@ -8,6 +9,7 @@
   import { SEMESTER_LABEL_MAPPING } from '$lib/constants/semesters';
   import type { Earning } from '$lib/types';
   import { formatNumber } from '$lib/utils/format';
+  import { ArrowCounterClockwiseIcon } from 'phosphor-svelte';
   import type { PageProps } from './$types';
 
   let { data }: PageProps = $props();
@@ -77,6 +79,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Einnahmen - Doko Kasse</title>
+</svelte:head>
+
 {#if loading}<Spinner />{/if}
 <Toast bind:toast />
 
@@ -89,7 +95,7 @@
   }}
 />
 
-<div class="p-4">
+<SplitPane>
   <PageHeader title="Einnahmen" count={earnings.length}>
     {#snippet actions()}
       <button
@@ -98,14 +104,7 @@
         aria-label="Aktualisieren"
         title="Aktualisieren"
       >
-        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-          />
-        </svg>
+        <ArrowCounterClockwiseIcon size="16" />
       </button>
       <button
         onclick={() => {
@@ -120,4 +119,4 @@
   </PageHeader>
 
   <Table {columns} rows={earnings} {actions} />
-</div>
+</SplitPane>

@@ -1,9 +1,15 @@
-<script>
-  import { Dialog, Select } from 'bits-ui';
+<script lang="ts">
   import FormField from '$lib/components/ui/FormField.svelte';
-  import { SEMESTER_LIST, LAST_SEMESTER } from '$lib/constants/semesters';
   import { PLAYERS } from '$lib/constants/players';
+  import { LAST_SEMESTER, SEMESTER_LIST } from '$lib/constants/semesters';
+  import type { Evening, EveningInput } from '$lib/types';
   import { capitalize } from '$lib/utils/format';
+  import { type DateValue, parseDate } from '@internationalized/date';
+  import { Button, DatePicker, Dialog, Select } from 'bits-ui';
+  import CalendarBlankIcon from 'phosphor-svelte/lib/CalendarBlankIcon';
+  import CaretDownIcon from 'phosphor-svelte/lib/CaretDownIcon';
+  import CaretLeftIcon from 'phosphor-svelte/lib/CaretLeftIcon';
+  import CaretRightIcon from 'phosphor-svelte/lib/CaretRightIcon';
 
   function today() {
     return new Date().toISOString().slice(0, 10);
@@ -21,7 +27,13 @@
     };
   }
 
-  let { open = $bindable(), preset = null, onSave, onClose } = $props();
+  type Props = {
+    open?: boolean;
+    preset?: Evening | null;
+    onSave: (item: EveningInput) => void;
+    onClose: () => void;
+  };
+  let { open = $bindable(), preset = null, onSave, onClose }: Props = $props();
 
   let form = $state(emptyForm());
 
@@ -46,7 +58,7 @@
   );
 
   function save() {
-    const item = {
+    const item: EveningInput = {
       date: form.date,
       semester: form.semester,
       tim: Number(form.tim),
@@ -69,6 +81,7 @@
     <Dialog.Overlay class="fixed inset-0 z-40 bg-black/60" />
     <Dialog.Content
       class="fixed left-1/2 top-1/2 z-50 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-xl bg-surface-base p-6 shadow-xl"
+      interactOutsideBehavior="ignore"
     >
       <Dialog.Title class="mb-4 text-lg font-semibold text-text-primary">
         {preset ? 'Abend bearbeiten' : 'Abend anlegen'}
@@ -87,19 +100,7 @@
               class="flex w-full items-center justify-between rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary focus:border-border-strong focus:outline-none"
             >
               {selectedSemesterLabel}
-              <svg
-                class="h-4 w-4 text-text-disabled"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
+              <CaretDownIcon size="16" class="text-text-muted" />
             </Select.Trigger>
             <Select.Content
               class="z-50 max-h-60 overflow-auto rounded-lg border border-border-default bg-surface-raised py-1 shadow-lg"
@@ -117,11 +118,107 @@
         </FormField>
 
         <FormField label="Datum">
-          <input
-            type="date"
-            bind:value={form.date}
-            class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
-          />
+          <DatePicker.Root
+            weekdayFormat="short"
+            fixedWeeks
+            weekStartsOn={1}
+            locale="de"
+            bind:value={
+              () => parseDate(form.date), (value: DateValue) => (form.date = value.toString())
+            }
+          >
+            <div class="flex w-full flex-col gap-1.5">
+              <DatePicker.Input
+                class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none flex items-center"
+              >
+                {#snippet children({ segments })}
+                  {#each segments as { part, value }, i (part + i)}
+                    <div class="inline-block select-none">
+                      {#if part === 'literal'}
+                        <DatePicker.Segment {part} class="text-muted-foreground p-1">
+                          {value}
+                        </DatePicker.Segment>
+                      {:else}
+                        <DatePicker.Segment
+                          {part}
+                          class="rounded-5px hover:bg-muted focus:bg-muted focus:text-foreground aria-[valuetext=Empty]:text-muted-foreground focus-visible:ring-0! focus-visible:ring-offset-0!"
+                        >
+                          {value}
+                        </DatePicker.Segment>
+                      {/if}
+                    </div>
+                  {/each}
+                  <DatePicker.Trigger
+                    class="text-foreground/60 hover:bg-muted active:bg-dark-10 ml-auto inline-flex items-center justify-center rounded-[5px] transition-all"
+                  >
+                    <CalendarBlankIcon size="16" />
+                  </DatePicker.Trigger>
+                {/snippet}
+              </DatePicker.Input>
+
+              <DatePicker.Content sideOffset={6} class="z-50">
+                <DatePicker.Calendar
+                  class="border border-border-strong bg-surface-raised shadow-popover rounded-[15px] p-[22px]"
+                >
+                  {#snippet children({ months, weekdays })}
+                    <DatePicker.Header class="flex items-center justify-between">
+                      <DatePicker.PrevButton
+                        class="rounded-9px bg-surface-raised hover:bg-muted inline-flex size-10 items-center justify-center transition-all active:scale-[0.98]"
+                      >
+                        <CaretLeftIcon class="size-6" />
+                      </DatePicker.PrevButton>
+                      <DatePicker.Heading class="text-[15px] font-medium" />
+                      <DatePicker.NextButton
+                        class="rounded-9px bg-surface-raised hover:bg-muted inline-flex size-10 items-center justify-center transition-all active:scale-[0.98]"
+                      >
+                        <CaretRightIcon class="size-6" />
+                      </DatePicker.NextButton>
+                    </DatePicker.Header>
+
+                    <div class="flex flex-col space-y-4 pt-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+                      {#each months as month (month.value)}
+                        <DatePicker.Grid class="w-full border-collapse select-none space-y-1">
+                          <DatePicker.GridHead>
+                            <DatePicker.GridRow class="mb-1 flex w-full justify-between">
+                              {#each weekdays as day (day)}
+                                <DatePicker.HeadCell
+                                  class="text-muted-foreground font-normal! w-10 rounded-md text-xs"
+                                >
+                                  <div>{day.slice(0, 2)}</div>
+                                </DatePicker.HeadCell>
+                              {/each}
+                            </DatePicker.GridRow>
+                          </DatePicker.GridHead>
+                          <DatePicker.GridBody>
+                            {#each month.weeks as weekDates (weekDates)}
+                              <DatePicker.GridRow class="flex w-full">
+                                {#each weekDates as date (date)}
+                                  <DatePicker.Cell
+                                    {date}
+                                    month={month.value}
+                                    class="p-0! relative size-10 text-center text-sm"
+                                  >
+                                    <DatePicker.Day
+                                      class="rounded-9px text-foreground hover:border-foreground data-selected:bg-foreground data-disabled:text-foreground/30 data-selected:text-background data-unavailable:text-muted-foreground data-disabled:pointer-events-none data-outside-month:pointer-events-none data-selected:font-medium data-unavailable:line-through group relative inline-flex size-10 items-center justify-center whitespace-nowrap border border-transparent bg-transparent p-0 text-sm font-normal transition-all"
+                                    >
+                                      <div
+                                        class="bg-foreground group-data-selected:bg-background group-data-today:block absolute top-[5px] hidden size-1 rounded-full transition-all"
+                                      ></div>
+                                      {date.day}
+                                    </DatePicker.Day>
+                                  </DatePicker.Cell>
+                                {/each}
+                              </DatePicker.GridRow>
+                            {/each}
+                          </DatePicker.GridBody>
+                        </DatePicker.Grid>
+                      {/each}
+                    </div>
+                  {/snippet}
+                </DatePicker.Calendar>
+              </DatePicker.Content>
+            </div>
+          </DatePicker.Root>
         </FormField>
 
         <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -144,12 +241,13 @@
         >
           Abbrechen
         </Dialog.Close>
-        <button
+
+        <Button.Root
           onclick={save}
           class="rounded-lg bg-action-primary px-4 py-2 text-sm font-medium text-action-primary-fg hover:bg-action-primary-hover"
         >
           Speichern
-        </button>
+        </Button.Root>
       </div>
     </Dialog.Content>
   </Dialog.Portal>

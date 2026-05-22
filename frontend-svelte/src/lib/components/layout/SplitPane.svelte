@@ -1,4 +1,6 @@
 <script lang="ts">
+  import ArrowLeftIcon from 'phosphor-svelte/lib/ArrowLeftIcon';
+  import XIcon from 'phosphor-svelte/lib/XIcon';
   import type { Snippet } from 'svelte';
   import { MediaQuery } from 'svelte/reactivity';
 
@@ -41,18 +43,22 @@
       <div
         class={[
           'flex flex-col border-l border-border-default bg-surface-base overflow-hidden transition-[width] duration-200 ease-in-out shrink-0',
-          supportingPaneOpen ? 'w-80' : 'w-0'
+          supportingPaneOpen ? 'w-100' : 'w-0'
         ].join(' ')}
       >
-        <div class="flex h-12 shrink-0 items-center justify-between border-b border-border-subtle px-4">
-          <span class="text-sm font-semibold text-text-secondary truncate">{supportingPaneTitle}</span>
+        <div
+          class="flex h-12 shrink-0 items-center justify-between border-b border-border-subtle px-4"
+        >
+          <span class="text-sm font-semibold text-text-secondary truncate"
+            >{supportingPaneTitle}</span
+          >
           {#if supportingPaneClosable}
             <button
               onclick={() => (supportingPaneOpen = false)}
               class="ml-2 shrink-0 rounded p-1 text-text-muted hover:bg-surface-hover"
               aria-label="Detailansicht schließen"
             >
-              <span class="material-symbols-rounded text-[20px]">close</span>
+              <XIcon size="20" />
             </button>
           {/if}
         </div>
@@ -62,7 +68,6 @@
       </div>
     {/if}
   </div>
-
 {:else}
   <!-- Mobile: one panel at a time -->
   {#if supportingPaneOpen && supportingPane}
@@ -73,10 +78,13 @@
           class="rounded p-1 text-text-muted hover:bg-surface-hover"
           aria-label="Zurück"
         >
-          <span class="material-symbols-rounded text-[20px]">arrow_back</span>
+          <ArrowLeftIcon size="20" />
         </button>
+
         {#if supportingPaneTitle}
-          <span class="text-sm font-semibold text-text-secondary truncate">{supportingPaneTitle}</span>
+          <span class="text-sm font-semibold text-text-secondary truncate"
+            >{supportingPaneTitle}</span
+          >
         {/if}
       </div>
       <div class="flex-1 overflow-y-auto p-4">
