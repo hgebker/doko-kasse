@@ -17,6 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**").allowedMethods("*").allowedOrigins("*").allowedHeaders("*");
     }
 
+/*
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         // SPA fallback: forward non-asset, non-API paths to index.html so SvelteKit routing works
@@ -24,4 +25,5 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("/{path:[^.]*}").setViewName("forward:/index.html");
         registry.addViewController("/{path:[^.]*}/**").setViewName("forward:/index.html");
     }
+*/
 }
