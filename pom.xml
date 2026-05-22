@@ -19,6 +19,7 @@
 
     <modules>
         <module>frontend</module>
+        <module>frontend-svelte</module>
         <module>backend</module>
     </modules>
 

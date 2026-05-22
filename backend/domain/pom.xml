@@ -41,7 +41,7 @@
                             <outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${maven.multiModuleProjectDirectory}/frontend/build</directory>
+                                    <directory>${maven.multiModuleProjectDirectory}/frontend-svelte/build</directory>
                                 </resource>
                             </resources>
                         </configuration>

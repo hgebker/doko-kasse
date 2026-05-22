@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Surface tiers — deep midnight navy */
+  --color-surface-page: #07101f;
+  --color-surface-base: #0d1829;
+  --color-surface-raised: #152236;
+  --color-surface-hover: #1d2f47;
+
+  /* Borders */
+  --color-border-subtle: #152236;
+  --color-border-default: #1d2f47;
+  --color-border-strong: #2d4260;
+
+  /* Text */
+  --color-text-primary: #eef2ff; /* cool blue-tinted white */
+  --color-text-secondary: #a8bcd8; /* cool blue-gray */
+  --color-text-muted: #587090; /* mid blue-gray */
+  --color-text-disabled: #2d4260; /* dark blue-gray */
+
+  /* Primary action — cool light blue button */
+  --color-action-primary: #dae5ff;
+  --color-action-primary-fg: #0d1829;
+  --color-action-primary-hover: #eef2ff;
+
+  /* Semantic accents */
+  --color-accent-income: #2ecc91; /* vivid emerald */
+  --color-accent-expense: #fb923c; /* vivid orange  */
+  --color-accent-neutral: #22d3ee; /* vivid cyan    */
+  --color-accent-best: #34d399; /* vivid mint    */
+  --color-accent-worst: #f87171; /* vivid red     */
+
+  /* Destructive */
+  --color-destruct-text: #f87171;
+  --color-destruct-bg: #200a0a;
+  --color-destruct-border: #7f1d1d;
+
+  /* Nav gradient */
+  --color-nav-from: #0d1829;
+  --color-nav-to: #152236;
+
+  /* Toasts */
+  --color-toast-success-bg: #04200e;
+  --color-toast-success-border: #065f46;
+  --color-toast-success-text: #6ee7b7;
+  --color-toast-error-bg: #200a0a;
+  --color-toast-error-border: #7f1d1d;
+  --color-toast-error-text: #fca5a5;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-surface-page);
+  color: var(--color-text-secondary);
+}
