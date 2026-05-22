@@ -58,6 +58,8 @@ export interface CashReport {
   totalExpenses: number;
   incomeFromEarnings: number;
   incomeFromEvenings: number;
+  totalIncome: number;
+  currentCash: number;
 }
 
 export interface SemesterReport {
@@ -65,6 +67,8 @@ export interface SemesterReport {
   numberOfEvenings: number;
   evenings: EveningDto[];
   semesterResults: PlayerSemesterResult[];
+  best: PlayerSemesterResult;
+  worst: PlayerSemesterResult;
 }
 
 export interface SemesterEntry {

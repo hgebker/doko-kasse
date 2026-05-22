@@ -1,10 +1,10 @@
 <script lang="ts">
-  type Toast = {
+  export type ToastContent = {
     message: string;
     type: 'success' | 'error';
   };
   type Props = {
-    toast: Toast | null;
+    toast: ToastContent | null;
   };
   let { toast = $bindable() }: Props = $props();
 

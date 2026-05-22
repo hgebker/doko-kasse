@@ -27,7 +27,7 @@ docker-compose up
 ./mvnw package
 ```
 
-### Frontend
+### Frontend (React — legacy)
 
 ```bash
 cd frontend
@@ -36,6 +36,20 @@ npm start          # dev server on :3000, proxies API to :8080
 npm test           # run tests (jest + testing-library)
 npm run lint       # eslint
 npm run format     # prettier
+```
+
+### Frontend (SvelteKit — active migration)
+
+```bash
+cd frontend-svelte
+
+npm run dev        # dev server on :5173, proxies /api to :8080
+npm run build      # static build → build/
+npm run check      # svelte-check type checking
+npm run lint       # prettier + eslint check
+npm run format     # prettier + eslint fix
+npm run test       # vitest (one-shot)
+npm run test:unit  # vitest (watch mode)
 ```
 
 ## Architecture
@@ -74,30 +88,46 @@ npm run migrate:down          # roll back the last migration
 
 Migration scripts live in `migrations/migrations/`. Applied migrations are tracked in the `doko-changelog` MongoDB collection. For prod, set `MONGODB_URI` before running.
 
-### Frontend (React 17, JSX)
+### Frontend SvelteKit (Svelte 5, TypeScript)
+
+```
+frontend-svelte/src/
+  lib/
+    api/            — fetch-based API clients (evenings, earnings, expenses, reports)
+    components/
+      layout/       — NavigationRail, SplitPane, ContextPane (canonical layout shells)
+      ui/           — Table, FormField, PageHeader, SemesterNav, Spinner, Toast
+      dialogs/      — EveningDialog, EarningDialog, ExpenseDialog (bits-ui Dialog)
+    constants/      — players.ts (PLAYERS array), semesters.ts (SEMESTER_LABEL_MAPPING)
+    utils/          — format.ts, parse.ts, sort.ts
+    types.ts        — shared domain types (Player, Evening, EveningDto, CashReport, …)
+  routes/
+    +layout.ts      — SSR/prerender disabled (SPA mode)
+    +layout.svelte  — NavigationRail shell
+    evenings/       — evening CRUD page
+    earnings/       — earning CRUD page
+    expenses/       — expense CRUD page
+    reports/        — semester report page
+```
+
+**Tech stack:** Svelte 5 (runes mode — `$state`, `$derived`, `$effect`, `$props`), SvelteKit with `adapter-static` (SPA fallback), Tailwind CSS v4, bits-ui v2 for headless components, Vitest for unit tests.
+
+**Styling:** Tailwind v4 with a custom dark-mode design token system defined in `app.css` under `@theme`. Use semantic tokens (`bg-surface-base`, `text-text-primary`, `border-border-default`, etc.) — never hardcode colors. Icons via Material Symbols Rounded loaded from Google Fonts.
+
+**Data flow:** Each route has a `+page.ts` `load()` function for initial data fetch; pages manage local state with `$state` and re-fetch in `$effect` on filter changes. No shared store — data is component-local. API modules in `src/lib/api/` call `/api/v1/*` (proxied to the Spring backend in dev).
+
+**SPA mode:** `+layout.ts` exports `ssr = false; prerender = false`. Static adapter produces `build/index.html` as fallback.
+
+### Frontend React (legacy, kept for rollback)
 
 ```
 frontend/src/
-  api/              — Axios calls per domain (eveningsApi, earningsApi, expensesApi, reportsApi)
+  api/              — Axios calls per domain
   components/
-    base/           — Shared table/form primitives
     HOC/            — withModal, withSpinner, withToasts
-    navigation/     — NavigationBar, NavigationDrawer, NavigationContent
-    evenings/       — Evening CRUD + list/table views
-    earnings/       — Earning CRUD
-    expenses/       — Expense CRUD
-    overview/       — Cash overview
-    reports/        — Semester report view
-  constants/        — navigation.js, player.js, semester.js (semester list lives here)
+    navigation/     — NavigationBar, NavigationDrawer
+  constants/        — navigation.js, player.js, semester.js
   services/utils/   — apiUtils, baseUtils, sortUtils
 ```
 
-**UI libraries:** `@salesforce/design-system-react` (SLDS) as primary component library, `@material-ui/core` v4 for layout utilities and responsive breakpoints.
-
-**State pattern:** Custom hooks (`useEvenings`, `useEarnings`, `useExpenses`, `useCashReport`, `useReport`) own data fetching state and expose `[data, reload, spinner]`. HOCs wrap components to inject modal, spinner, and toast behavior.
-
-**Import aliases:** `babel-plugin-root-import` maps `src/` as root, so `import { eveningsAPI } from 'api'` resolves to `src/api/index.js`.
-
-**Routing:** No React Router — navigation is a single `activeContent` state string in `App`. `MobileContext` provides a boolean for responsive rendering.
-
-**Frontend note:** This codebase uses `.jsx` files throughout. New frontend files should follow the existing JSX pattern rather than the global TypeScript default.
+Files use `.jsx` throughout.

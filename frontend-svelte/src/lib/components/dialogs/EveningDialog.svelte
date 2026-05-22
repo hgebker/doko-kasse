@@ -3,6 +3,7 @@
   import FormField from '$lib/components/ui/FormField.svelte';
   import { SEMESTER_LIST, LAST_SEMESTER } from '$lib/constants/semesters';
   import { PLAYERS } from '$lib/constants/players';
+  import { capitalize } from '$lib/utils/format';
 
   function today() {
     return new Date().toISOString().slice(0, 10);
@@ -125,7 +126,7 @@
 
         <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {#each PLAYERS as player}
-            <FormField label={player.charAt(0).toUpperCase() + player.slice(1)}>
+            <FormField label={capitalize(player)}>
               <input
                 type="number"
                 step="0.01"

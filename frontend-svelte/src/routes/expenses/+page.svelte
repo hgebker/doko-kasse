@@ -1,37 +1,38 @@
-<script>
+<script lang="ts">
   import { createExpense, deleteExpense, listExpenses, updateExpense } from '$lib/api/expenses';
   import ExpenseDialog from '$lib/components/dialogs/ExpenseDialog.svelte';
   import PageHeader from '$lib/components/ui/PageHeader.svelte';
   import Spinner from '$lib/components/ui/Spinner.svelte';
   import Table from '$lib/components/ui/Table.svelte';
-  import Toast from '$lib/components/ui/Toast.svelte';
+  import Toast, { type ToastContent } from '$lib/components/ui/Toast.svelte';
   import { SEMESTER_LABEL_MAPPING } from '$lib/constants/semesters';
+  import type { Expense } from '$lib/types';
   import { formatNumber } from '$lib/utils/format';
+  import type { PageProps } from './$types';
 
-  let { data } = $props();
+  let { data }: PageProps = $props();
 
-  let expenses = $state(data.expenses);
+  let expenses = $derived(data.expenses);
   let loading = $state(false);
-  /** @type {{ message: string; type: 'success' | 'error' } | null} */
-  let toast = $state(null);
+  let toast: ToastContent | null = $state(null);
   let dialogOpen = $state(false);
-  let editTarget = $state(null);
+  let editTarget: Expense | null = $state(null);
 
   const columns = [
     { key: 'description', label: 'Beschreibung' },
     { key: 'value', label: 'Betrag', format: formatNumber },
-    { key: 'semester', label: 'Semester', format: (v) => SEMESTER_LABEL_MAPPING[v] ?? v }
+    { key: 'semester', label: 'Semester', format: (v: string) => SEMESTER_LABEL_MAPPING[v] ?? v }
   ];
 
   const actions = [
     {
       label: 'Bearbeiten',
-      onclick: (row) => {
+      onclick: (row: Expense) => {
         editTarget = row;
         dialogOpen = true;
       }
     },
-    { label: 'Löschen', onclick: (row) => handleDelete(row.id) }
+    { label: 'Löschen', onclick: (row: Expense) => row.id && handleDelete(row.id) }
   ];
 
   async function reload() {
@@ -45,7 +46,7 @@
     }
   }
 
-  async function handleSave(item) {
+  async function handleSave(item: Expense) {
     loading = true;
     dialogOpen = false;
     try {
@@ -63,7 +64,7 @@
     }
   }
 
-  async function handleDelete(id) {
+  async function handleDelete(id: string) {
     loading = true;
     try {
       await deleteExpense(id);
@@ -88,7 +89,7 @@
   }}
 />
 
-<div>
+<div class="p-4">
   <PageHeader title="Ausgaben" count={expenses.length}>
     {#snippet actions()}
       <button

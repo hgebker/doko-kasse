@@ -1,37 +1,38 @@
-<script>
+<script lang="ts">
   import { createEarning, deleteEarning, listEarnings, updateEarning } from '$lib/api/earnings';
   import EarningDialog from '$lib/components/dialogs/EarningDialog.svelte';
   import PageHeader from '$lib/components/ui/PageHeader.svelte';
   import Spinner from '$lib/components/ui/Spinner.svelte';
   import Table from '$lib/components/ui/Table.svelte';
-  import Toast from '$lib/components/ui/Toast.svelte';
+  import Toast, { type ToastContent } from '$lib/components/ui/Toast.svelte';
   import { SEMESTER_LABEL_MAPPING } from '$lib/constants/semesters';
+  import type { Earning } from '$lib/types';
   import { formatNumber } from '$lib/utils/format';
+  import type { PageProps } from './$types';
 
-  let { data } = $props();
+  let { data }: PageProps = $props();
 
-  let earnings = $state(data.earnings);
+  let earnings = $derived(data.earnings);
   let loading = $state(false);
-  /** @type {{ message: string; type: 'success' | 'error' } | null} */
-  let toast = $state(null);
+  let toast: ToastContent | null = $state(null);
   let dialogOpen = $state(false);
-  let editTarget = $state(null);
+  let editTarget: Earning | null = $state(null);
 
   const columns = [
     { key: 'description', label: 'Beschreibung' },
     { key: 'value', label: 'Betrag', format: formatNumber },
-    { key: 'semester', label: 'Semester', format: (v) => SEMESTER_LABEL_MAPPING[v] ?? v }
+    { key: 'semester', label: 'Semester', format: (v: string) => SEMESTER_LABEL_MAPPING[v] ?? v }
   ];
 
   const actions = [
     {
       label: 'Bearbeiten',
-      onclick: (row) => {
+      onclick: (row: Earning) => {
         editTarget = row;
         dialogOpen = true;
       }
     },
-    { label: 'Löschen', onclick: (row) => handleDelete(row.id) }
+    { label: 'Löschen', onclick: (row: Earning) => row.id && handleDelete(row.id) }
   ];
 
   async function reload() {
@@ -45,7 +46,7 @@
     }
   }
 
-  async function handleSave(item) {
+  async function handleSave(item: Earning) {
     loading = true;
     dialogOpen = false;
     try {
@@ -63,7 +64,7 @@
     }
   }
 
-  async function handleDelete(id) {
+  async function handleDelete(id: string) {
     loading = true;
     try {
       await deleteEarning(id);
@@ -88,8 +89,8 @@
   }}
 />
 
-<div>
-  <PageHeader title="Sonstige Einnahmen" count={earnings.length}>
+<div class="p-4">
+  <PageHeader title="Einnahmen" count={earnings.length}>
     {#snippet actions()}
       <button
         onclick={reload}
