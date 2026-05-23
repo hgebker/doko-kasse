@@ -19,26 +19,22 @@ export async function listExpenses(): Promise<Expense[]> {
   return data?._embedded?.expenseList ?? [];
 }
 
-export async function createExpense(expense: Omit<Expense, 'id'>): Promise<unknown> {
-  return json(
-    await fetch(`${BASE}/expenses`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(expense)
-    })
-  );
+export async function createExpense(expense: Omit<Expense, 'id'>): Promise<void> {
+  await fetch(`${BASE}/expenses`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(expense)
+  });
 }
 
-export async function updateExpense(expense: Expense): Promise<unknown> {
-  return json(
-    await fetch(`${BASE}/expenses`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(expense)
-    })
-  );
+export async function updateExpense(expense: Expense): Promise<void> {
+  await fetch(`${BASE}/expenses`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(expense)
+  });
 }
 
-export async function deleteExpense(id: string): Promise<unknown> {
-  return json(await fetch(`${BASE}/expenses/${encodeURIComponent(id)}`, { method: 'DELETE' }));
+export async function deleteExpense(id: string): Promise<void> {
+  await fetch(`${BASE}/expenses/${encodeURIComponent(id)}`, { method: 'DELETE' });
 }

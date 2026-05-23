@@ -125,43 +125,7 @@
     {#if !report || evenings.length === 0}
       <p class="py-8 text-center text-text-disabled">Keine Daten für diesen Zeitraum</p>
     {:else}
-      <Accordion.Root type="multiple" value={['evenings', 'calculations']}>
-        <Accordion.Item
-          value="evenings"
-          class="mb-3 overflow-hidden rounded-lg border border-border-default bg-surface-base shadow-sm"
-        >
-          <Accordion.Header>
-            <Accordion.Trigger
-              class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-text-secondary hover:bg-surface-hover data-[state=open]:bg-surface-raised"
-            >
-              Abende
-              <CaretDownIcon size="16" class="text-text-disabled" />
-            </Accordion.Trigger>
-          </Accordion.Header>
-          <Accordion.Content class="border-t border-border-subtle p-0">
-            <Table columns={eveningColumns} rows={evenings} readonly={true} maxHeight="40vh" />
-          </Accordion.Content>
-        </Accordion.Item>
-
-        <Accordion.Item
-          value="calculations"
-          class="mb-3 overflow-hidden rounded-lg border border-border-default bg-surface-base shadow-sm"
-        >
-          <Accordion.Header>
-            <Accordion.Trigger
-              class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-text-secondary hover:bg-surface-hover data-[state=open]:bg-surface-raised"
-            >
-              Berechnungen und Auswertungen
-              <CaretDownIcon size="16" class="text-text-disabled" />
-            </Accordion.Trigger>
-          </Accordion.Header>
-          <Accordion.Content class="border-t border-border-subtle p-0">
-            <Table columns={calcColumns} rows={calcRows} readonly={true} maxHeight="40vh" />
-          </Accordion.Content>
-        </Accordion.Item>
-      </Accordion.Root>
-
-      <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div class="mb-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div
           class="rounded-lg border border-border-default bg-surface-base p-3 text-center shadow-sm"
         >
@@ -198,6 +162,52 @@
           </p>
         </div>
       </div>
+
+      <Accordion.Root
+        type="multiple"
+        value={isDesktop.current ? ['calculations', 'evenings'] : ['calculations']}
+        class="w-full"
+      >
+        <Accordion.Item
+          value="calculations"
+          class="mb-3 overflow-hidden rounded-lg border border-border-default bg-surface-base shadow-sm"
+        >
+          <Accordion.Header>
+            <Accordion.Trigger
+              class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-text-secondary hover:bg-surface-hover data-[state=open]:bg-surface-raised"
+            >
+              Berechnungen und Auswertungen
+              <CaretDownIcon size="16" class="text-text-disabled" />
+            </Accordion.Trigger>
+          </Accordion.Header>
+          <Accordion.Content class="border-t border-border-default p-0">
+            <Table columns={calcColumns} rows={calcRows} readonly docked />
+          </Accordion.Content>
+        </Accordion.Item>
+
+        <Accordion.Item
+          value="evenings"
+          class="overflow-hidden rounded-lg border border-border-default bg-surface-base shadow-sm"
+        >
+          <Accordion.Header>
+            <Accordion.Trigger
+              class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-text-secondary hover:bg-surface-hover data-[state=open]:bg-surface-raised"
+            >
+              Abende
+              <CaretDownIcon size="16" class="text-text-disabled" />
+            </Accordion.Trigger>
+          </Accordion.Header>
+          <Accordion.Content class="border-t border-border-default p-0">
+            <Table
+              columns={eveningColumns}
+              rows={evenings}
+              readonly
+              maxHeight={isDesktop.current ? '40vh' : undefined}
+              docked
+            />
+          </Accordion.Content>
+        </Accordion.Item>
+      </Accordion.Root>
     {/if}
   </SplitPane>
 </ContextPane>

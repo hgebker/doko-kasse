@@ -267,8 +267,8 @@
               </p>
               <p
                 class="mt-1 text-base font-semibold"
-                class:text-accent-best={selectedEvening[player] === selectedEvening.max?.value}
-                class:text-accent-worst={selectedEvening[player] === selectedEvening.min?.value}
+                class:text-accent-best={selectedEvening[player] === selectedEvening.min?.value}
+                class:text-accent-worst={selectedEvening[player] === selectedEvening.max?.value}
               >
                 {formatNumber(selectedEvening[player] ?? 0)}
               </p>

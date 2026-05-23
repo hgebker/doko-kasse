@@ -19,26 +19,22 @@ export async function listEarnings(): Promise<Earning[]> {
   return data?._embedded?.earningList ?? [];
 }
 
-export async function createEarning(earning: Omit<Earning, 'id'>): Promise<unknown> {
-  return json(
-    await fetch(`${BASE}/earnings`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(earning)
-    })
-  );
+export async function createEarning(earning: Omit<Earning, 'id'>): Promise<void> {
+  await fetch(`${BASE}/earnings`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(earning)
+  });
 }
 
-export async function updateEarning(earning: Earning): Promise<unknown> {
-  return json(
-    await fetch(`${BASE}/earnings`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(earning)
-    })
-  );
+export async function updateEarning(earning: Earning): Promise<void> {
+  await fetch(`${BASE}/earnings`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(earning)
+  });
 }
 
-export async function deleteEarning(id: string): Promise<unknown> {
-  return json(await fetch(`${BASE}/earnings/${encodeURIComponent(id)}`, { method: 'DELETE' }));
+export async function deleteEarning(id: string): Promise<void> {
+  await fetch(`${BASE}/earnings/${encodeURIComponent(id)}`, { method: 'DELETE' });
 }

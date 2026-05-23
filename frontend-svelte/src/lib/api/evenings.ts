@@ -23,26 +23,22 @@ export async function listEvenings(semester: string | null): Promise<EveningDto[
   return data?._embedded?.eveningDTOList ?? [];
 }
 
-export async function createEvening(evening: EveningInput): Promise<unknown> {
-  return json(
-    await fetch(`${BASE}/evenings`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(evening)
-    })
-  );
+export async function createEvening(evening: EveningInput): Promise<void> {
+  await fetch(`${BASE}/evenings`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(evening)
+  });
 }
 
-export async function updateEvening(evening: EveningInput): Promise<unknown> {
-  return json(
-    await fetch(`${BASE}/evenings`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(evening)
-    })
-  );
+export async function updateEvening(evening: EveningInput): Promise<void> {
+  await fetch(`${BASE}/evenings`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(evening)
+  });
 }
 
-export async function deleteEvening(date: string): Promise<unknown> {
-  return json(await fetch(`${BASE}/evenings/${encodeURIComponent(date)}`, { method: 'DELETE' }));
+export async function deleteEvening(date: string): Promise<void> {
+  await fetch(`${BASE}/evenings/${encodeURIComponent(date)}`, { method: 'DELETE' });
 }

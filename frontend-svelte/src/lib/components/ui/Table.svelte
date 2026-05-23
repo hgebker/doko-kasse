@@ -17,6 +17,7 @@
     columns: Column[];
     rows: Record<string, any>[];
     actions?: Action[];
+    docked?: boolean;
     selectable?: boolean;
     selected?: any;
     onselect?: (row: any) => void;
@@ -27,6 +28,7 @@
     columns,
     rows,
     actions = [],
+    docked = false,
     selectable = false,
     selected = null,
     onselect,
@@ -36,7 +38,10 @@
 </script>
 
 <div
-  class="overflow-auto rounded-lg border border-border-default bg-surface-base shadow-sm"
+  class={[
+    'overflow-auto bg-surface-base shadow-sm',
+    !docked && 'border border-border-default rounded-lg'
+  ]}
   style={maxHeight ? `max-height: ${maxHeight}` : ''}
 >
   <table class="w-full text-sm">
