@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEvening, deleteEvening, listEvenings, updateEvening } from '$lib/api/evenings';
+  import ConfirmDialog from '$lib/components/dialogs/ConfirmDialog.svelte';
   import EveningDialog from '$lib/components/dialogs/EveningDialog.svelte';
   import ContextPane from '$lib/components/layout/ContextPane.svelte';
   import SplitPane from '$lib/components/layout/SplitPane.svelte';
@@ -35,6 +36,9 @@
 
   let dialogOpen = $state(false);
   let editTarget: Evening | null = $state(null);
+
+  let confirmOpen = $state(false);
+  let deleteTarget: string | null = $state(null);
 
   let contextPaneCollapsed = $state(false);
   let contextPaneModalOpen = $state(false);
@@ -77,7 +81,7 @@
         dialogOpen = true;
       }
     },
-    { label: 'Löschen', onclick: (row: Evening) => handleDelete(row.date) }
+    { label: 'Löschen', onclick: (row: Evening) => { deleteTarget = row.date; confirmOpen = true; } }
   ];
 
   function handleSelect(row: Evening) {
@@ -115,6 +119,12 @@
     }
   }
 
+  function confirmDelete() {
+    confirmOpen = false;
+    if (deleteTarget) handleDelete(deleteTarget);
+    deleteTarget = null;
+  }
+
   function openNew() {
     editTarget = null;
     dialogOpen = true;
@@ -135,6 +145,14 @@
   onClose={() => {
     editTarget = null;
   }}
+/>
+
+<ConfirmDialog
+  bind:open={confirmOpen}
+  title="Abend löschen"
+  description="Möchtest du diesen Abend wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
+  onConfirm={confirmDelete}
+  onCancel={() => { deleteTarget = null; }}
 />
 
 <ContextPane contextPaneTitle="Semester" bind:contextPaneCollapsed bind:contextPaneModalOpen>
@@ -250,7 +268,7 @@
               Bearbeiten
             </button>
             <button
-              onclick={() => selectedEvening && handleDelete(selectedEvening.date)}
+              onclick={() => { if (selectedEvening) { deleteTarget = selectedEvening.date; confirmOpen = true; } }}
               class="rounded-lg border border-destruct-border px-3 py-1.5 text-sm font-medium text-destruct-text hover:bg-surface-hover"
             >
               Löschen

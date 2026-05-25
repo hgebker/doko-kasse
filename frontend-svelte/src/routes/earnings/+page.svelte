@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEarning, deleteEarning, listEarnings, updateEarning } from '$lib/api/earnings';
+  import ConfirmDialog from '$lib/components/dialogs/ConfirmDialog.svelte';
   import EarningDialog from '$lib/components/dialogs/EarningDialog.svelte';
   import SplitPane from '$lib/components/layout/SplitPane.svelte';
   import PageHeader from '$lib/components/ui/PageHeader.svelte';
@@ -20,6 +21,9 @@
   let dialogOpen = $state(false);
   let editTarget: Earning | null = $state(null);
 
+  let confirmOpen = $state(false);
+  let deleteTarget: string | null = $state(null);
+
   const columns = [
     { key: 'description', label: 'Beschreibung' },
     { key: 'value', label: 'Betrag', format: formatNumber },
@@ -34,7 +38,7 @@
         dialogOpen = true;
       }
     },
-    { label: 'Löschen', onclick: (row: Earning) => row.id && handleDelete(row.id) }
+    { label: 'Löschen', onclick: (row: Earning) => { if (row.id) { deleteTarget = row.id; confirmOpen = true; } } }
   ];
 
   async function reload() {
@@ -77,6 +81,12 @@
       loading = false;
     }
   }
+
+  function confirmDelete() {
+    confirmOpen = false;
+    if (deleteTarget) handleDelete(deleteTarget);
+    deleteTarget = null;
+  }
 </script>
 
 <svelte:head>
@@ -93,6 +103,14 @@
   onClose={() => {
     editTarget = null;
   }}
+/>
+
+<ConfirmDialog
+  bind:open={confirmOpen}
+  title="Einnahme löschen"
+  description="Möchtest du diese Einnahme wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
+  onConfirm={confirmDelete}
+  onCancel={() => { deleteTarget = null; }}
 />
 
 <SplitPane>
