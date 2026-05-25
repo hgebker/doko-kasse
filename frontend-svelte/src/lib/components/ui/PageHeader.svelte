@@ -4,19 +4,25 @@
   type Props = {
     title: string;
     count?: number | null;
+    supportingText?: string | null;
     actions?: Snippet;
     controls?: Snippet;
   };
-  let { title, count = null, actions, controls }: Props = $props();
+  let { title, count = null, supportingText = null, actions, controls }: Props = $props();
 </script>
 
 <div
   class="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-border-default pb-3"
 >
-  <div class="flex items-baseline gap-2">
-    <h1 class="text-xl font-semibold text-text-primary">{title}</h1>
-    {#if count !== null}
-      <span class="text-sm text-text-muted">{count} Ergebnisse</span>
+  <div class="flex flex-col gap-0.5">
+    <div class="flex items-baseline gap-2">
+      <h1 class="text-xl font-semibold text-text-primary">{title}</h1>
+      {#if count !== null}
+        <span class="text-sm text-text-muted">{count} Ergebnisse</span>
+      {/if}
+    </div>
+    {#if supportingText}
+      <span class="text-sm text-text-muted">{supportingText}</span>
     {/if}
   </div>
   <div class="flex flex-wrap items-center gap-2">

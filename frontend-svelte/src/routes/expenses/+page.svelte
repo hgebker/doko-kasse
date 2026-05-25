@@ -41,8 +41,8 @@
     loading = true;
     try {
       expenses = await listExpenses();
-    } catch {
-      toast = { message: 'Fehler beim Laden', type: 'error' };
+    } catch (e) {
+      toast = { message: e instanceof Error ? e.message : 'Fehler beim Laden', type: 'error' };
     } finally {
       loading = false;
     }
@@ -60,8 +60,8 @@
         toast = { message: 'Ausgabe hinzugefügt', type: 'success' };
       }
       await reload();
-    } catch {
-      toast = { message: 'Fehler beim Speichern', type: 'error' };
+    } catch (e) {
+      toast = { message: e instanceof Error ? e.message : 'Fehler beim Speichern', type: 'error' };
       loading = false;
     }
   }
@@ -72,8 +72,8 @@
       await deleteExpense(id);
       toast = { message: 'Ausgabe gelöscht', type: 'success' };
       await reload();
-    } catch {
-      toast = { message: 'Fehler beim Löschen', type: 'error' };
+    } catch (e) {
+      toast = { message: e instanceof Error ? e.message : 'Fehler beim Löschen', type: 'error' };
       loading = false;
     }
   }

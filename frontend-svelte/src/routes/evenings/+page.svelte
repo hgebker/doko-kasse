@@ -50,8 +50,8 @@
       const raw = await listEvenings(semester);
       evenings = raw.map(parseEveningDto);
       selectedEvening = null;
-    } catch {
-      toast = { message: 'Fehler beim Laden', type: 'error' };
+    } catch (e) {
+      toast = { message: e instanceof Error ? e.message : 'Fehler beim Laden', type: 'error' };
     } finally {
       loading = false;
     }
@@ -96,8 +96,8 @@
         toast = { message: 'Abend angelegt', type: 'success' };
       }
       await reload(selectedSemester);
-    } catch {
-      toast = { message: 'Fehler beim Speichern', type: 'error' };
+    } catch (e) {
+      toast = { message: e instanceof Error ? e.message : 'Fehler beim Speichern', type: 'error' };
       loading = false;
     }
     editTarget = null;
@@ -109,8 +109,8 @@
       await deleteEvening(date);
       toast = { message: 'Abend gelöscht', type: 'success' };
       await reload(selectedSemester);
-    } catch {
-      toast = { message: 'Fehler beim Löschen', type: 'error' };
+    } catch (e) {
+      toast = { message: e instanceof Error ? e.message : 'Fehler beim Löschen', type: 'error' };
       loading = false;
     }
   }
@@ -148,7 +148,7 @@
     bind:supportingPaneOpen={() => !!selectedEvening, () => (selectedEvening = null)}
   >
     <!-- Detail pane: header + list/table -->
-    <PageHeader title="Spieleinnahmen" count={evenings.length}>
+    <PageHeader title="Spieleinnahmen" count={evenings.length} supportingText={SEMESTER_LABEL_MAPPING[selectedSemester] ?? selectedSemester}>
       {#snippet controls()}
         {#if !isDesktop.current}
           <button

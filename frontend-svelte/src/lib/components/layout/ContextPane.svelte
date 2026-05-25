@@ -63,7 +63,7 @@
   </div>
 {:else}
   <!-- Mobile: content only, pane as modal overlay -->
-  <div class="h-full overflow-y-auto">
+  <div>
     {@render children()}
   </div>
 

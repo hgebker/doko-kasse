@@ -16,8 +16,9 @@ export const SEMESTER_LIST: SemesterEntry[] = [
   { id: 'season2526', label: 'Saison 25/26' }
 ];
 
-export const SEMESTER_LABEL_MAPPING: Record<string, string> = Object.fromEntries(
-  SEMESTER_LIST.map((s) => [s.id, s.label])
-);
+export const SEMESTER_LABEL_MAPPING: Record<string, string> = Object.fromEntries([
+  ['gesamt', 'Gesamt'],
+  ...SEMESTER_LIST.map((s) => [s.id, s.label])
+]);
 
 export const LAST_SEMESTER: SemesterEntry = SEMESTER_LIST[SEMESTER_LIST.length - 1];

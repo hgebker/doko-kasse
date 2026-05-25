@@ -2,6 +2,7 @@
   import { getSemesterReport } from '$lib/api/reports';
   import ContextPane from '$lib/components/layout/ContextPane.svelte';
   import SplitPane from '$lib/components/layout/SplitPane.svelte';
+  import PageHeader from '$lib/components/ui/PageHeader.svelte';
   import SemesterNav from '$lib/components/ui/SemesterNav.svelte';
   import Spinner from '$lib/components/ui/Spinner.svelte';
   import Table from '$lib/components/ui/Table.svelte';
@@ -108,19 +109,20 @@
   {/snippet}
 
   <SplitPane>
-    <div class="mb-4 flex items-center justify-between">
-      <h1 class="text-2xl font-semibold text-text-primary">Auswertungen</h1>
-      {#if !isDesktop.current}
-        <button
-          onclick={() => (contextPaneModalOpen = true)}
-          class="flex items-center gap-1 rounded-lg border border-border-strong px-2 py-1.5 text-sm text-text-secondary hover:bg-surface-hover"
-          aria-label="Semester filtern"
-        >
-          <FunnelSimpleIcon size="16" />
-          Filter
-        </button>
-      {/if}
-    </div>
+    <PageHeader title="Auswertungen" supportingText={SEMESTER_LABEL_MAPPING[selectedSemester] ?? selectedSemester}>
+      {#snippet controls()}
+        {#if !isDesktop.current}
+          <button
+            onclick={() => (contextPaneModalOpen = true)}
+            class="flex items-center gap-1 rounded-lg border border-border-strong px-2 py-1.5 text-sm text-text-secondary hover:bg-surface-hover"
+            aria-label="Semester filtern"
+          >
+            <FunnelSimpleIcon size="16" />
+            Filter
+          </button>
+        {/if}
+      {/snippet}
+    </PageHeader>
 
     {#if !report || evenings.length === 0}
       <p class="py-8 text-center text-text-disabled">Keine Daten für diesen Zeitraum</p>

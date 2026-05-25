@@ -12,7 +12,7 @@
   const isDesktop = new MediaQuery('(min-width: 840px)');
 </script>
 
-<div class="flex h-screen bg-surface-page">
+<div class="flex h-dvh bg-surface-page">
   {#if isDesktop.current}
     <nav
       class="flex w-25 shrink-0 flex-col items-center border-r border-border-subtle bg-surface-base py-4 gap-1"

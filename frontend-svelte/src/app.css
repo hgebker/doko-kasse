@@ -16,7 +16,7 @@
   --color-text-primary: #eef2ff; /* cool blue-tinted white */
   --color-text-secondary: #a8bcd8; /* cool blue-gray */
   --color-text-muted: #587090; /* mid blue-gray */
-  --color-text-disabled: #2d4260; /* dark blue-gray */
+  --color-text-disabled: #4a6580; /* dark blue-gray */
 
   /* Primary action — cool light blue button */
   --color-action-primary: #dae5ff;
@@ -55,4 +55,9 @@
 body {
   background-color: var(--color-surface-page);
   color: var(--color-text-secondary);
+}
+
+/* Prevent iOS Safari from zooming on input focus (triggered when font-size < 16px) */
+input, select, textarea {
+  font-size: 16px;
 }

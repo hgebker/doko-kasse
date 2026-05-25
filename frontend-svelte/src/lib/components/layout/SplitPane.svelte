@@ -71,7 +71,7 @@
 {:else}
   <!-- Mobile: one panel at a time -->
   {#if supportingPaneOpen && supportingPane}
-    <div class="flex h-full flex-col">
+    <div class="flex flex-col">
       <div class="flex h-12 shrink-0 items-center gap-2 border-b border-border-subtle px-4">
         <button
           onclick={() => (supportingPaneOpen = false)}
@@ -87,15 +87,13 @@
           >
         {/if}
       </div>
-      <div class="flex-1 overflow-y-auto p-4">
+      <div class="p-4">
         {@render supportingPane()}
       </div>
     </div>
   {:else}
-    <div class="flex h-full flex-col">
-      <div class="flex-1 overflow-y-auto p-4">
-        {@render children()}
-      </div>
+    <div class="p-4">
+      {@render children()}
     </div>
   {/if}
 {/if}
