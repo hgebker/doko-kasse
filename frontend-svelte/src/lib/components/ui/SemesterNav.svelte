@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { SemesterEntry } from '$lib/types';
+  import type { Semester } from '$lib/types';
 
   type Props = {
-    semesters: SemesterEntry[];
+    semesters: Semester[];
     selected?: string;
   };
   let { semesters, selected = $bindable('gesamt') }: Props = $props();

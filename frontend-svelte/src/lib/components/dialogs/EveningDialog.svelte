@@ -1,7 +1,7 @@
 <script lang="ts">
   import FormField from '$lib/components/ui/FormField.svelte';
   import { PLAYERS } from '$lib/constants/players';
-  import type { Evening, EveningInput, SemesterEntry } from '$lib/types';
+  import type { Evening, EveningInput, Semester } from '$lib/types';
   import { capitalize } from '$lib/utils/format';
   import { type DateValue, parseDate } from '@internationalized/date';
   import { Button, DatePicker, Dialog, Select } from 'bits-ui';
@@ -15,7 +15,7 @@
   }
 
   type Props = {
-    semesters: SemesterEntry[];
+    semesters: Semester[];
     open?: boolean;
     preset?: Evening | null;
     onSave: (item: EveningInput) => void;

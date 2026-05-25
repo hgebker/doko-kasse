@@ -1,11 +1,11 @@
 <script lang="ts">
   import FormField from '$lib/components/ui/FormField.svelte';
-  import type { Expense, SemesterEntry } from '$lib/types';
+  import type { Expense, Semester } from '$lib/types';
   import { Button, Dialog, Select } from 'bits-ui';
   import { CaretDownIcon } from 'phosphor-svelte';
 
   type Props = {
-    semesters: SemesterEntry[];
+    semesters: Semester[];
     open?: boolean;
     preset?: Expense | null;
     onSave: (item: Expense) => void;

@@ -71,7 +71,7 @@ export interface SemesterReport {
   worst: PlayerSemesterResult;
 }
 
-export interface SemesterEntry {
+export interface Semester {
   id: string;
   label: string;
   sortKey: number;

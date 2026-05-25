@@ -4,6 +4,7 @@
   import EveningDialog from '$lib/components/dialogs/EveningDialog.svelte';
   import ContextPane from '$lib/components/layout/ContextPane.svelte';
   import SplitPane from '$lib/components/layout/SplitPane.svelte';
+  import MobileItemList from '$lib/components/ui/MobileItemList.svelte';
   import PageHeader from '$lib/components/ui/PageHeader.svelte';
   import SemesterNav from '$lib/components/ui/SemesterNav.svelte';
   import Spinner from '$lib/components/ui/Spinner.svelte';
@@ -85,7 +86,13 @@
         dialogOpen = true;
       }
     },
-    { label: 'Löschen', onclick: (row: Evening) => { deleteTarget = row.date; confirmOpen = true; } }
+    {
+      label: 'Löschen',
+      onclick: (row: Evening) => {
+        deleteTarget = row.date;
+        confirmOpen = true;
+      }
+    }
   ];
 
   function handleSelect(row: Evening) {
@@ -157,7 +164,9 @@
   title="Abend löschen"
   description="Möchtest du diesen Abend wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
   onConfirm={confirmDelete}
-  onCancel={() => { deleteTarget = null; }}
+  onCancel={() => {
+    deleteTarget = null;
+  }}
 />
 
 <ContextPane contextPaneTitle="Semester" bind:contextPaneCollapsed bind:contextPaneModalOpen>
@@ -171,7 +180,11 @@
     bind:supportingPaneOpen={() => !!selectedEvening, () => (selectedEvening = null)}
   >
     <!-- Detail pane: header + list/table -->
-    <PageHeader title="Spieleinnahmen" count={evenings.length} supportingText={semesterLabel(selectedSemester)}>
+    <PageHeader
+      title="Spieleinnahmen"
+      count={evenings.length}
+      supportingText={semesterLabel(selectedSemester)}
+    >
       {#snippet controls()}
         {#if !isDesktop.current}
           <button
@@ -213,14 +226,15 @@
         onselect={handleSelect}
       />
     {:else}
-      <!-- Mobile evening list -->
-      <div
-        class="overflow-hidden rounded-lg border border-border-default bg-surface-base shadow-sm"
+      <MobileItemList
+        label="Abende"
+        items={sortedEvenings}
+        getTitle={(e) => formatDate(e.date)}
+        getSubtitle={(e) => `${formatNumber(e.sum ?? 0)} · ${semesterLabel(e.semester)}`}
+        onselect={(e) => (selectedEvening = e)}
+        emptyText="Keine Abende"
       >
-        <div class="flex items-center justify-between border-b border-border-subtle p-3">
-          <span class="text-xs font-semibold uppercase tracking-wide text-text-disabled"
-            >Abende</span
-          >
+        {#snippet headerAction()}
           <button
             onclick={() => (listSortDir = listSortDir === SORT.DESC ? SORT.ASC : SORT.DESC)}
             class="rounded p-1 text-text-disabled hover:bg-surface-hover hover:text-text-secondary"
@@ -232,28 +246,8 @@
               <SortAscendingIcon size="16" />
             {/if}
           </button>
-        </div>
-        <ul>
-          {#each sortedEvenings as evening}
-            <li>
-              <button
-                onclick={() => (selectedEvening = evening)}
-                class="flex w-full flex-col px-4 py-3 text-left transition-colors hover:bg-surface-hover"
-              >
-                <span class="font-medium text-text-primary">{formatDate(evening.date)}</span>
-                <span class="text-xs text-text-muted">
-                  {semesterLabel(evening.semester)} — {formatNumber(
-                    evening.sum ?? 0
-                  )}
-                </span>
-              </button>
-            </li>
-          {/each}
-          {#if sortedEvenings.length === 0}
-            <li class="p-4 text-center text-sm text-text-disabled">Keine Abende</li>
-          {/if}
-        </ul>
-      </div>
+        {/snippet}
+      </MobileItemList>
     {/if}
 
     {#snippet supportingPane()}
@@ -273,7 +267,12 @@
               Bearbeiten
             </button>
             <button
-              onclick={() => { if (selectedEvening) { deleteTarget = selectedEvening.date; confirmOpen = true; } }}
+              onclick={() => {
+                if (selectedEvening) {
+                  deleteTarget = selectedEvening.date;
+                  confirmOpen = true;
+                }
+              }}
               class="rounded-lg border border-destruct-border px-3 py-1.5 text-sm font-medium text-destruct-text hover:bg-surface-hover"
             >
               Löschen

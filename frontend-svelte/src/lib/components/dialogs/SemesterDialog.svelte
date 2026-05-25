@@ -1,13 +1,13 @@
 <script lang="ts">
   import FormField from '$lib/components/ui/FormField.svelte';
-  import type { SemesterEntry } from '$lib/types';
+  import type { Semester } from '$lib/types';
   import { Button, Dialog } from 'bits-ui';
 
   type Props = {
     open?: boolean;
-    preset?: SemesterEntry | null;
+    preset?: Semester | null;
     defaultSortKey?: number;
-    onSave: (item: SemesterEntry) => void;
+    onSave: (item: Semester) => void;
     onClose: () => void;
   };
   let { open = $bindable(), preset = null, defaultSortKey = 0, onSave, onClose }: Props = $props();
@@ -46,7 +46,9 @@
       <div class="flex flex-col gap-4">
         {#if preset}
           <FormField label="Schlüssel">
-            <p class="rounded-lg border border-border-subtle bg-surface-raised px-3 py-2 text-sm text-text-disabled">
+            <p
+              class="rounded-lg border border-border-subtle bg-surface-raised px-3 py-2 text-sm text-text-disabled"
+            >
               {form.id}
             </p>
           </FormField>

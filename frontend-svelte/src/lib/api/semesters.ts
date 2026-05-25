@@ -1,4 +1,4 @@
-import type { SemesterEntry } from '$lib/types';
+import type { Semester } from '$lib/types';
 
 const BASE = '/api/v1';
 
@@ -22,14 +22,18 @@ async function json(res: Response): Promise<unknown> {
   return res.json();
 }
 
-export async function listSemesters(): Promise<SemesterEntry[]> {
+export async function listSemesters(): Promise<Semester[]> {
   const data = (await json(
     await fetch(`${BASE}/semester`, { headers: { Accept: 'application/json' } })
   )) as SemesterListResponse | null;
-  return (data?._embedded?.semesterList ?? []).map((s) => ({ id: s.key, label: s.label, sortKey: s.sortKey }));
+  return (data?._embedded?.semesterList ?? []).map((s) => ({
+    id: s.key,
+    label: s.label,
+    sortKey: s.sortKey
+  }));
 }
 
-export async function createSemester(semester: SemesterEntry): Promise<void> {
+export async function createSemester(semester: Semester): Promise<void> {
   await json(
     await fetch(`${BASE}/semester`, {
       method: 'POST',
@@ -39,7 +43,7 @@ export async function createSemester(semester: SemesterEntry): Promise<void> {
   );
 }
 
-export async function updateSemester(semester: SemesterEntry): Promise<void> {
+export async function updateSemester(semester: Semester): Promise<void> {
   await json(
     await fetch(`${BASE}/semester`, {
       method: 'PUT',
