@@ -3,9 +3,14 @@ package com.hgebk.doko.kasse.plugins.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.resource.PathResourceResolver;
+
+import java.io.IOException;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -17,13 +22,19 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**").allowedMethods("*").allowedOrigins("*").allowedHeaders("*");
     }
 
-/*
     @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        // SPA fallback: forward non-asset, non-API paths to index.html so SvelteKit routing works
-        // The regex [^.]* excludes paths with dots (JS/CSS/image assets) to let them resolve normally
-        registry.addViewController("/{path:[^.]*}").setViewName("forward:/index.html");
-        registry.addViewController("/{path:[^.]*}/**").setViewName("forward:/index.html");
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/static/")
+                .resourceChain(true)
+                .addResolver(new PathResourceResolver() {
+                    @Override
+                    protected Resource getResource(String resourcePath, Resource location) throws IOException {
+                        Resource resource = location.createRelative(resourcePath);
+                        return resource.exists() && resource.isReadable()
+                                ? resource
+                                : new ClassPathResource("/static/index.html");
+                    }
+                });
     }
-*/
 }
