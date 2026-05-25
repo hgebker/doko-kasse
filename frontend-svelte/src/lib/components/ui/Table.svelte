@@ -44,11 +44,11 @@
   ]}
   style={maxHeight ? `max-height: ${maxHeight}` : ''}
 >
-  <table class="w-full text-sm">
+  <table class="min-w-max w-full text-sm">
     <thead class="sticky top-0 bg-surface-raised">
       <tr>
         {#each columns as col}
-          <th class="px-3 py-2 text-left font-semibold text-text-secondary">{col.label}</th>
+          <th class="whitespace-nowrap px-3 py-2 text-left font-semibold text-text-secondary">{col.label}</th>
         {/each}
         {#if actions.length > 0 && !readonly}
           <th class="w-10 px-3 py-2"></th>
@@ -67,7 +67,7 @@
           }}
         >
           {#each columns as col}
-            <td class="px-3 py-2 text-text-secondary">
+            <td class="whitespace-nowrap px-3 py-2 text-text-secondary">
               {#if col.format}
                 {col.format(row[col.key])}
               {:else}

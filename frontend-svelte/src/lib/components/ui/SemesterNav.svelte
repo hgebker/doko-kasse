@@ -8,7 +8,7 @@
   let { semesters, selected = $bindable('gesamt') }: Props = $props();
 </script>
 
-<nav class="w-52 shrink-0">
+<nav class="shrink-0">
   <p class="mb-1 px-2 text-xs font-semibold uppercase tracking-wide text-text-disabled">
     Allgemein
   </p>
