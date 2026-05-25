@@ -1,0 +1,205 @@
+{
+    "Items": [
+        {
+            "betrag": {
+                "N": "309.44"
+            },
+            "art": {
+                "S": "Abschluss (Saison 24/25)"
+            },
+            "semester": {
+                "S": "season2526"
+            }
+        },
+        {
+            "betrag": {
+                "N": "431.75"
+            },
+            "art": {
+                "S": "Abschluss SS20 (Camping)"
+            },
+            "semester": {
+                "S": "ss20"
+            }
+        },
+        {
+            "betrag": {
+                "N": "2.75"
+            },
+            "art": {
+                "S": "Ausgleich WS 21/22"
+            },
+            "semester": {
+                "S": "ws2122"
+            }
+        },
+        {
+            "betrag": {
+                "N": "40.92"
+            },
+            "art": {
+                "S": "Endzeremonie SS20 (Bayrisches Bier)"
+            },
+            "semester": {
+                "S": "ss20"
+            }
+        },
+        {
+            "betrag": {
+                "N": "56"
+            },
+            "art": {
+                "S": "Abschluss (SoSe 21)"
+            },
+            "semester": {
+                "S": "ss21"
+            }
+        },
+        {
+            "betrag": {
+                "N": "30"
+            },
+            "art": {
+                "S": "Design Logo, Paula Beddies"
+            },
+            "semester": {
+                "S": "ss21"
+            }
+        },
+        {
+            "betrag": {
+                "N": "327.94"
+            },
+            "art": {
+                "S": "Kasse anpassen "
+            },
+            "semester": {
+                "S": "ss23"
+            }
+        },
+        {
+            "betrag": {
+                "N": "8"
+            },
+            "art": {
+                "S": "Grill den Jan bezahlt hat"
+            },
+            "semester": {
+                "S": "ws2122"
+            }
+        },
+        {
+            "betrag": {
+                "N": "267.61"
+            },
+            "art": {
+                "S": "Abschluss (23/24) (Friesland)"
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "328"
+            },
+            "art": {
+                "S": "Ausgaben Abschluss Köln "
+            },
+            "semester": {
+                "S": "ws2122"
+            }
+        },
+        {
+            "betrag": {
+                "N": "4"
+            },
+            "art": {
+                "S": "Doppelkopf-Karten"
+            },
+            "semester": {
+                "S": "ws1819"
+            }
+        },
+        {
+            "betrag": {
+                "N": "388.45"
+            },
+            "art": {
+                "S": "Bonn - Abschlussfahrt"
+            },
+            "semester": {
+                "S": "ss22"
+            }
+        },
+        {
+            "betrag": {
+                "N": "205.67"
+            },
+            "art": {
+                "S": "Abschluss SS19 (Dortmund)"
+            },
+            "semester": {
+                "S": "ss19"
+            }
+        },
+        {
+            "betrag": {
+                "N": "35"
+            },
+            "art": {
+                "S": "Wintergang 22/23"
+            },
+            "semester": {
+                "S": "ws2223"
+            }
+        },
+        {
+            "betrag": {
+                "N": "212.85"
+            },
+            "art": {
+                "S": "Abschluss WS1819 (Düsseldorf)"
+            },
+            "semester": {
+                "S": "ws1819"
+            }
+        },
+        {
+            "betrag": {
+                "N": "35"
+            },
+            "art": {
+                "S": "Endzeremonie WS1920"
+            },
+            "semester": {
+                "S": "ws1920"
+            }
+        },
+        {
+            "betrag": {
+                "N": "8.5"
+            },
+            "art": {
+                "S": "Grillen SS19"
+            },
+            "semester": {
+                "S": "ss19"
+            }
+        },
+        {
+            "betrag": {
+                "N": "393.61"
+            },
+            "art": {
+                "S": "Semesterabschlussfahrt Haddorf (SoSe 21)"
+            },
+            "semester": {
+                "S": "ss21"
+            }
+        }
+    ],
+    "Count": 18,
+    "ScannedCount": 18,
+    "ConsumedCapacity": null
+}

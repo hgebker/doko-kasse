@@ -1,0 +1,689 @@
+{
+    "Items": [
+        {
+            "betrag": {
+                "N": "10.5"
+            },
+            "art": {
+                "S": "Spenden 2024-06-28"
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "10"
+            },
+            "art": {
+                "S": "Timmi hat gerade mal Geld"
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "3"
+            },
+            "art": {
+                "S": "Spieleinnahmen Leo (2021-11-08)"
+            },
+            "semester": {
+                "S": "ws2122"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.7"
+            },
+            "art": {
+                "S": "Spenden, 03.05."
+            },
+            "semester": {
+                "S": "ss23"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.2"
+            },
+            "art": {
+                "S": "Spende Hannes 22.11."
+            },
+            "semester": {
+                "S": "ws2223"
+            }
+        },
+        {
+            "betrag": {
+                "N": "10.6"
+            },
+            "art": {
+                "S": "Spieleinnahmen Jannik (2019-12-05)"
+            },
+            "semester": {
+                "S": "ws1920"
+            }
+        },
+        {
+            "betrag": {
+                "N": "12.5"
+            },
+            "art": {
+                "S": "Spende Leo"
+            },
+            "semester": {
+                "S": "season2526"
+            }
+        },
+        {
+            "betrag": {
+                "N": "2.4"
+            },
+            "art": {
+                "S": "Spenden_16_08_2024"
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "6.4"
+            },
+            "art": {
+                "S": "22.02.2025 Spenden/Gastspieleinnahmen"
+            },
+            "semester": {
+                "S": "season2425"
+            }
+        },
+        {
+            "betrag": {
+                "N": "10"
+            },
+            "art": {
+                "S": "Spende Jannik 21.1.2024"
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.1"
+            },
+            "art": {
+                "S": "31.01.2025 Spenden"
+            },
+            "semester": {
+                "S": "season2425"
+            }
+        },
+        {
+            "betrag": {
+                "N": "4.8"
+            },
+            "art": {
+                "S": "Spieleinnahmen Jannik (2019-04-16)"
+            },
+            "semester": {
+                "S": "ss19"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.4"
+            },
+            "art": {
+                "S": "Ole Pieper 24.11"
+            },
+            "semester": {
+                "S": "ss23"
+            }
+        },
+        {
+            "betrag": {
+                "N": "3.8"
+            },
+            "art": {
+                "S": "Kassenausgleich (2024-03-30)"
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.2"
+            },
+            "art": {
+                "S": "Spende (2019-05-28)"
+            },
+            "semester": {
+                "S": "ss19"
+            }
+        },
+        {
+            "betrag": {
+                "N": "76"
+            },
+            "art": {
+                "S": "Nachzahlung Haddorf 21"
+            },
+            "semester": {
+                "S": "ss21"
+            }
+        },
+        {
+            "betrag": {
+                "N": "5"
+            },
+            "art": {
+                "S": "? (2021-05-26)"
+            },
+            "semester": {
+                "S": "ss21"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.8"
+            },
+            "art": {
+                "S": "Spende Jan 28.3.26"
+            },
+            "semester": {
+                "S": "season2526"
+            }
+        },
+        {
+            "betrag": {
+                "N": "4.9"
+            },
+            "art": {
+                "S": "? (2021-07-10)"
+            },
+            "semester": {
+                "S": "ss21"
+            }
+        },
+        {
+            "betrag": {
+                "N": "3"
+            },
+            "art": {
+                "S": "Spenden 21.1.2024"
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.02"
+            },
+            "art": {
+                "S": "Spende (2019-05-14)"
+            },
+            "semester": {
+                "S": "ss19"
+            }
+        },
+        {
+            "betrag": {
+                "N": "1.9"
+            },
+            "art": {
+                "S": "18.10.2024 Spenden"
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.1"
+            },
+            "art": {
+                "S": "Spende (2019-04-01)"
+            },
+            "semester": {
+                "S": "ss19"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.2"
+            },
+            "art": {
+                "S": "Spende Lou 22.11."
+            },
+            "semester": {
+                "S": "ws2223"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.2"
+            },
+            "art": {
+                "S": "Spende Ole"
+            },
+            "semester": {
+                "S": "ws2223"
+            }
+        },
+        {
+            "betrag": {
+                "N": "5.4"
+            },
+            "art": {
+                "S": "Spenden_12_07_23"
+            },
+            "semester": {
+                "S": "ss23"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.5"
+            },
+            "art": {
+                "S": "23.01.2026 Spenden"
+            },
+            "semester": {
+                "S": "season2526"
+            }
+        },
+        {
+            "betrag": {
+                "N": "14.3"
+            },
+            "art": {
+                "S": "Spieleinnahmen David (2018-12-17)"
+            },
+            "semester": {
+                "S": "ws1819"
+            }
+        },
+        {
+            "betrag": {
+                "N": "3.1"
+            },
+            "art": {
+                "S": "22.12.23 Spenden"
+            },
+            "semester": {
+                "S": "ss23"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.3"
+            },
+            "art": {
+                "S": "Spende (2019-11-07)"
+            },
+            "semester": {
+                "S": "ws1920"
+            }
+        },
+        {
+            "betrag": {
+                "N": "234.9"
+            },
+            "art": {
+                "S": "Nachzahlung SoSe 22"
+            },
+            "semester": {
+                "S": "ss22"
+            }
+        },
+        {
+            "betrag": {
+                "N": "10.12"
+            },
+            "art": {
+                "S": "Spieleinnahmen Leo (2020-07-03)"
+            },
+            "semester": {
+                "S": "ss20"
+            }
+        },
+        {
+            "betrag": {
+                "N": "1.9"
+            },
+            "art": {
+                "S": "Spenden 23.02."
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.2"
+            },
+            "art": {
+                "S": "Tim und Ole 07.12.2022"
+            },
+            "semester": {
+                "S": "ws2223"
+            }
+        },
+        {
+            "betrag": {
+                "N": "2.6"
+            },
+            "art": {
+                "S": "Spenden 23.11."
+            },
+            "semester": {
+                "S": "season2425"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.1"
+            },
+            "art": {
+                "S": "SPENDE Präsi"
+            },
+            "semester": {
+                "S": "ws2223"
+            }
+        },
+        {
+            "betrag": {
+                "N": "7.2"
+            },
+            "art": {
+                "S": "Flix (18.10.24)"
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.1"
+            },
+            "art": {
+                "S": "Spende Jan"
+            },
+            "semester": {
+                "S": "ss22"
+            }
+        },
+        {
+            "betrag": {
+                "N": "5"
+            },
+            "art": {
+                "S": "? (2021-06-22)"
+            },
+            "semester": {
+                "S": "ss21"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.2"
+            },
+            "semester": {
+                "S": "ws1819"
+            },
+            "art": {
+                "S": "Spende (2018-10-22)"
+            }
+        },
+        {
+            "betrag": {
+                "N": "1.6"
+            },
+            "art": {
+                "S": "? (2021-05-12)"
+            },
+            "semester": {
+                "S": "ss21"
+            }
+        },
+        {
+            "betrag": {
+                "N": "8.8"
+            },
+            "art": {
+                "S": "Spenden / Gastspieleinnahmen 25.04.2026"
+            },
+            "semester": {
+                "S": "season2526"
+            }
+        },
+        {
+            "betrag": {
+                "N": "2.6"
+            },
+            "art": {
+                "S": "Spenden WiSe21/22"
+            },
+            "semester": {
+                "S": "ws2122"
+            }
+        },
+        {
+            "betrag": {
+                "N": "10"
+            },
+            "art": {
+                "S": "Martina 27.2.2026"
+            },
+            "semester": {
+                "S": "season2526"
+            }
+        },
+        {
+            "betrag": {
+                "N": "8.4"
+            },
+            "art": {
+                "S": "Spenden 22.08.2025"
+            },
+            "semester": {
+                "S": "season2425"
+            }
+        },
+        {
+            "betrag": {
+                "N": "1"
+            },
+            "art": {
+                "S": "Spende Lou"
+            },
+            "semester": {
+                "S": "ws2122"
+            }
+        },
+        {
+            "betrag": {
+                "N": "9.2"
+            },
+            "art": {
+                "S": "Stefan Gast 28.03.2026"
+            },
+            "semester": {
+                "S": "season2526"
+            }
+        },
+        {
+            "betrag": {
+                "N": "1.4"
+            },
+            "art": {
+                "S": "24.11 Spenden"
+            },
+            "semester": {
+                "S": "ss23"
+            }
+        },
+        {
+            "betrag": {
+                "N": "14.84"
+            },
+            "art": {
+                "S": "06.12.2024 Spenden/Gastspieleinnnahmen"
+            },
+            "semester": {
+                "S": "season2425"
+            }
+        },
+        {
+            "betrag": {
+                "N": "5.12"
+            },
+            "art": {
+                "S": "Spenden 29.12.2025"
+            },
+            "semester": {
+                "S": "season2526"
+            }
+        },
+        {
+            "betrag": {
+                "N": "11.4"
+            },
+            "art": {
+                "S": "Ausgleich Kassenstand "
+            },
+            "semester": {
+                "S": "ws2122"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.1"
+            },
+            "art": {
+                "S": "Hannes spende 28.3.26"
+            },
+            "semester": {
+                "S": "season2526"
+            }
+        },
+        {
+            "betrag": {
+                "N": "14.5"
+            },
+            "art": {
+                "S": "Spieleinnahmen Leo (2019-12-18)"
+            },
+            "semester": {
+                "S": "ws1920"
+            }
+        },
+        {
+            "betrag": {
+                "N": "2.51"
+            },
+            "art": {
+                "S": "Spende2_16_08_2024"
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "2.4"
+            },
+            "art": {
+                "S": "26.07.24 Spenden"
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "8.9"
+            },
+            "art": {
+                "S": "29.03.2024. Sonstige Einnahmen"
+            },
+            "semester": {
+                "S": "season2324"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.2"
+            },
+            "art": {
+                "S": "Spende Ole 25.01.23"
+            },
+            "semester": {
+                "S": "ws2223"
+            }
+        },
+        {
+            "betrag": {
+                "N": "0.1"
+            },
+            "art": {
+                "S": "Spende Tim"
+            },
+            "semester": {
+                "S": "ws2223"
+            }
+        },
+        {
+            "betrag": {
+                "N": "2"
+            },
+            "art": {
+                "S": "Wette UEL Finale Jan und Tim"
+            },
+            "semester": {
+                "S": "ss23"
+            }
+        },
+        {
+            "betrag": {
+                "N": "10.8"
+            },
+            "art": {
+                "S": "Spielgeld Jannik"
+            },
+            "semester": {
+                "S": "ss23"
+            }
+        },
+        {
+            "betrag": {
+                "N": "4.9"
+            },
+            "art": {
+                "S": "Leonhard 07.12.22"
+            },
+            "semester": {
+                "S": "ws2223"
+            }
+        },
+        {
+            "betrag": {
+                "N": "100"
+            },
+            "art": {
+                "S": "Ausgleich nach WiSe 21/22"
+            },
+            "semester": {
+                "S": "ws2122"
+            }
+        }
+    ],
+    "Count": 62,
+    "ScannedCount": 62,
+    "ConsumedCapacity": null
+}

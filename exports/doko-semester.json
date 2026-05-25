@@ -1,0 +1,71 @@
+{
+    "Items": [
+        {
+            "key": {
+                "S": "ss22"
+            },
+            "label": {
+                "S": "Sommersemester 22"
+            }
+        },
+        {
+            "key": {
+                "S": "ss20"
+            },
+            "label": {
+                "S": "Sommersemester 20"
+            }
+        },
+        {
+            "key": {
+                "S": "ss21"
+            },
+            "label": {
+                "S": "Sommersemester 21"
+            }
+        },
+        {
+            "key": {
+                "S": "ws2122"
+            },
+            "label": {
+                "S": "Wintersemester 21/22"
+            }
+        },
+        {
+            "key": {
+                "S": "ws1819"
+            },
+            "label": {
+                "S": "Wintersemester 18/19"
+            }
+        },
+        {
+            "key": {
+                "S": "ws1920"
+            },
+            "label": {
+                "S": "Wintersemester 19/20"
+            }
+        },
+        {
+            "key": {
+                "S": "ss19"
+            },
+            "label": {
+                "S": "Sommersemester 19"
+            }
+        },
+        {
+            "key": {
+                "S": "ws2021"
+            },
+            "label": {
+                "S": "Wintersemester 20/21"
+            }
+        }
+    ],
+    "Count": 8,
+    "ScannedCount": 8,
+    "ConsumedCapacity": null
+}
