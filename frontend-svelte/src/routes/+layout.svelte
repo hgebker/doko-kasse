@@ -4,6 +4,7 @@
   import NavigationRailItem from '$lib/components/layout/NavigationRailItem.svelte';
   import ChartBarIcon from 'phosphor-svelte/lib/ChartBarIcon';
   import DiceFiveIcon from 'phosphor-svelte/lib/DiceFiveIcon';
+  import GraduationCapIcon from 'phosphor-svelte/lib/GraduationCapIcon';
   import HouseIcon from 'phosphor-svelte/lib/HouseIcon';
   import MoneyIcon from 'phosphor-svelte/lib/MoneyIcon';
   import ReceiptIcon from 'phosphor-svelte/lib/ReceiptIcon';
@@ -16,7 +17,8 @@
     { href: '/evenings', label: 'Spieleinnahmen', icon: DiceFiveIcon },
     { href: '/earnings', label: 'Einnahmen', icon: MoneyIcon },
     { href: '/expenses', label: 'Ausgaben', icon: ReceiptIcon },
-    { href: '/reports', label: 'Auswertungen', icon: ChartBarIcon }
+    { href: '/reports', label: 'Auswertungen', icon: ChartBarIcon },
+    { href: '/semesters', label: 'Semester', icon: GraduationCapIcon }
   ];
 
   function isActive(href: string) {

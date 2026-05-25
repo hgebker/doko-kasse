@@ -25,4 +25,24 @@ public class SemesterService {
         log.info("DBACK: Find semester for key {}", key);
         return semesterRepository.findById(key).orElseThrow(() -> new SemesterNotFoundException(key));
     }
+
+    public void saveSemester(Semester newSemester) {
+        log.info("DBACK: Save new semester");
+        semesterRepository.save(newSemester);
+    }
+
+    public void updateSemester(Semester updatedSemester) {
+        log.info("DBACK: Find semester to update");
+        if (semesterRepository.findById(updatedSemester.getKey()).isEmpty()) {
+            throw new SemesterNotFoundException(updatedSemester.getKey());
+        }
+        semesterRepository.save(updatedSemester);
+    }
+
+    public void deleteSemesterByKey(String key) {
+        log.info("DBACK: Find semester to delete");
+        Semester toDelete = semesterRepository.findById(key)
+                .orElseThrow(() -> new SemesterNotFoundException(key));
+        semesterRepository.delete(toDelete);
+    }
 }

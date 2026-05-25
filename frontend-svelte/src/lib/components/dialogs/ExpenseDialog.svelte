@@ -1,30 +1,30 @@
 <script lang="ts">
   import FormField from '$lib/components/ui/FormField.svelte';
-  import { LAST_SEMESTER, SEMESTER_LIST } from '$lib/constants/semesters';
-  import type { Expense } from '$lib/types';
+  import type { Expense, SemesterEntry } from '$lib/types';
   import { Button, Dialog, Select } from 'bits-ui';
   import { CaretDownIcon } from 'phosphor-svelte';
 
   type Props = {
+    semesters: SemesterEntry[];
     open?: boolean;
     preset?: Expense | null;
     onSave: (item: Expense) => void;
     onClose: () => void;
   };
-  let { open = $bindable(), preset = null, onSave, onClose }: Props = $props();
+  let { semesters, open = $bindable(), preset = null, onSave, onClose }: Props = $props();
 
-  let form = $state({ description: '', value: 0, semester: LAST_SEMESTER.id });
+  let form = $state({ description: '', value: 0, semester: '' });
 
   $effect(() => {
     if (open) {
       form = preset
         ? { description: preset.description, value: preset.value, semester: preset.semester }
-        : { description: '', value: 0, semester: LAST_SEMESTER.id };
+        : { description: '', value: 0, semester: semesters.at(-1)?.id ?? '' };
     }
   });
 
   const selectedSemesterLabel = $derived(
-    SEMESTER_LIST.find((s) => s.id === form.semester)?.label ?? form.semester
+    semesters.find((s) => s.id === form.semester)?.label ?? form.semester
   );
 
   function save() {
@@ -86,7 +86,7 @@
             <Select.Content
               class="z-50 max-h-60 overflow-auto rounded-lg border border-border-default bg-surface-raised py-1 shadow-lg"
             >
-              {#each SEMESTER_LIST as sem}
+              {#each semesters as sem}
                 <Select.Item
                   value={sem.id}
                   class="cursor-pointer px-3 py-1.5 text-sm text-text-secondary hover:bg-surface-hover data-[highlighted]:bg-surface-hover data-[state=checked]:font-medium"

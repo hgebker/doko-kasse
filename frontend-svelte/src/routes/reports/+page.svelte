@@ -7,7 +7,6 @@
   import Spinner from '$lib/components/ui/Spinner.svelte';
   import Table from '$lib/components/ui/Table.svelte';
   import { PLAYERS } from '$lib/constants/players';
-  import { SEMESTER_LABEL_MAPPING } from '$lib/constants/semesters';
   import { capitalize, formatDate, formatNumber } from '$lib/utils/format';
   import { parseEveningDto } from '$lib/utils/parse';
   import { SORT, sortBy } from '$lib/utils/sort';
@@ -47,15 +46,19 @@
     report?.evenings ? sortBy(report.evenings.map(parseEveningDto), 'date', SORT.DESC) : []
   );
 
-  const eveningColumns = [
+  const eveningColumns = $derived([
     { key: 'date', label: 'Datum', format: formatDate },
-    { key: 'semester', label: 'Semester', format: (v: string) => SEMESTER_LABEL_MAPPING[v] ?? v },
+    {
+      key: 'semester',
+      label: 'Semester',
+      format: (v: string) => data.semesters.find((s) => s.id === v)?.label ?? v
+    },
     ...PLAYERS.map((p) => ({
       key: p,
       label: capitalize(p),
       format: formatNumber
     }))
-  ];
+  ]);
 
   const calcRows = $derived.by(() => {
     if (!report?.semesterResults?.length) return [];
@@ -105,11 +108,15 @@
 
 <ContextPane contextPaneTitle="Semester" bind:contextPaneCollapsed bind:contextPaneModalOpen>
   {#snippet contextPane()}
-    <SemesterNav bind:selected={selectedSemester} />
+    <SemesterNav semesters={data.semesters} bind:selected={selectedSemester} />
   {/snippet}
 
   <SplitPane>
-    <PageHeader title="Auswertungen" supportingText={SEMESTER_LABEL_MAPPING[selectedSemester] ?? selectedSemester}>
+    <PageHeader
+      title="Auswertungen"
+      supportingText={data.semesters.find((s) => s.id === selectedSemester)?.label ??
+        (selectedSemester === 'gesamt' ? 'Gesamt' : selectedSemester)}
+    >
       {#snippet controls()}
         {#if !isDesktop.current}
           <button
@@ -129,7 +136,7 @@
     {:else}
       <div class="mb-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div
-          class="rounded-lg border border-border-default bg-surface-base p-3 text-center shadow-sm"
+          class="rounded-lg border border-border-subtle bg-surface-base p-3 text-center shadow-sm"
         >
           <p class="text-xs text-text-disabled">Einnahmen</p>
           <p class="mt-0.5 font-semibold text-text-primary">
@@ -138,14 +145,14 @@
         </div>
 
         <div
-          class="rounded-lg border border-border-default bg-surface-base p-3 text-center shadow-sm"
+          class="rounded-lg border border-border-subtle bg-surface-base p-3 text-center shadow-sm"
         >
           <p class="text-xs text-text-disabled">Abende</p>
           <p class="mt-0.5 font-semibold text-text-primary">{report.numberOfEvenings ?? 0}</p>
         </div>
 
         <div
-          class="rounded-lg border border-border-default bg-surface-base p-3 text-center shadow-sm"
+          class="rounded-lg border border-border-subtle bg-surface-base p-3 text-center shadow-sm"
         >
           <p class="text-xs text-text-disabled">Saisonbeste:r (∅)</p>
           <p class="mt-0.5 font-semibold text-accent-best">
@@ -155,7 +162,7 @@
         </div>
 
         <div
-          class="rounded-lg border border-border-default bg-surface-base p-3 text-center shadow-sm"
+          class="rounded-lg border border-border-subtle bg-surface-base p-3 text-center shadow-sm"
         >
           <p class="text-xs text-text-disabled">Saisonschlechteste:r (∅)</p>
           <p class="mt-0.5 font-semibold text-accent-worst">
