@@ -74,4 +74,5 @@ export interface SemesterReport {
 export interface SemesterEntry {
   id: string;
   label: string;
+  sortKey: number;
 }

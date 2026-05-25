@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Sort;
+
 import java.util.List;
 
 @Service
@@ -18,7 +20,7 @@ public class SemesterService {
 
     public List<Semester> getAllSemesters() {
         log.info("DBACK: Find all semesters");
-        return (List<Semester>) semesterRepository.findAll();
+        return semesterRepository.findAll(Sort.by(Sort.Direction.ASC, "sortKey"));
     }
 
     public Semester getSemester(String key) {

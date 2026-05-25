@@ -22,6 +22,7 @@
   let deleteTarget: string | null = $state(null);
 
   const columns = [
+    { key: 'sortKey', label: 'Reihenfolge' },
     { key: 'id', label: 'Schlüssel' },
     { key: 'label', label: 'Bezeichnung' }
   ];
@@ -102,6 +103,7 @@
 <SemesterDialog
   bind:open={dialogOpen}
   preset={editTarget}
+  defaultSortKey={Math.max(...data.semesters.map((s) => s.sortKey), -1) + 1}
   onSave={handleSave}
   onClose={() => {
     editTarget = null;

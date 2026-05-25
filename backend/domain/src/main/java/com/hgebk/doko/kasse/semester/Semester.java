@@ -15,4 +15,6 @@ public class Semester {
     private String key;
 
     private String label;
+
+    private int sortKey;
 }

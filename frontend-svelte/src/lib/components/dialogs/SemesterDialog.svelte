@@ -6,21 +6,24 @@
   type Props = {
     open?: boolean;
     preset?: SemesterEntry | null;
+    defaultSortKey?: number;
     onSave: (item: SemesterEntry) => void;
     onClose: () => void;
   };
-  let { open = $bindable(), preset = null, onSave, onClose }: Props = $props();
+  let { open = $bindable(), preset = null, defaultSortKey = 0, onSave, onClose }: Props = $props();
 
-  let form = $state({ id: '', label: '' });
+  let form = $state({ id: '', label: '', sortKey: 0 });
 
   $effect(() => {
     if (open) {
-      form = preset ? { id: preset.id, label: preset.label } : { id: '', label: '' };
+      form = preset
+        ? { id: preset.id, label: preset.label, sortKey: preset.sortKey }
+        : { id: '', label: '', sortKey: defaultSortKey };
     }
   });
 
   function save() {
-    onSave({ id: form.id.trim(), label: form.label.trim() });
+    onSave({ id: form.id.trim(), label: form.label.trim(), sortKey: form.sortKey });
   }
 </script>
 
@@ -63,6 +66,14 @@
             type="text"
             bind:value={form.label}
             placeholder="z.B. Saison 26/27"
+            class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
+          />
+        </FormField>
+
+        <FormField label="Reihenfolge">
+          <input
+            type="number"
+            bind:value={form.sortKey}
             class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
           />
         </FormField>
