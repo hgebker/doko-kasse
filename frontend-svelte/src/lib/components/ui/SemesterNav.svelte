@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { SEMESTER_LIST } from '$lib/constants/semesters';
+  import type { SemesterEntry } from '$lib/types';
 
   type Props = {
+    semesters: SemesterEntry[];
     selected?: string;
   };
-  let { selected = $bindable('gesamt') }: Props = $props();
+  let { semesters, selected = $bindable('gesamt') }: Props = $props();
 </script>
 
 <nav class="w-52 shrink-0">
@@ -29,7 +30,7 @@
 
   <p class="mb-1 px-2 text-xs font-semibold uppercase tracking-wide text-text-disabled">Semester</p>
   <ul>
-    {#each SEMESTER_LIST as sem}
+    {#each semesters as sem}
       <li>
         <button
           onclick={() => (selected = sem.id)}

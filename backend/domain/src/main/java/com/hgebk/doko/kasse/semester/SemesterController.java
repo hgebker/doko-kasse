@@ -4,10 +4,9 @@ import com.hgebk.doko.kasse.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,5 +47,23 @@ public class SemesterController {
     public EntityModel<Semester> getSemester(@PathVariable String key) {
         Semester semester = semesterService.getSemester(key);
         return semesterModelAssembler.toModel(semester);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void saveSemester(@RequestBody Semester newSemester) {
+        semesterService.saveSemester(newSemester);
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateSemester(@RequestBody Semester updatedSemester) {
+        semesterService.updateSemester(updatedSemester);
+    }
+
+    @DeleteMapping("/{key}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteSemesterByKey(@PathVariable String key) {
+        semesterService.deleteSemesterByKey(key);
     }
 }

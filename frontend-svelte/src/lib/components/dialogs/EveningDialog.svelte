@@ -1,8 +1,7 @@
 <script lang="ts">
   import FormField from '$lib/components/ui/FormField.svelte';
   import { PLAYERS } from '$lib/constants/players';
-  import { LAST_SEMESTER, SEMESTER_LIST } from '$lib/constants/semesters';
-  import type { Evening, EveningInput } from '$lib/types';
+  import type { Evening, EveningInput, SemesterEntry } from '$lib/types';
   import { capitalize } from '$lib/utils/format';
   import { type DateValue, parseDate } from '@internationalized/date';
   import { Button, DatePicker, Dialog, Select } from 'bits-ui';
@@ -15,10 +14,19 @@
     return new Date().toISOString().slice(0, 10);
   }
 
+  type Props = {
+    semesters: SemesterEntry[];
+    open?: boolean;
+    preset?: Evening | null;
+    onSave: (item: EveningInput) => void;
+    onClose: () => void;
+  };
+  let { semesters, open = $bindable(), preset = null, onSave, onClose }: Props = $props();
+
   function emptyForm() {
     return {
       date: today(),
-      semester: LAST_SEMESTER.id,
+      semester: semesters.at(-1)?.id ?? '',
       tim: 0,
       jan: 0,
       ole: 0,
@@ -26,14 +34,6 @@
       louisa: 0
     };
   }
-
-  type Props = {
-    open?: boolean;
-    preset?: Evening | null;
-    onSave: (item: EveningInput) => void;
-    onClose: () => void;
-  };
-  let { open = $bindable(), preset = null, onSave, onClose }: Props = $props();
 
   let form = $state(emptyForm());
 
@@ -54,7 +54,7 @@
   });
 
   const selectedSemesterLabel = $derived(
-    SEMESTER_LIST.find((s) => s.id === form.semester)?.label ?? form.semester
+    semesters.find((s) => s.id === form.semester)?.label ?? form.semester
   );
 
   function save() {
@@ -105,7 +105,7 @@
             <Select.Content
               class="z-50 max-h-60 overflow-auto rounded-lg border border-border-default bg-surface-raised py-1 shadow-lg"
             >
-              {#each SEMESTER_LIST as sem}
+              {#each semesters as sem}
                 <Select.Item
                   value={sem.id}
                   class="cursor-pointer px-3 py-1.5 text-sm text-text-secondary hover:bg-surface-hover data-[highlighted]:bg-surface-hover data-[state=checked]:font-medium"

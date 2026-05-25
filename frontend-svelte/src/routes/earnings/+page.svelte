@@ -7,7 +7,6 @@
   import Spinner from '$lib/components/ui/Spinner.svelte';
   import Table from '$lib/components/ui/Table.svelte';
   import Toast, { type ToastContent } from '$lib/components/ui/Toast.svelte';
-  import { SEMESTER_LABEL_MAPPING } from '$lib/constants/semesters';
   import type { Earning } from '$lib/types';
   import { formatNumber } from '$lib/utils/format';
   import { ArrowCounterClockwiseIcon } from 'phosphor-svelte';
@@ -24,11 +23,15 @@
   let confirmOpen = $state(false);
   let deleteTarget: string | null = $state(null);
 
-  const columns = [
+  const columns = $derived([
     { key: 'description', label: 'Beschreibung' },
     { key: 'value', label: 'Betrag', format: formatNumber },
-    { key: 'semester', label: 'Semester', format: (v: string) => SEMESTER_LABEL_MAPPING[v] ?? v }
-  ];
+    {
+      key: 'semester',
+      label: 'Semester',
+      format: (v: string) => data.semesters.find((s) => s.id === v)?.label ?? v
+    }
+  ]);
 
   const actions = [
     {
@@ -97,6 +100,7 @@
 <Toast bind:toast />
 
 <EarningDialog
+  semesters={data.semesters}
   bind:open={dialogOpen}
   preset={editTarget}
   onSave={handleSave}

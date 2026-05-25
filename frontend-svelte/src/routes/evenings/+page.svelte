@@ -10,7 +10,6 @@
   import Table from '$lib/components/ui/Table.svelte';
   import Toast, { type ToastContent } from '$lib/components/ui/Toast.svelte';
   import { PLAYERS } from '$lib/constants/players';
-  import { SEMESTER_LABEL_MAPPING } from '$lib/constants/semesters';
   import type { Evening, EveningInput } from '$lib/types.js';
   import { capitalize, formatDate, formatNumber } from '$lib/utils/format';
   import { parseEveningDto } from '$lib/utils/parse';
@@ -63,15 +62,20 @@
 
   const sortedEvenings = $derived(sortBy(evenings, 'date', listSortDir));
 
-  const tableColumns = [
+  const semesterLabel = $derived((id: string): string => {
+    if (id === 'gesamt') return 'Gesamt';
+    return data.semesters.find((s) => s.id === id)?.label ?? id;
+  });
+
+  const tableColumns = $derived([
     { key: 'date', label: 'Datum', format: formatDate },
-    { key: 'semester', label: 'Semester', format: (v: string) => SEMESTER_LABEL_MAPPING[v] ?? v },
+    { key: 'semester', label: 'Semester', format: (v: string) => semesterLabel(v) },
     ...PLAYERS.map((p) => ({
       key: p,
       label: capitalize(p),
       format: formatNumber
     }))
-  ];
+  ]);
 
   const tableActions = [
     {
@@ -139,6 +143,7 @@
 <Toast bind:toast />
 
 <EveningDialog
+  semesters={data.semesters}
   bind:open={dialogOpen}
   preset={editTarget}
   onSave={handleSave}
@@ -157,7 +162,7 @@
 
 <ContextPane contextPaneTitle="Semester" bind:contextPaneCollapsed bind:contextPaneModalOpen>
   {#snippet contextPane()}
-    <SemesterNav bind:selected={selectedSemester} />
+    <SemesterNav semesters={data.semesters} bind:selected={selectedSemester} />
   {/snippet}
 
   <SplitPane
@@ -166,7 +171,7 @@
     bind:supportingPaneOpen={() => !!selectedEvening, () => (selectedEvening = null)}
   >
     <!-- Detail pane: header + list/table -->
-    <PageHeader title="Spieleinnahmen" count={evenings.length} supportingText={SEMESTER_LABEL_MAPPING[selectedSemester] ?? selectedSemester}>
+    <PageHeader title="Spieleinnahmen" count={evenings.length} supportingText={semesterLabel(selectedSemester)}>
       {#snippet controls()}
         {#if !isDesktop.current}
           <button
@@ -237,7 +242,7 @@
               >
                 <span class="font-medium text-text-primary">{formatDate(evening.date)}</span>
                 <span class="text-xs text-text-muted">
-                  {SEMESTER_LABEL_MAPPING[evening.semester] ?? evening.semester} — {formatNumber(
+                  {semesterLabel(evening.semester)} — {formatNumber(
                     evening.sum ?? 0
                   )}
                 </span>
@@ -255,7 +260,7 @@
       {#if selectedEvening}
         <div class="flex items-center justify-between mb-4">
           <p class="text-sm text-text-muted">
-            {SEMESTER_LABEL_MAPPING[selectedEvening.semester] ?? selectedEvening.semester}
+            {semesterLabel(selectedEvening.semester)}
           </p>
           <div class="flex gap-2">
             <button
