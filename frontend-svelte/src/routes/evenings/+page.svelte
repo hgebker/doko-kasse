@@ -284,7 +284,7 @@
           <!-- Player tiles -->
           {#each PLAYERS as player}
             <div class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center">
-              <p class="text-xs font-medium uppercase tracking-wide text-text-muted">
+              <p class="text-sm font-medium uppercase tracking-wide text-text-muted">
                 {capitalize(player)}
               </p>
               <p
@@ -303,7 +303,7 @@
           <div
             class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center col-span-2"
           >
-            <p class="text-xs font-medium uppercase tracking-wide text-text-muted">Gesamt (Σ)</p>
+            <p class="text-sm font-medium uppercase tracking-wide text-text-muted">Gesamt (Σ)</p>
             <p class="mt-1 text-base font-semibold text-text-primary">
               {formatNumber(selectedEvening.sum ?? 0)}
             </p>
@@ -312,7 +312,7 @@
           <div
             class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center col-span-2"
           >
-            <p class="text-xs font-medium uppercase tracking-wide text-text-muted">
+            <p class="text-sm font-medium uppercase tracking-wide text-text-muted">
               Durchschnitt (∅)
             </p>
             <p class="mt-1 text-base font-semibold text-text-primary">

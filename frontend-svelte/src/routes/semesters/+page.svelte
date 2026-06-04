@@ -206,15 +206,15 @@
         <div
           class="col-span-2 rounded-lg border border-border-subtle bg-surface-raised p-3 text-center"
         >
-          <p class="text-xs font-medium uppercase tracking-wide text-text-muted">Bezeichnung</p>
+          <p class="text-sm font-medium uppercase tracking-wide text-text-muted">Bezeichnung</p>
           <p class="mt-1 text-base font-semibold text-text-primary">{selectedSemester.label}</p>
         </div>
         <div class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center">
-          <p class="text-xs font-medium uppercase tracking-wide text-text-muted">Schlüssel</p>
+          <p class="text-sm font-medium uppercase tracking-wide text-text-muted">Schlüssel</p>
           <p class="mt-1 text-base font-semibold text-text-primary">{selectedSemester.id}</p>
         </div>
         <div class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center">
-          <p class="text-xs font-medium uppercase tracking-wide text-text-muted">Reihenfolge</p>
+          <p class="text-sm font-medium uppercase tracking-wide text-text-muted">Reihenfolge</p>
           <p class="mt-1 text-base font-semibold text-text-primary">{selectedSemester.sortKey}</p>
         </div>
       </div>

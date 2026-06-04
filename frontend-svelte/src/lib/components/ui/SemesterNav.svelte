@@ -9,7 +9,7 @@
 </script>
 
 <nav class="shrink-0">
-  <p class="mb-1 px-2 text-xs font-semibold uppercase tracking-wide text-text-disabled">
+  <p class="mb-1 px-2 text-sm font-semibold uppercase tracking-wide text-text-disabled">
     Allgemein
   </p>
   <ul class="mb-4">
@@ -28,7 +28,7 @@
     </li>
   </ul>
 
-  <p class="mb-1 px-2 text-xs font-semibold uppercase tracking-wide text-text-disabled">Semester</p>
+  <p class="mb-1 px-2 text-sm font-semibold uppercase tracking-wide text-text-disabled">Semester</p>
   <ul>
     {#each semesters as sem}
       <li>

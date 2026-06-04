@@ -218,7 +218,7 @@
         <div
           class="col-span-2 rounded-lg border border-border-subtle bg-surface-raised p-3 text-center"
         >
-          <p class="text-xs font-medium uppercase tracking-wide text-text-muted">Beschreibung</p>
+          <p class="text-sm font-medium uppercase tracking-wide text-text-muted">Beschreibung</p>
           <p class="mt-1 text-base font-semibold text-text-primary">
             {selectedEarning.description}
           </p>
@@ -226,7 +226,7 @@
         <div
           class="col-span-2 rounded-lg border border-border-subtle bg-surface-raised p-3 text-center"
         >
-          <p class="text-xs font-medium uppercase tracking-wide text-text-muted">Betrag</p>
+          <p class="text-sm font-medium uppercase tracking-wide text-text-muted">Betrag</p>
           <p class="mt-1 text-base font-semibold text-text-primary">
             {formatNumber(selectedEarning.value)}
           </p>

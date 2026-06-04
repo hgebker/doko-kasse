@@ -182,7 +182,7 @@
                             <DatePicker.GridRow class="mb-1 flex w-full justify-between">
                               {#each weekdays as day (day)}
                                 <DatePicker.HeadCell
-                                  class="text-muted-foreground font-normal! w-10 rounded-md text-xs"
+                                  class="text-muted-foreground font-normal! w-10 rounded-md text-sm"
                                 >
                                   <div>{day.slice(0, 2)}</div>
                                 </DatePicker.HeadCell>

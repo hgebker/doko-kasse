@@ -44,11 +44,13 @@
   ]}
   style={maxHeight ? `max-height: ${maxHeight}` : ''}
 >
-  <table class="min-w-max w-full text-sm">
+  <table class="min-w-max w-full">
     <thead class="sticky top-0 bg-surface-raised">
       <tr>
         {#each columns as col}
-          <th class="whitespace-nowrap px-3 py-2 text-left font-semibold text-text-secondary">{col.label}</th>
+          <th class="whitespace-nowrap px-3 py-2 text-left font-semibold text-text-secondary"
+            >{col.label}</th
+          >
         {/each}
         {#if actions.length > 0 && !readonly}
           <th class="w-10 px-3 py-2"></th>
@@ -82,7 +84,7 @@
                   class="rounded p-1 text-text-disabled hover:bg-surface-hover hover:text-text-primary"
                   aria-label="Aktionen"
                 >
-                  <DotsThreeVerticalIcon size="16" />
+                  <DotsThreeVerticalIcon size="20" />
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content
                   class="z-30 min-w-[8rem] rounded-lg border border-border-default bg-surface-raised py-1 shadow-lg"

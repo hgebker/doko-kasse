@@ -138,7 +138,7 @@
         <div
           class="rounded-lg border border-border-subtle bg-surface-base p-3 text-center shadow-sm"
         >
-          <p class="text-xs text-text-disabled">Einnahmen</p>
+          <p class="text-sm text-text-disabled">Einnahmen</p>
           <p class="mt-0.5 font-semibold text-text-primary">
             {formatNumber(report.totalIncome ?? 0)}
           </p>
@@ -147,14 +147,14 @@
         <div
           class="rounded-lg border border-border-subtle bg-surface-base p-3 text-center shadow-sm"
         >
-          <p class="text-xs text-text-disabled">Abende</p>
+          <p class="text-sm text-text-disabled">Abende</p>
           <p class="mt-0.5 font-semibold text-text-primary">{report.numberOfEvenings ?? 0}</p>
         </div>
 
         <div
           class="rounded-lg border border-border-subtle bg-surface-base p-3 text-center shadow-sm"
         >
-          <p class="text-xs text-text-disabled">Saisonbeste:r (∅)</p>
+          <p class="text-sm text-text-disabled">Saisonbeste:r (∅)</p>
           <p class="mt-0.5 font-semibold text-accent-best">
             {capitalize(report?.best.player)}
             — {formatNumber(report?.best.avg)}
@@ -164,7 +164,7 @@
         <div
           class="rounded-lg border border-border-subtle bg-surface-base p-3 text-center shadow-sm"
         >
-          <p class="text-xs text-text-disabled">Saisonschlechteste:r (∅)</p>
+          <p class="text-sm text-text-disabled">Saisonschlechteste:r (∅)</p>
           <p class="mt-0.5 font-semibold text-accent-worst">
             {capitalize(report?.worst.player)}
             — {formatNumber(report?.worst.avg)}

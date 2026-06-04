@@ -11,12 +11,20 @@
     headerAction?: Snippet;
   };
 
-  let { label, items, getTitle, getSubtitle, onselect, emptyText = 'Keine Einträge', headerAction }: Props = $props();
+  let {
+    label,
+    items,
+    getTitle,
+    getSubtitle,
+    onselect,
+    emptyText = 'Keine Einträge',
+    headerAction
+  }: Props = $props();
 </script>
 
 <div class="overflow-hidden rounded-lg border border-border-default bg-surface-base shadow-sm">
   <div class="flex items-center justify-between border-b border-border-subtle p-3">
-    <span class="text-xs font-semibold uppercase tracking-wide text-text-disabled">{label}</span>
+    <span class="text-sm font-semibold uppercase tracking-wide text-text-disabled">{label}</span>
     {#if headerAction}
       {@render headerAction()}
     {/if}
@@ -29,7 +37,7 @@
           class="flex w-full flex-col px-4 py-3 text-left transition-colors hover:bg-surface-hover"
         >
           <span class="font-medium text-text-primary">{getTitle(item)}</span>
-          <span class="text-xs text-text-muted">{getSubtitle(item)}</span>
+          <span class="text-sm text-text-muted">{getSubtitle(item)}</span>
         </button>
       </li>
     {/each}
