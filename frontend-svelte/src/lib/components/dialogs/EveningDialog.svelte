@@ -129,13 +129,13 @@
           >
             <div class="flex w-full flex-col gap-1.5">
               <DatePicker.Input
-                class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none flex items-center"
+                class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none flex items-center"
               >
                 {#snippet children({ segments })}
                   {#each segments as { part, value }, i (part + i)}
                     <div class="inline-block select-none">
                       {#if part === 'literal'}
-                        <DatePicker.Segment {part} class="text-muted-foreground p-1">
+                        <DatePicker.Segment {part} class="text-muted-foreground">
                           {value}
                         </DatePicker.Segment>
                       {:else}
@@ -226,6 +226,7 @@
             <FormField label={capitalize(player)}>
               <input
                 type="number"
+                inputmode="numeric"
                 step="0.01"
                 bind:value={form[player]}
                 class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"

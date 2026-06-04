@@ -63,6 +63,7 @@
         <FormField label="Betrag (€)">
           <input
             type="number"
+            inputmode="numeric"
             step="0.01"
             bind:value={form.value}
             class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"

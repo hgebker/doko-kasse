@@ -205,7 +205,7 @@
           aria-label="Aktualisieren"
           title="Aktualisieren"
         >
-          <ArrowCounterClockwiseIcon size="16" />
+          <ArrowCounterClockwiseIcon size="20" />
         </button>
 
         <button
@@ -241,9 +241,9 @@
             title={listSortDir === SORT.DESC ? 'Älteste zuerst' : 'Neueste zuerst'}
           >
             {#if listSortDir === SORT.DESC}
-              <SortDescendingIcon size="16" />
+              <SortDescendingIcon size="20" />
             {:else}
-              <SortAscendingIcon size="16" />
+              <SortAscendingIcon size="20" />
             {/if}
           </button>
         {/snippet}

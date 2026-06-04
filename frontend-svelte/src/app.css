@@ -1,63 +1,124 @@
-@import 'tailwindcss';
+@layer framework, reset, base, components, utilities;
+
+@layer framework {
+  @import 'tailwindcss';
+}
 
 @theme {
-  /* Surface tiers — deep midnight navy */
-  --color-surface-page: #07101f;
-  --color-surface-base: #0d1829;
-  --color-surface-raised: #152236;
-  --color-surface-hover: #1d2f47;
+  --font-family-base: 'Inter', system-ui, sans-serif;
+  /* --font-size-base: 16px; */
+
+  /* Surface tiers — all derived from --hue in :root */
+  --color-surface-page: hsl(from var(--hue) h 63% 7%);
+  --color-surface-base: hsl(from var(--hue) h 52% 11%);
+  --color-surface-raised: hsl(from var(--hue) h 44% 15%);
+  --color-surface-hover: hsl(from var(--hue) h 42% 20%);
 
   /* Borders */
-  --color-border-subtle: #152236;
-  --color-border-default: #1d2f47;
-  --color-border-strong: #2d4260;
+  --color-border-subtle: hsl(from var(--hue) h 44% 15%);
+  --color-border-default: hsl(from var(--hue) h 42% 20%);
+  --color-border-strong: hsl(from var(--hue) h 36% 28%);
 
   /* Text */
-  --color-text-primary: #eef2ff; /* cool blue-tinted white */
-  --color-text-secondary: #a8bcd8; /* cool blue-gray */
-  --color-text-muted: #587090; /* mid blue-gray */
-  --color-text-disabled: #4a6580; /* dark blue-gray */
+  --color-text-primary: hsl(from var(--hue) h 100% 97%);
+  --color-text-secondary: hsl(from var(--hue) h 38% 75%);
+  --color-text-muted: hsl(from var(--hue) h 24% 45%);
+  --color-text-disabled: hsl(from var(--hue) h 27% 40%);
 
-  /* Primary action — cool light blue button */
-  --color-action-primary: #dae5ff;
-  --color-action-primary-fg: #0d1829;
-  --color-action-primary-hover: #eef2ff;
+  /* Primary action */
+  --color-action-primary: hsl(from var(--hue) h 100% 93%);
+  --color-action-primary-fg: hsl(from var(--hue) h 52% 11%);
+  --color-action-primary-hover: hsl(from var(--hue) h 100% 97%);
 
-  /* Semantic accents */
-  --color-accent-income: #2ecc91; /* vivid emerald */
-  --color-accent-expense: #fb923c; /* vivid orange  */
-  --color-accent-neutral: #22d3ee; /* vivid cyan    */
-  --color-accent-best: #34d399; /* vivid mint    */
-  --color-accent-worst: #f87171; /* vivid red     */
+  /* Semantic accents — fixed hues, semantically distinct */
+  --color-accent-income: hsl(158 63% 49%);
+  --color-accent-expense: hsl(27 96% 61%);
+  --color-accent-neutral: hsl(188 86% 53%);
+  --color-accent-best: hsl(158 64% 52%);
+  --color-accent-worst: hsl(0 91% 71%);
 
   /* Destructive */
-  --color-destruct-text: #f87171;
-  --color-destruct-bg: #200a0a;
-  --color-destruct-border: #7f1d1d;
+  --color-destruct-text: hsl(0 91% 71%);
+  --color-destruct-bg: hsl(0 52% 8%);
+  --color-destruct-border: hsl(0 63% 31%);
 
   /* Nav gradient */
-  --color-nav-from: #0d1829;
-  --color-nav-to: #152236;
+  --color-nav-from: hsl(from var(--hue) h 52% 11%);
+  --color-nav-to: hsl(from var(--hue) h 44% 15%);
 
   /* Toasts */
-  --color-toast-success-bg: #04200e;
-  --color-toast-success-border: #065f46;
-  --color-toast-success-text: #6ee7b7;
-  --color-toast-error-bg: #200a0a;
-  --color-toast-error-border: #7f1d1d;
-  --color-toast-error-text: #fca5a5;
+  --color-toast-success-bg: hsl(141 78% 7%);
+  --color-toast-success-border: hsl(163 88% 20%);
+  --color-toast-success-text: hsl(156 72% 67%);
+  --color-toast-error-bg: hsl(0 52% 8%);
+  --color-toast-error-border: hsl(0 63% 31%);
+  --color-toast-error-text: hsl(0 94% 82%);
 }
 
 :root {
-  color-scheme: dark;
+  --hue: hsl(217 50% 50%); /* base color — change hue to retheme the navy palette */
 }
 
-body {
-  background-color: var(--color-surface-page);
-  color: var(--color-text-secondary);
-}
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-/* Prevent iOS Safari from zooming on input focus (triggered when font-size < 16px) */
-input, select, textarea {
-  font-size: 16px;
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: var(--font-family-base, system-ui, sans-serif);
+    font-size: var(--font-size-base);
+    background-color: var(--color-surface-page);
+    color: var(--color-text-secondary);
+    /* line-height: 1.6; */
+  }
+
+  body > :is(header, footer),
+  main,
+  section,
+  article {
+    container-type: inline-size;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img,
+  picture,
+  svg,
+  video,
+  canvas,
+  audio {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :has(:target) {
+      scroll-behavior: smooth;
+      scroll-padding-top: 4rem;
+    }
+  }
 }

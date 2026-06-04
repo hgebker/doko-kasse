@@ -140,7 +140,7 @@
         aria-label="Aktualisieren"
         title="Aktualisieren"
       >
-        <ArrowCounterClockwiseIcon size="16" />
+        <ArrowCounterClockwiseIcon size="20" />
       </button>
       <button
         onclick={() => {
