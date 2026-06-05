@@ -154,7 +154,7 @@
         <div
           class="rounded-lg border border-border-subtle bg-surface-base p-3 text-center shadow-sm"
         >
-          <p class="text-sm text-text-disabled">Saisonbeste:r (∅)</p>
+          <p class="text-sm text-text-disabled">Beste:r (∅)</p>
           <p class="mt-0.5 font-semibold text-accent-best">
             {capitalize(report?.best.player)}
             — {formatNumber(report?.best.avg)}
@@ -164,7 +164,7 @@
         <div
           class="rounded-lg border border-border-subtle bg-surface-base p-3 text-center shadow-sm"
         >
-          <p class="text-sm text-text-disabled">Saisonschlechteste:r (∅)</p>
+          <p class="text-sm text-text-disabled">Schlechteste:r (∅)</p>
           <p class="mt-0.5 font-semibold text-accent-worst">
             {capitalize(report?.worst.player)}
             — {formatNumber(report?.worst.avg)}

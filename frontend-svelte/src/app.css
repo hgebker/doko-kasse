@@ -96,13 +96,6 @@ audio {
   max-width: 100%;
 }
 
-input,
-select,
-textarea,
-button {
-  font: inherit;
-}
-
 button,
 [role='button'] {
   cursor: pointer;
