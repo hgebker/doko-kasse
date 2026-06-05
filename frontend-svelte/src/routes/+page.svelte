@@ -41,7 +41,7 @@
       <div class="rounded-xl border border-border-subtle bg-surface-base p-6 shadow-sm">
         <div class="flex items-center gap-4">
           <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl {card.color}">
-            <card.icon size="20" class="text-white" />
+            <card.icon size="24" class="text-white" />
           </div>
           <div>
             <p class="text-sm text-text-muted">{card.title}</p>

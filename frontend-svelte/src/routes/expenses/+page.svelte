@@ -152,14 +152,14 @@
         aria-label="Aktualisieren"
         title="Aktualisieren"
       >
-        <ArrowCounterClockwiseIcon size="20" />
+        <ArrowCounterClockwiseIcon size="24" />
       </button>
       <button
         onclick={() => {
           editTarget = null;
           dialogOpen = true;
         }}
-        class="rounded-lg bg-action-primary px-3 py-2 text-sm font-medium text-action-primary-fg hover:bg-action-primary-hover"
+        class="rounded-lg bg-action-primary px-3 py-2 font-medium text-action-primary-fg hover:bg-action-primary-hover"
       >
         Neu
       </button>
@@ -189,14 +189,14 @@
   {#snippet supportingPane()}
     {#if selectedExpense}
       <div class="mb-4 flex items-center justify-between">
-        <p class="text-sm text-text-muted">{semesterLabel(selectedExpense.semester)}</p>
+        <p class="text-text-muted">{semesterLabel(selectedExpense.semester)}</p>
         <div class="flex gap-2">
           <button
             onclick={() => {
               editTarget = selectedExpense;
               dialogOpen = true;
             }}
-            class="rounded-lg border border-border-strong px-3 py-1.5 text-sm font-medium text-text-secondary hover:bg-surface-hover"
+            class="rounded-lg border border-border-strong px-3 py-2 font-medium text-text-secondary hover:bg-surface-hover"
           >
             Bearbeiten
           </button>
@@ -207,7 +207,7 @@
                 confirmOpen = true;
               }
             }}
-            class="rounded-lg border border-destruct-border px-3 py-1.5 text-sm font-medium text-destruct-text hover:bg-surface-hover"
+            class="rounded-lg border border-destruct-border px-3 py-2 font-medium text-destruct-text hover:bg-surface-hover"
           >
             Löschen
           </button>

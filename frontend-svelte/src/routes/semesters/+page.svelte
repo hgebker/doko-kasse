@@ -140,14 +140,14 @@
         aria-label="Aktualisieren"
         title="Aktualisieren"
       >
-        <ArrowCounterClockwiseIcon size="20" />
+        <ArrowCounterClockwiseIcon size="24" />
       </button>
       <button
         onclick={() => {
           editTarget = null;
           dialogOpen = true;
         }}
-        class="rounded-lg bg-action-primary px-3 py-2 text-sm font-medium text-action-primary-fg hover:bg-action-primary-hover"
+        class="rounded-lg bg-action-primary px-3 py-2 font-medium text-action-primary-fg hover:bg-action-primary-hover"
       >
         Neu
       </button>
@@ -184,7 +184,7 @@
               editTarget = selectedSemester;
               dialogOpen = true;
             }}
-            class="rounded-lg border border-border-strong px-3 py-1.5 text-sm font-medium text-text-secondary hover:bg-surface-hover"
+            class="rounded-lg border border-border-strong px-3 py-2 font-medium text-text-secondary hover:bg-surface-hover"
           >
             Bearbeiten
           </button>
@@ -195,7 +195,7 @@
                 confirmOpen = true;
               }
             }}
-            class="rounded-lg border border-destruct-border px-3 py-1.5 text-sm font-medium text-destruct-text hover:bg-surface-hover"
+            class="rounded-lg border border-destruct-border px-3 py-2 font-medium text-destruct-text hover:bg-surface-hover"
           >
             Löschen
           </button>

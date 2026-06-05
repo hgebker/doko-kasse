@@ -30,13 +30,13 @@
       </AlertDialog.Description>
       <div class="flex justify-end gap-3">
         <AlertDialog.Cancel
-          class="rounded-lg border border-border-strong px-4 py-2 text-sm font-medium text-text-secondary hover:bg-surface-hover"
+          class="rounded-lg border border-border-strong px-4 py-2 font-medium text-text-secondary hover:bg-surface-hover"
         >
           Abbrechen
         </AlertDialog.Cancel>
         <AlertDialog.Action
           onclick={onConfirm}
-          class="rounded-lg bg-destruct-bg px-4 py-2 text-sm font-medium text-destruct-text hover:opacity-90"
+          class="rounded-lg bg-destruct-bg px-4 py-2 font-medium text-destruct-text hover:opacity-90"
         >
           Löschen
         </AlertDialog.Action>

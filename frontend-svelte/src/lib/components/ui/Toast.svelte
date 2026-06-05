@@ -37,7 +37,7 @@
       class="ml-auto shrink-0 rounded p-0.5 opacity-60 hover:opacity-100"
       aria-label="Schließen"
     >
-      <XIcon size="16" />
+      <XIcon size="24" />
     </button>
   </div>
 {/if}

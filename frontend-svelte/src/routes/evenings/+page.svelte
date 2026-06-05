@@ -189,10 +189,10 @@
         {#if !isDesktop.current}
           <button
             onclick={() => (contextPaneModalOpen = true)}
-            class="flex items-center gap-1 rounded-lg border border-border-strong px-2 py-1.5 text-sm text-text-secondary hover:bg-surface-hover"
+            class="flex items-center gap-1 rounded-lg border border-border-strong px-3 py-2 text-text-secondary hover:bg-surface-hover"
             aria-label="Semester filtern"
           >
-            <FunnelSimpleIcon size="16" />
+            <FunnelSimpleIcon size="24" />
             Filter
           </button>
         {/if}
@@ -205,12 +205,12 @@
           aria-label="Aktualisieren"
           title="Aktualisieren"
         >
-          <ArrowCounterClockwiseIcon size="20" />
+          <ArrowCounterClockwiseIcon size="24" />
         </button>
 
         <button
           onclick={openNew}
-          class="rounded-lg bg-action-primary px-3 py-2 text-sm font-medium text-action-primary-fg hover:bg-action-primary-hover"
+          class="rounded-lg bg-action-primary px-3 py-2 font-medium text-action-primary-fg hover:bg-action-primary-hover"
         >
           Neu
         </button>
@@ -253,7 +253,7 @@
     {#snippet supportingPane()}
       {#if selectedEvening}
         <div class="flex items-center justify-between mb-4">
-          <p class="text-sm text-text-muted">
+          <p class="text-text-muted">
             {semesterLabel(selectedEvening.semester)}
           </p>
           <div class="flex gap-2">
@@ -262,7 +262,7 @@
                 editTarget = selectedEvening;
                 dialogOpen = true;
               }}
-              class="rounded-lg border border-border-strong px-3 py-1.5 text-sm font-medium text-text-secondary hover:bg-surface-hover"
+              class="rounded-lg border border-border-strong px-3 py-2 font-medium text-text-secondary hover:bg-surface-hover"
             >
               Bearbeiten
             </button>
@@ -273,7 +273,7 @@
                   confirmOpen = true;
                 }
               }}
-              class="rounded-lg border border-destruct-border px-3 py-1.5 text-sm font-medium text-destruct-text hover:bg-surface-hover"
+              class="rounded-lg border border-destruct-border px-3 py-2 font-medium text-destruct-text hover:bg-surface-hover"
             >
               Löschen
             </button>

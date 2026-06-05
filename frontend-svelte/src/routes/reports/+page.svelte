@@ -121,10 +121,10 @@
         {#if !isDesktop.current}
           <button
             onclick={() => (contextPaneModalOpen = true)}
-            class="flex items-center gap-1 rounded-lg border border-border-strong px-2 py-1.5 text-sm text-text-secondary hover:bg-surface-hover"
+            class="flex items-center gap-1 rounded-lg border border-border-strong px-3 py-2 text-text-secondary hover:bg-surface-hover"
             aria-label="Semester filtern"
           >
-            <FunnelSimpleIcon size="16" />
+            <FunnelSimpleIcon size="24" />
             Filter
           </button>
         {/if}
@@ -183,10 +183,10 @@
         >
           <Accordion.Header>
             <Accordion.Trigger
-              class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-text-secondary hover:bg-surface-hover data-[state=open]:bg-surface-raised"
+              class="flex w-full items-center justify-between px-4 py-3 text-left font-semibold text-text-secondary hover:bg-surface-hover data-[state=open]:bg-surface-raised"
             >
               Berechnungen und Auswertungen
-              <CaretDownIcon size="16" class="text-text-disabled" />
+              <CaretDownIcon size="20" class="text-text-disabled" />
             </Accordion.Trigger>
           </Accordion.Header>
           <Accordion.Content class="border-t border-border-default p-0">
@@ -200,10 +200,10 @@
         >
           <Accordion.Header>
             <Accordion.Trigger
-              class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-text-secondary hover:bg-surface-hover data-[state=open]:bg-surface-raised"
+              class="flex w-full items-center justify-between px-4 py-3 text-left font-semibold text-text-secondary hover:bg-surface-hover data-[state=open]:bg-surface-raised"
             >
               Abende
-              <CaretDownIcon size="16" class="text-text-disabled" />
+              <CaretDownIcon size="20" class="text-text-disabled" />
             </Accordion.Trigger>
           </Accordion.Header>
           <Accordion.Content class="border-t border-border-default p-0">

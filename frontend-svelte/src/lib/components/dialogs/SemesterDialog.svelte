@@ -83,7 +83,7 @@
 
       <div class="mt-6 flex justify-end gap-3">
         <Dialog.Close
-          class="rounded-lg border border-border-strong px-4 py-2 text-sm font-medium text-text-secondary hover:bg-surface-hover"
+          class="rounded-lg border border-border-strong px-4 py-2 font-medium text-text-secondary hover:bg-surface-hover"
         >
           Abbrechen
         </Dialog.Close>
@@ -91,7 +91,7 @@
         <Button.Root
           onclick={save}
           disabled={!form.id.trim() || !form.label.trim()}
-          class="rounded-lg bg-action-primary px-4 py-2 text-sm font-medium text-action-primary-fg hover:bg-action-primary-hover disabled:opacity-50"
+          class="rounded-lg bg-action-primary px-4 py-2 font-medium text-action-primary-fg hover:bg-action-primary-hover disabled:opacity-50"
         >
           Speichern
         </Button.Root>

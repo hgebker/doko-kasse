@@ -44,7 +44,7 @@
   ]}
   style={maxHeight ? `max-height: ${maxHeight}` : ''}
 >
-  <table class="min-w-max w-full">
+  <table class="min-w-max w-full text-sm">
     <thead class="sticky top-0 bg-surface-raised">
       <tr>
         {#each columns as col}
@@ -84,14 +84,14 @@
                   class="rounded p-1 text-text-disabled hover:bg-surface-hover hover:text-text-primary"
                   aria-label="Aktionen"
                 >
-                  <DotsThreeVerticalIcon size="20" />
+                  <DotsThreeVerticalIcon size="24" />
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content
                   class="z-30 min-w-[8rem] rounded-lg border border-border-default bg-surface-raised py-1 shadow-lg"
                 >
                   {#each actions as action}
                     <DropdownMenu.Item
-                      class="flex w-full cursor-pointer px-3 py-1.5 text-sm text-text-secondary hover:bg-surface-hover data-[highlighted]:bg-surface-hover"
+                      class="flex w-full cursor-pointer px-3 py-1.5 text-text-secondary hover:bg-surface-hover data-[highlighted]:bg-surface-hover"
                       onclick={() => action.onclick(row)}
                     >
                       {action.label}

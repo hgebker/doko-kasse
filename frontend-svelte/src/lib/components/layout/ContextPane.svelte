@@ -50,9 +50,9 @@
       aria-label={contextPaneCollapsed ? 'Seitenleiste öffnen' : 'Seitenleiste schließen'}
     >
       {#if contextPaneCollapsed}
-        <CaretRightIcon size="16" />
+        <CaretRightIcon size="24" />
       {:else}
-        <CaretLeftIcon size="16" />
+        <CaretLeftIcon size="24" />
       {/if}
     </button>
 
@@ -82,13 +82,13 @@
       <div
         class="flex h-12 shrink-0 items-center justify-between border-b border-border-subtle px-4"
       >
-        <span class="text-sm font-semibold text-text-secondary">{contextPaneTitle}</span>
+        <span class="font-semibold text-text-secondary">{contextPaneTitle}</span>
         <button
           onclick={() => (contextPaneModalOpen = false)}
           class="rounded p-1 text-text-muted hover:bg-surface-hover"
           aria-label="Schließen"
         >
-          <XIcon size="20" />
+          <XIcon size="24" />
         </button>
       </div>
       <div class="flex-1 overflow-y-auto p-2">

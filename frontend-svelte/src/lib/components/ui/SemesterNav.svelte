@@ -16,7 +16,7 @@
     <li>
       <button
         onclick={() => (selected = 'gesamt')}
-        class="w-full rounded px-3 py-1.5 text-left text-sm transition-colors"
+        class="w-full rounded px-3 py-1.5 text-left transition-colors"
         class:bg-surface-hover={selected === 'gesamt'}
         class:font-medium={selected === 'gesamt'}
         class:text-text-primary={selected === 'gesamt'}
@@ -34,7 +34,7 @@
       <li>
         <button
           onclick={() => (selected = sem.id)}
-          class="w-full rounded px-3 py-1.5 text-left text-sm transition-colors"
+          class="w-full rounded px-3 py-1.5 text-left transition-colors"
           class:bg-surface-hover={selected === sem.id}
           class:font-medium={selected === sem.id}
           class:text-text-primary={selected === sem.id}

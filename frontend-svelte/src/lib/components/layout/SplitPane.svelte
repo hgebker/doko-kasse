@@ -30,7 +30,7 @@
     <div class="flex flex-1 flex-col overflow-hidden">
       {#if detailPaneTitle}
         <div class="flex h-12 shrink-0 items-center border-b border-border-subtle px-4">
-          <span class="text-sm font-semibold text-text-secondary">{detailPaneTitle}</span>
+          <span class="font-semibold text-text-secondary">{detailPaneTitle}</span>
         </div>
       {/if}
       <div class="flex-1 overflow-y-auto p-4">
@@ -49,16 +49,14 @@
         <div
           class="flex h-12 shrink-0 items-center justify-between border-b border-border-subtle px-4"
         >
-          <span class="text-sm font-semibold text-text-secondary truncate"
-            >{supportingPaneTitle}</span
-          >
+          <span class="font-semibold text-text-secondary truncate">{supportingPaneTitle}</span>
           {#if supportingPaneClosable}
             <button
               onclick={() => (supportingPaneOpen = false)}
               class="ml-2 shrink-0 rounded p-1 text-text-muted hover:bg-surface-hover"
               aria-label="Detailansicht schließen"
             >
-              <XIcon size="20" />
+              <XIcon size="24" />
             </button>
           {/if}
         </div>
@@ -78,13 +76,11 @@
           class="rounded p-1 text-text-muted hover:bg-surface-hover"
           aria-label="Zurück"
         >
-          <ArrowLeftIcon size="20" />
+          <ArrowLeftIcon size="24" />
         </button>
 
         {#if supportingPaneTitle}
-          <span class="text-sm font-semibold text-text-secondary truncate"
-            >{supportingPaneTitle}</span
-          >
+          <span class="font-semibold text-text-secondary truncate">{supportingPaneTitle}</span>
         {/if}
       </div>
       <div class="p-4">

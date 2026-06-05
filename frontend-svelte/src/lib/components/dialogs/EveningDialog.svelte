@@ -100,7 +100,7 @@
               class="flex w-full items-center justify-between rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary focus:border-border-strong focus:outline-none"
             >
               {selectedSemesterLabel}
-              <CaretDownIcon size="16" class="text-text-muted" />
+              <CaretDownIcon size="20" class="text-text-muted" />
             </Select.Trigger>
             <Select.Content
               class="z-50 max-h-60 overflow-auto rounded-lg border border-border-default bg-surface-raised py-1 shadow-lg"
@@ -151,7 +151,7 @@
                   <DatePicker.Trigger
                     class="text-foreground/60 hover:bg-muted active:bg-dark-10 ml-auto inline-flex items-center justify-center rounded-[5px] transition-all"
                   >
-                    <CalendarBlankIcon size="16" />
+                    <CalendarBlankIcon size="20" />
                   </DatePicker.Trigger>
                 {/snippet}
               </DatePicker.Input>
@@ -238,14 +238,14 @@
 
       <div class="mt-6 flex justify-end gap-3">
         <Dialog.Close
-          class="rounded-lg border border-border-strong px-4 py-2 text-sm font-medium text-text-secondary hover:bg-surface-hover"
+          class="rounded-lg border border-border-strong px-4 py-2 font-medium text-text-secondary hover:bg-surface-hover"
         >
           Abbrechen
         </Dialog.Close>
 
         <Button.Root
           onclick={save}
-          class="rounded-lg bg-action-primary px-4 py-2 text-sm font-medium text-action-primary-fg hover:bg-action-primary-hover"
+          class="rounded-lg bg-action-primary px-4 py-2 font-medium text-action-primary-fg hover:bg-action-primary-hover"
         >
           Speichern
         </Button.Root>
