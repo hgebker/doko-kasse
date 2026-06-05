@@ -177,7 +177,7 @@
   {#snippet supportingPane()}
     {#if selectedSemester}
       <div class="mb-4 flex items-center justify-between">
-        <p class="text-sm text-text-muted">{selectedSemester.id}</p>
+        <p class="text-text-muted">{selectedSemester.id}</p>
         <div class="flex gap-2">
           <button
             onclick={() => {
