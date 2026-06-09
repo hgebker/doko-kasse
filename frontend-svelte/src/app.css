@@ -32,6 +32,7 @@
   --color-accent-neutral: hsl(188 86% 53%);
   --color-accent-best: hsl(158 64% 52%);
   --color-accent-worst: hsl(0 91% 71%);
+  --color-accent-evening: hsl(258 72% 65%);
 
   /* Destructive */
   --color-destruct-text: hsl(0 91% 71%);
