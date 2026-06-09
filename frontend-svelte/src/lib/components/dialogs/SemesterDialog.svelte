@@ -47,7 +47,7 @@
         {#if preset}
           <FormField label="Schlüssel">
             <p
-              class="rounded-lg border border-border-subtle bg-surface-raised px-3 py-2 text-sm text-text-disabled"
+              class="rounded-lg border border-border-subtle bg-surface-raised px-3 py-2 text-text-disabled"
             >
               {form.id}
             </p>
@@ -58,7 +58,7 @@
               type="text"
               bind:value={form.id}
               placeholder="z.B. season2627"
-              class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
+              class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
             />
           </FormField>
         {/if}
@@ -68,15 +68,16 @@
             type="text"
             bind:value={form.label}
             placeholder="z.B. Saison 26/27"
-            class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
+            class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
           />
         </FormField>
 
         <FormField label="Reihenfolge">
           <input
             type="number"
+            inputmode="numeric"
             bind:value={form.sortKey}
-            class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
+            class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
           />
         </FormField>
       </div>

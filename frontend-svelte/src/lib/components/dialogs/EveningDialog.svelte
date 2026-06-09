@@ -97,7 +97,7 @@
             }}
           >
             <Select.Trigger
-              class="flex w-full items-center justify-between rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary focus:border-border-strong focus:outline-none"
+              class="flex w-full items-center justify-between rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-text-primary focus:border-border-strong focus:outline-none"
             >
               {selectedSemesterLabel}
               <CaretDownIcon size="20" class="text-text-muted" />
@@ -108,7 +108,7 @@
               {#each semesters as sem}
                 <Select.Item
                   value={sem.id}
-                  class="cursor-pointer px-3 py-1.5 text-sm text-text-secondary hover:bg-surface-hover data-[highlighted]:bg-surface-hover data-[state=checked]:font-medium"
+                  class="cursor-pointer px-3 py-1.5 text-text-secondary hover:bg-surface-hover data-[highlighted]:bg-surface-hover data-[state=checked]:font-medium"
                 >
                   {sem.label}
                 </Select.Item>
@@ -167,7 +167,7 @@
                       >
                         <CaretLeftIcon class="size-6" />
                       </DatePicker.PrevButton>
-                      <DatePicker.Heading class="text-[15px] font-medium" />
+                      <DatePicker.Heading class="font-medium" />
                       <DatePicker.NextButton
                         class="rounded-9px bg-surface-raised hover:bg-muted inline-flex size-10 items-center justify-center transition-all active:scale-[0.98]"
                       >
@@ -229,7 +229,7 @@
                 inputmode="numeric"
                 step="0.01"
                 bind:value={form[player]}
-                class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
+                class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
               />
             </FormField>
           {/each}

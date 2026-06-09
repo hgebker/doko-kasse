@@ -75,7 +75,7 @@
       </div>
 
       {#if lastEvening}
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 ml-4 mr-4">
           <div>
             <p class="text-sm text-text-muted">Schlechteste:r (∅)</p>
             <p class="text-lg font-semibold text-accent-worst">

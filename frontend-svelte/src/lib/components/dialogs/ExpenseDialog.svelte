@@ -56,7 +56,7 @@
             type="text"
             bind:value={form.description}
             placeholder="z.B. Abschluss (WS1819)"
-            class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
+            class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
           />
         </FormField>
 
@@ -66,7 +66,7 @@
             inputmode="numeric"
             step="0.01"
             bind:value={form.value}
-            class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
+            class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
           />
         </FormField>
 
@@ -79,7 +79,7 @@
             }}
           >
             <Select.Trigger
-              class="flex w-full items-center justify-between rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-sm text-text-primary focus:border-border-strong focus:outline-none"
+              class="flex w-full items-center justify-between rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-text-primary focus:border-border-strong focus:outline-none"
             >
               {selectedSemesterLabel}
               <CaretDownIcon size="20" class="text-text-muted" />
@@ -90,7 +90,7 @@
               {#each semesters as sem}
                 <Select.Item
                   value={sem.id}
-                  class="cursor-pointer px-3 py-1.5 text-sm text-text-secondary hover:bg-surface-hover data-[highlighted]:bg-surface-hover data-[state=checked]:font-medium"
+                  class="cursor-pointer px-3 py-1.5 text-text-secondary hover:bg-surface-hover data-[highlighted]:bg-surface-hover data-[state=checked]:font-medium"
                 >
                   {sem.label}
                 </Select.Item>
