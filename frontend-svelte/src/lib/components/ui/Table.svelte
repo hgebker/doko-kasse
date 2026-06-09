@@ -44,7 +44,7 @@
   ]}
   style={maxHeight ? `max-height: ${maxHeight}` : ''}
 >
-  <table class="min-w-max w-full text-sm">
+  <table class="min-w-max w-full">
     <thead class="sticky top-0 bg-surface-raised">
       <tr>
         {#each columns as col}

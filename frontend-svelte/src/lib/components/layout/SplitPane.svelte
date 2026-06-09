@@ -47,9 +47,11 @@
         ].join(' ')}
       >
         <div
-          class="flex h-12 shrink-0 items-center justify-between border-b border-border-subtle px-4"
+          class="flex shrink-0 items-center justify-between border-b border-border-subtle px-4 py-3"
         >
-          <span class="font-semibold text-text-secondary truncate">{supportingPaneTitle}</span>
+          <span class="font-semibold text-lg text-text-secondary truncate"
+            >{supportingPaneTitle}</span
+          >
           {#if supportingPaneClosable}
             <button
               onclick={() => (supportingPaneOpen = false)}
@@ -70,7 +72,7 @@
   <!-- Mobile: one panel at a time -->
   {#if supportingPaneOpen && supportingPane}
     <div class="flex flex-col">
-      <div class="flex h-12 shrink-0 items-center gap-2 border-b border-border-subtle px-4">
+      <div class="flex shrink-0 items-center gap-2 border-b border-border-subtle px-4 py-3">
         <button
           onclick={() => (supportingPaneOpen = false)}
           class="rounded p-1 text-text-muted hover:bg-surface-hover"
@@ -80,7 +82,9 @@
         </button>
 
         {#if supportingPaneTitle}
-          <span class="font-semibold text-text-secondary truncate">{supportingPaneTitle}</span>
+          <span class="font-semibold text-lg text-text-secondary truncate"
+            >{supportingPaneTitle}</span
+          >
         {/if}
       </div>
       <div class="p-4">

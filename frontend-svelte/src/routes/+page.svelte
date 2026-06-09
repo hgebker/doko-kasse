@@ -43,7 +43,7 @@
 </svelte:head>
 
 <SplitPane>
-  <h1 class="mb-6 text-2xl font-semibold text-text-primary">Übersicht</h1>
+  <h1 class="mb-4 text-2xl font-semibold text-text-primary">Übersicht</h1>
   <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
     {#each cards as card}
       <div class="rounded-xl border border-border-subtle bg-surface-base p-6 shadow-sm">
