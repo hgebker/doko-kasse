@@ -75,7 +75,7 @@
         <FormField label="Reihenfolge">
           <input
             type="number"
-            inputmode="numeric"
+            inputmode="decimal"
             bind:value={form.sortKey}
             class="w-full rounded-lg border border-border-strong bg-surface-raised px-3 py-2 text-text-primary placeholder:text-text-disabled focus:border-border-strong focus:outline-none"
           />
