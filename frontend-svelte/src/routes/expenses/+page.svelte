@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { invalidate } from '$app/navigation';
   import { createExpense, deleteExpense, updateExpense } from '$lib/api/expenses';
   import ConfirmDialog from '$lib/components/dialogs/ConfirmDialog.svelte';
   import ExpenseDialog from '$lib/components/dialogs/ExpenseDialog.svelte';
@@ -10,7 +11,6 @@
   import Toast, { type ToastContent } from '$lib/components/ui/Toast.svelte';
   import type { Expense } from '$lib/types';
   import { formatNumber } from '$lib/utils/format';
-  import { invalidate } from '$app/navigation';
   import { ArrowCounterClockwiseIcon } from 'phosphor-svelte';
   import { MediaQuery } from 'svelte/reactivity';
   import type { PageProps } from './$types';
@@ -42,25 +42,6 @@
       format: (v: string) => data.semesters.find((s) => s.id === v)?.label ?? v
     }
   ]);
-
-  const actions = [
-    {
-      label: 'Bearbeiten',
-      onclick: (row: Expense) => {
-        editTarget = row;
-        dialogOpen = true;
-      }
-    },
-    {
-      label: 'Löschen',
-      onclick: (row: Expense) => {
-        if (row.id) {
-          deleteTarget = row.id;
-          confirmOpen = true;
-        }
-      }
-    }
-  ];
 
   async function reload() {
     await invalidate('app:expenses');
@@ -168,7 +149,6 @@
       <Table
         {columns}
         rows={expenses}
-        {actions}
         selectable
         selected={selectedExpense}
         onselect={(row) => (selectedExpense = row)}

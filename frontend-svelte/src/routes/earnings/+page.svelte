@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { invalidate } from '$app/navigation';
   import { createEarning, deleteEarning, updateEarning } from '$lib/api/earnings';
   import ConfirmDialog from '$lib/components/dialogs/ConfirmDialog.svelte';
   import EarningDialog from '$lib/components/dialogs/EarningDialog.svelte';
@@ -10,7 +11,6 @@
   import Toast, { type ToastContent } from '$lib/components/ui/Toast.svelte';
   import type { Earning } from '$lib/types';
   import { formatNumber } from '$lib/utils/format';
-  import { invalidate } from '$app/navigation';
   import { ArrowCounterClockwiseIcon } from 'phosphor-svelte';
   import { MediaQuery } from 'svelte/reactivity';
   import type { PageProps } from './$types';
@@ -42,25 +42,6 @@
       format: (v: string) => data.semesters.find((s) => s.id === v)?.label ?? v
     }
   ]);
-
-  const actions = [
-    {
-      label: 'Bearbeiten',
-      onclick: (row: Earning) => {
-        editTarget = row;
-        dialogOpen = true;
-      }
-    },
-    {
-      label: 'Löschen',
-      onclick: (row: Earning) => {
-        if (row.id) {
-          deleteTarget = row.id;
-          confirmOpen = true;
-        }
-      }
-    }
-  ];
 
   async function reload() {
     await invalidate('app:earnings');
@@ -168,7 +149,6 @@
       <Table
         {columns}
         rows={earnings}
-        {actions}
         selectable
         selected={selectedEarning}
         onselect={(row) => (selectedEarning = row)}

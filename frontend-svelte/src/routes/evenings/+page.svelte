@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto, invalidate } from '$app/navigation';
+  import { page } from '$app/state';
   import { createEvening, deleteEvening, updateEvening } from '$lib/api/evenings';
   import ConfirmDialog from '$lib/components/dialogs/ConfirmDialog.svelte';
   import EveningDialog from '$lib/components/dialogs/EveningDialog.svelte';
@@ -14,8 +16,6 @@
   import type { Evening, EveningInput } from '$lib/types.js';
   import { capitalize, formatDate, formatNumber } from '$lib/utils/format';
   import { SORT, sortBy, type SortDirection } from '$lib/utils/sort';
-  import { goto, invalidate } from '$app/navigation';
-  import { page } from '$app/state';
   import { Separator } from 'bits-ui';
   import { SortAscendingIcon, SortDescendingIcon } from 'phosphor-svelte';
   import ArrowCounterClockwiseIcon from 'phosphor-svelte/lib/ArrowCounterClockwiseIcon';
@@ -66,23 +66,6 @@
       format: formatNumber
     }))
   ]);
-
-  const tableActions = [
-    {
-      label: 'Bearbeiten',
-      onclick: (row: Evening) => {
-        editTarget = row;
-        dialogOpen = true;
-      }
-    },
-    {
-      label: 'Löschen',
-      onclick: (row: Evening) => {
-        deleteTarget = row.date;
-        confirmOpen = true;
-      }
-    }
-  ];
 
   function handleSelect(row: Evening) {
     selectedEvening = row;
@@ -218,7 +201,6 @@
         <Table
           columns={tableColumns}
           rows={sortBy(evenings, 'date', listSortDir)}
-          actions={tableActions}
           selectable
           onselect={handleSelect}
         />

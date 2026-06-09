@@ -32,23 +32,6 @@
     { key: 'label', label: 'Bezeichnung' }
   ];
 
-  const actions = [
-    {
-      label: 'Bearbeiten',
-      onclick: (row: Semester) => {
-        editTarget = row;
-        dialogOpen = true;
-      }
-    },
-    {
-      label: 'Löschen',
-      onclick: (row: Semester) => {
-        deleteTarget = row.id;
-        confirmOpen = true;
-      }
-    }
-  ];
-
   async function reload() {
     loading = true;
     try {
@@ -158,7 +141,6 @@
     <Table
       {columns}
       rows={data.semesters}
-      {actions}
       selectable
       selected={selectedSemester}
       onselect={(row) => (selectedSemester = row)}
