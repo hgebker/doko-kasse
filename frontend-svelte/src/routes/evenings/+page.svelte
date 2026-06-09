@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createEvening, deleteEvening, listEvenings, updateEvening } from '$lib/api/evenings';
+  import { createEvening, deleteEvening, updateEvening } from '$lib/api/evenings';
   import ConfirmDialog from '$lib/components/dialogs/ConfirmDialog.svelte';
   import EveningDialog from '$lib/components/dialogs/EveningDialog.svelte';
   import ContextPane from '$lib/components/layout/ContextPane.svelte';
@@ -13,8 +13,9 @@
   import { PLAYERS } from '$lib/constants/players';
   import type { Evening, EveningInput } from '$lib/types.js';
   import { capitalize, formatDate, formatNumber } from '$lib/utils/format';
-  import { parseEveningDto } from '$lib/utils/parse';
   import { SORT, sortBy, type SortDirection } from '$lib/utils/sort';
+  import { goto, invalidate } from '$app/navigation';
+  import { page } from '$app/state';
   import { Separator } from 'bits-ui';
   import { SortAscendingIcon, SortDescendingIcon } from 'phosphor-svelte';
   import ArrowCounterClockwiseIcon from 'phosphor-svelte/lib/ArrowCounterClockwiseIcon';
@@ -26,11 +27,9 @@
 
   const isDesktop = new MediaQuery('(min-width: 840px)');
 
-  let evenings = $derived(data.evenings);
-  let loading = $state(false);
+  let saving = $state(false);
   let toast: ToastContent | null = $state(null);
 
-  let selectedSemester = $state('gesamt');
   let selectedEvening: Evening | null = $state(null);
   let listSortDir: SortDirection = $state(SORT.DESC);
 
@@ -43,25 +42,15 @@
   let contextPaneCollapsed = $state(false);
   let contextPaneModalOpen = $state(false);
 
-  // Re-fetch when semester changes
-  $effect(() => {
-    reload(selectedSemester);
-  });
+  const semester = $derived(page.url.searchParams.get('semester') ?? 'gesamt');
 
-  async function reload(semester: string) {
-    loading = true;
-    try {
-      const raw = await listEvenings(semester);
-      evenings = raw.map(parseEveningDto);
-      selectedEvening = null;
-    } catch (e) {
-      toast = { message: e instanceof Error ? e.message : 'Fehler beim Laden', type: 'error' };
-    } finally {
-      loading = false;
-    }
+  function setSemester(value: string) {
+    selectedEvening = null;
+    const next = new URL(page.url);
+    if (!value || value === 'gesamt') next.searchParams.delete('semester');
+    else next.searchParams.set('semester', value);
+    goto(next, { replaceState: true, keepFocus: true, noScroll: true });
   }
-
-  const sortedEvenings = $derived(sortBy(evenings, 'date', listSortDir));
 
   const semesterLabel = $derived((id: string): string => {
     if (id === 'gesamt') return 'Gesamt';
@@ -99,8 +88,12 @@
     selectedEvening = row;
   }
 
+  function reload() {
+    invalidate('app:evenings');
+  }
+
   async function handleSave(item: EveningInput) {
-    loading = true;
+    saving = true;
     dialogOpen = false;
     try {
       if (editTarget) {
@@ -110,23 +103,25 @@
         await createEvening(item);
         toast = { message: 'Abend angelegt', type: 'success' };
       }
-      await reload(selectedSemester);
+      await invalidate('app:evenings');
     } catch (e) {
       toast = { message: e instanceof Error ? e.message : 'Fehler beim Speichern', type: 'error' };
-      loading = false;
+    } finally {
+      saving = false;
     }
     editTarget = null;
   }
 
   async function handleDelete(date: string) {
-    loading = true;
+    saving = true;
     try {
       await deleteEvening(date);
       toast = { message: 'Abend gelöscht', type: 'success' };
-      await reload(selectedSemester);
+      await invalidate('app:evenings');
     } catch (e) {
       toast = { message: e instanceof Error ? e.message : 'Fehler beim Löschen', type: 'error' };
-      loading = false;
+    } finally {
+      saving = false;
     }
   }
 
@@ -146,7 +141,7 @@
   <title>Spieleinnahmen - Doko Kasse</title>
 </svelte:head>
 
-{#if loading}<Spinner />{/if}
+{#if saving}<Spinner />{/if}
 <Toast bind:toast />
 
 <EveningDialog
@@ -171,156 +166,157 @@
 
 <ContextPane contextPaneTitle="Semester" bind:contextPaneCollapsed bind:contextPaneModalOpen>
   {#snippet contextPane()}
-    <SemesterNav semesters={data.semesters} bind:selected={selectedSemester} />
+    <SemesterNav semesters={data.semesters} bind:selected={() => semester, setSemester} />
   {/snippet}
 
-  <SplitPane
-    supportingPaneClosable
-    supportingPaneTitle={selectedEvening ? formatDate(selectedEvening.date) : ''}
-    bind:supportingPaneOpen={() => !!selectedEvening, () => (selectedEvening = null)}
-  >
-    <!-- Detail pane: header + list/table -->
-    <PageHeader
-      title="Spieleinnahmen"
-      count={evenings.length}
-      supportingText={semesterLabel(selectedSemester)}
+  {#await data.evenings}
+    <Spinner />
+  {:then evenings}
+    <SplitPane
+      supportingPaneClosable
+      supportingPaneTitle={selectedEvening ? formatDate(selectedEvening.date) : ''}
+      bind:supportingPaneOpen={() => !!selectedEvening, () => (selectedEvening = null)}
     >
-      {#snippet controls()}
-        {#if !isDesktop.current}
-          <button
-            onclick={() => (contextPaneModalOpen = true)}
-            class="flex items-center gap-1 rounded-lg border border-border-strong px-3 py-2 text-text-secondary hover:bg-surface-hover"
-            aria-label="Semester filtern"
-          >
-            <FunnelSimpleIcon size="24" />
-            Filter
-          </button>
-        {/if}
-      {/snippet}
-
-      {#snippet actions()}
-        <button
-          onclick={() => reload(selectedSemester)}
-          class="rounded-lg border border-border-strong p-2 text-text-secondary hover:bg-surface-hover"
-          aria-label="Aktualisieren"
-          title="Aktualisieren"
-        >
-          <ArrowCounterClockwiseIcon size="24" />
-        </button>
-
-        <button
-          onclick={openNew}
-          class="rounded-lg bg-action-primary px-3 py-2 font-medium text-action-primary-fg hover:bg-action-primary-hover"
-        >
-          Neu
-        </button>
-      {/snippet}
-    </PageHeader>
-
-    {#if isDesktop.current}
-      <Table
-        columns={tableColumns}
-        rows={sortedEvenings}
-        actions={tableActions}
-        selectable
-        onselect={handleSelect}
-      />
-    {:else}
-      <MobileItemList
-        label="Abende"
-        items={sortedEvenings}
-        getTitle={(e) => formatDate(e.date)}
-        getSubtitle={(e) => `${formatNumber(e.sum ?? 0)} · ${semesterLabel(e.semester)}`}
-        onselect={(e) => (selectedEvening = e)}
-        emptyText="Keine Abende"
+      <PageHeader
+        title="Spieleinnahmen"
+        count={evenings.length}
+        supportingText={semesterLabel(semester)}
       >
-        {#snippet headerAction()}
+        {#snippet controls()}
+          {#if !isDesktop.current}
+            <button
+              onclick={() => (contextPaneModalOpen = true)}
+              class="flex items-center gap-1 rounded-lg border border-border-strong px-3 py-2 text-text-secondary hover:bg-surface-hover"
+              aria-label="Semester filtern"
+            >
+              <FunnelSimpleIcon size="24" />
+              Filter
+            </button>
+          {/if}
+        {/snippet}
+
+        {#snippet actions()}
           <button
-            onclick={() => (listSortDir = listSortDir === SORT.DESC ? SORT.ASC : SORT.DESC)}
-            class="rounded p-1 text-text-disabled hover:bg-surface-hover hover:text-text-secondary"
-            title={listSortDir === SORT.DESC ? 'Älteste zuerst' : 'Neueste zuerst'}
+            onclick={reload}
+            class="rounded-lg border border-border-strong p-2 text-text-secondary hover:bg-surface-hover"
+            aria-label="Aktualisieren"
+            title="Aktualisieren"
           >
-            {#if listSortDir === SORT.DESC}
-              <SortDescendingIcon size="20" />
-            {:else}
-              <SortAscendingIcon size="20" />
-            {/if}
+            <ArrowCounterClockwiseIcon size="24" />
+          </button>
+
+          <button
+            onclick={openNew}
+            class="rounded-lg bg-action-primary px-3 py-2 font-medium text-action-primary-fg hover:bg-action-primary-hover"
+          >
+            Neu
           </button>
         {/snippet}
-      </MobileItemList>
-    {/if}
+      </PageHeader>
 
-    {#snippet supportingPane()}
-      {#if selectedEvening}
-        <div class="flex items-center justify-between mb-4">
-          <p class="text-text-muted">
-            {semesterLabel(selectedEvening.semester)}
-          </p>
-          <div class="flex gap-2">
+      {#if isDesktop.current}
+        <Table
+          columns={tableColumns}
+          rows={sortBy(evenings, 'date', listSortDir)}
+          actions={tableActions}
+          selectable
+          onselect={handleSelect}
+        />
+      {:else}
+        <MobileItemList
+          label="Abende"
+          items={sortBy(evenings, 'date', listSortDir)}
+          getTitle={(e) => formatDate(e.date)}
+          getSubtitle={(e) => `${formatNumber(e.sum ?? 0)} · ${semesterLabel(e.semester)}`}
+          onselect={(e) => (selectedEvening = e)}
+          emptyText="Keine Abende"
+        >
+          {#snippet headerAction()}
             <button
-              onclick={() => {
-                editTarget = selectedEvening;
-                dialogOpen = true;
-              }}
-              class="rounded-lg border border-border-strong px-3 py-2 font-medium text-text-secondary hover:bg-surface-hover"
+              onclick={() => (listSortDir = listSortDir === SORT.DESC ? SORT.ASC : SORT.DESC)}
+              class="rounded p-1 text-text-disabled hover:bg-surface-hover hover:text-text-secondary"
+              title={listSortDir === SORT.DESC ? 'Älteste zuerst' : 'Neueste zuerst'}
             >
-              Bearbeiten
+              {#if listSortDir === SORT.DESC}
+                <SortDescendingIcon size="20" />
+              {:else}
+                <SortAscendingIcon size="20" />
+              {/if}
             </button>
-            <button
-              onclick={() => {
-                if (selectedEvening) {
-                  deleteTarget = selectedEvening.date;
-                  confirmOpen = true;
-                }
-              }}
-              class="rounded-lg border border-destruct-border px-3 py-2 font-medium text-destruct-text hover:bg-surface-hover"
-            >
-              Löschen
-            </button>
-          </div>
-        </div>
+          {/snippet}
+        </MobileItemList>
+      {/if}
 
-        <div class="mb-4 grid grid-cols-2 gap-3">
-          <!-- Player tiles -->
-          {#each PLAYERS as player}
-            <div class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center">
-              <p class="text-sm font-medium uppercase tracking-wide text-text-muted">
-                {capitalize(player)}
-              </p>
-              <p
-                class="mt-1 text-base font-semibold"
-                class:text-accent-best={selectedEvening[player] === selectedEvening.min?.value}
-                class:text-accent-worst={selectedEvening[player] === selectedEvening.max?.value}
+      {#snippet supportingPane()}
+        {#if selectedEvening}
+          <div class="flex items-center justify-between mb-4">
+            <p class="text-text-muted">
+              {semesterLabel(selectedEvening.semester)}
+            </p>
+            <div class="flex gap-2">
+              <button
+                onclick={() => {
+                  editTarget = selectedEvening;
+                  dialogOpen = true;
+                }}
+                class="rounded-lg border border-border-strong px-3 py-2 font-medium text-text-secondary hover:bg-surface-hover"
               >
-                {formatNumber(selectedEvening[player] ?? 0)}
+                Bearbeiten
+              </button>
+              <button
+                onclick={() => {
+                  if (selectedEvening) {
+                    deleteTarget = selectedEvening.date;
+                    confirmOpen = true;
+                  }
+                }}
+                class="rounded-lg border border-destruct-border px-3 py-2 font-medium text-destruct-text hover:bg-surface-hover"
+              >
+                Löschen
+              </button>
+            </div>
+          </div>
+
+          <div class="mb-4 grid grid-cols-2 gap-3">
+            {#each PLAYERS as player}
+              <div class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center">
+                <p class="text-sm font-medium uppercase tracking-wide text-text-muted">
+                  {capitalize(player)}
+                </p>
+                <p
+                  class="mt-1 text-base font-semibold"
+                  class:text-accent-best={selectedEvening[player] === selectedEvening.min?.value}
+                  class:text-accent-worst={selectedEvening[player] === selectedEvening.max?.value}
+                >
+                  {formatNumber(selectedEvening[player] ?? 0)}
+                </p>
+              </div>
+            {/each}
+
+            <Separator.Root class="col-span-2 border border-border-subtle" />
+
+            <div
+              class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center col-span-2"
+            >
+              <p class="text-sm font-medium uppercase tracking-wide text-text-muted">Gesamt (Σ)</p>
+              <p class="mt-1 text-base font-semibold text-text-primary">
+                {formatNumber(selectedEvening.sum ?? 0)}
               </p>
             </div>
-          {/each}
 
-          <Separator.Root class="col-span-2 border border-border-subtle" />
-
-          <!-- Summary -->
-          <div
-            class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center col-span-2"
-          >
-            <p class="text-sm font-medium uppercase tracking-wide text-text-muted">Gesamt (Σ)</p>
-            <p class="mt-1 text-base font-semibold text-text-primary">
-              {formatNumber(selectedEvening.sum ?? 0)}
-            </p>
+            <div
+              class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center col-span-2"
+            >
+              <p class="text-sm font-medium uppercase tracking-wide text-text-muted">
+                Durchschnitt (∅)
+              </p>
+              <p class="mt-1 text-base font-semibold text-text-primary">
+                {formatNumber(selectedEvening.avg ?? 0)}
+              </p>
+            </div>
           </div>
-
-          <div
-            class="rounded-lg border border-border-subtle bg-surface-raised p-3 text-center col-span-2"
-          >
-            <p class="text-sm font-medium uppercase tracking-wide text-text-muted">
-              Durchschnitt (∅)
-            </p>
-            <p class="mt-1 text-base font-semibold text-text-primary">
-              {formatNumber(selectedEvening.avg ?? 0)}
-            </p>
-          </div>
-        </div>
-      {/if}
-    {/snippet}
-  </SplitPane>
+        {/if}
+      {/snippet}
+    </SplitPane>
+  {/await}
 </ContextPane>
