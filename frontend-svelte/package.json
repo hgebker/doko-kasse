@@ -24,7 +24,7 @@
     "globals": "^17.6.0",
     "phosphor-svelte": "^3.1.0",
     "prettier": "^3.8.3",
-    "prettier-plugin-svelte": "^4.0.0",
+    "prettier-plugin-svelte": "^4.1.0",
     "svelte": "^5.55.9",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3",
