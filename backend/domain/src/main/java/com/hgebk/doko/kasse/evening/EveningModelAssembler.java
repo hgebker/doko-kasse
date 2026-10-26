@@ -1,7 +1,5 @@
 package com.hgebk.doko.kasse.evening;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.hateoas.server.core.Relation;
 import org.springframework.stereotype.Component;
@@ -14,19 +12,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Component
 @Relation(collectionRelation = "evenings", itemRelation = "evening")
 public class EveningModelAssembler implements RepresentationModelAssembler<Evening, EveningDTO> {
-    private final ModelMapper modelMapper;
-
-    @Autowired
-    public EveningModelAssembler(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
-    }
-
     @Override
     public EveningDTO toModel(Evening evening) {
         List<EveningResultDTO> results = evening.getResults();
         EveningResults resultsDomain = new EveningResults(results);
 
-        EveningDTO dto = modelMapper.map(evening, EveningDTO.class);
+        EveningDTO dto = new EveningDTO();
+        dto.setDate(evening.getDate());
+        dto.setSemester(evening.getSemester());
         dto.setResults(results);
         dto.setSum(resultsDomain.getSum());
         dto.setAvg(resultsDomain.getAvg());

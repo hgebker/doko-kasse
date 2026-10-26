@@ -68,8 +68,6 @@ Domain packages follow a flat feature structure: `earning/`, `evening/`, `expens
 
 **Spring profiles:** `local` (default), `prod`. Active profile set at build time via Maven profile, then interpolated into `application.yml`.
 
-**API docs:** Swagger UI at `/api-ui`, OpenAPI JSON at `/api-docs`.
-
 **Tests:** Extend `BaseTest` (Mockito lifecycle). Tests are pure unit tests using mocks — no embedded MongoDB.
 
 ### Database Migrations
