@@ -18,3 +18,5 @@ server:
   port: 8080
   error:
     include-message: always
+  tomcat:
+    max-threads: 20
